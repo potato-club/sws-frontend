@@ -13,7 +13,7 @@ padding-top:70px;
     display:flex;
     justify-content:center;
     align-items: center;
-    height:30%;
+    height:36%;
 }
 .Top>button{
     background-color:#272829;
@@ -26,9 +26,9 @@ padding-top:70px;
     justify-content: center;
 }
 .Slide{
-    height:350px;
+    height:400px;
     width:1200px;
-    
+    flex-direction: column;
     display:flex;
     align-items: center;
     justify-content: center;
@@ -41,11 +41,11 @@ padding-top:70px;
     height:60%;
 }
 .bottom{
-    height:70%;
+    height:65%;
 }
 .bottom_input{
-    margin:20px;
-    
+   
+    padding-left:90px;
 }
 .bottom_input>div{
     display:flex;
@@ -81,7 +81,55 @@ justify-content: center;
 }
 .bottom_component1_caffee{
     border-radius: 25px;
-    background-color: #CCCCCC;
+   
     width:250px;
+    border:#272829;
     height:200px;
+}
+.bottom_component1_caffeeimg{
+    border-style: solid;
+    border-bottom: 0;
+    border-radius:25px 25px 0px 0px;
+    background-position: center;
+    background-repeat: repeat;
+    background-size:cover;
+    box-sizing: border-box;
+    
+    width:100%;
+    height:80%;
+}
+.bottom_component1_caffeetext{
+    display:flex;
+    justify-content: space-around;
+   border-style: solid;
+   border-radius: 0px 0px 25px 25px;
+}
+.buttons{
+    margin-top:20px;
+    display:flex;
+    width:150px;
+    justify-content:space-around;
+}
+.buttons>button{
+    background-color: #cfd2d4;
+    border-radius: 50%;
+    border:none;
+    width:10px;
+    height:10px;
+}
+.bottom_check{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.bottom_check>div{
+    margin: 0px 10px 0px 10px;
+   
+}
+.bottom_check>button{
+    background-color: white;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border:none;
 }
