@@ -1,11 +1,10 @@
 import React from 'react';
+import SignInUpBox from './SignInUpPage/SignInUpBox';
 
 
 function App() {
   return (
-    <div>
-   dd
-    </div>
+    <SignInUpBox/>
   );
 }
 
