@@ -1,0 +1,81 @@
+.MyPage{
+    width:100%;
+    height:880px;
+    display:flex;
+  
+    align-items: center;
+    justify-content: center;
+}
+.MyPage1{
+    box-sizing: border-box;
+    margin-top: 120px;
+  
+    background-color: rgb(155, 154, 154);
+    width:50%;
+    height:1000px;
+}
+.MyPage_top{
+    width:100%;
+    height:300px;
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.MP_t_photo{
+    width:150px;
+    height:150px;
+    border-radius: 50%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aliceblue;
+}
+.MP_t_name{
+    width:230px;
+    height:40px;
+    background-color: aliceblue;
+}
+.MP_t_button{
+    border-radius: 25px;
+    border:none;
+    height:30px;
+}
+.MP_b_friend_content{
+    background-color: aliceblue;
+    width:750px;
+    height:110px;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+   margin-top: 25px;
+   padding-left: 25px;
+   padding-right: 25px;
+    border-radius: 25px;
+}
+.MyPage_bottom{
+    box-sizing: border-box;
+  display:flex;
+  flex-direction: column;
+  
+  justify-content: center;
+height:600px;
+width:85%;
+margin:70px;
+}
+.MP_b_write{
+    width:200px;
+    height:50px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    margin-bottom: 25px;
+    background-color: aliceblue;
+}
+.MP_b_friend_content_button{
+    height:40px;
+    width:80px;
+    border-radius: 15px;
+    background-color: red;
+    border:none;
+}
