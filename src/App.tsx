@@ -6,6 +6,8 @@ import Lounge from './Lounge';
 import Login from './Login';
 import Signup from './Signup';
 import MyPage from './MyPage';
+import SignInUpBox from './SignInUpPage/SignInUpBox';
+import LoginForm from './SignInUpPage/LoginForm';
 
 function App() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);//사이드 박스 열기
@@ -21,8 +23,13 @@ function App() {
                 <Routes>
                     <Route path="/*" element={<Main isSidebarOpen={isSidebarOpen} />} />  {/*ul업데이트 */}
                     <Route path="/Lounge" element={<Lounge isSidebarOpen={isSidebarOpen} />} />
-                    <Route path="/Login" element={<Login />} />
-                    <Route path="/Signup" element={<Signup />} />
+                  
+
+                    <Route path="/Login" element={<LoginForm onSubmit={handleSubmit}/>}/>
+
+                    <Route path="/Signup" element={<SignInUpBox/>} />
+                    
+
                     <Route path="MyPage" element={<MyPage/>}/>
                 </Routes>
             </Router>
@@ -35,5 +42,6 @@ export default App;
 
 
 
+  {/* <Route path="/Signup" element={<Signup />} /> */}
 
-
+ {/* <Route path="/Login" element={<Login />} /> */}
