@@ -5,7 +5,7 @@ import styled from "styled-components";
 interface LoginFormProps{
     onSubmit: (username: string, password: string) => void
 }
-const LoginForm:React.FC<LoginFormProps> = ({onSubmit}) =>{
+const LoginForm:React.FC<LoginFormProps> = ({ onSubmit = () => {} }) =>{
     const [username,setUsername] = useState('');
     const [password, setPassword] = useState('');
 
