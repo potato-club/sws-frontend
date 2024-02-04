@@ -1,4 +1,7 @@
 
+
+
+
 // Main 컴포넌트
 import React, { useEffect, useState } from 'react';
 import './Main.css';
