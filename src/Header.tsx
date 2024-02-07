@@ -95,13 +95,15 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isSidebarOpen }) => {
                 <SearchContainer>
                     <Input />
                     <div><CgSearch size="25" /></div>
+
                 </SearchContainer>
-                <div className="Header_right_login">
+                <LoginContainer>
                     <Link to="/SignInUpPage/SignInUpBox" style={{ textDecoration: "none", color: "white" }}>로그인</Link>
                     <Link to="/SignInUpPage/SignUpBox" style={{ textDecoration: "none", color: "white" }}>회원가입</Link>
-                </div>
+                </LoginContainer>
             </RightContainer>
         </HeaderContainer>
+
     );
 }
 

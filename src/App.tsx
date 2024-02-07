@@ -7,7 +7,7 @@ import MyPage from './MyPage';
 import SignInUpBox from './SignInUpPage/SignInUpBox';
 import SignUpBox from './SignInUpPage/SignUpBox';
 import RedirectHandler from './SignInUpPage/RedirectHandler';
-
+import './App.css';
 function App() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
