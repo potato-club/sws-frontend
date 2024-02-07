@@ -57,6 +57,7 @@ export default SignUpForm;
 const StyledLabel = styled.label`
     margin-bottom: 50px;
     display: block;
+   
 `;
 
 const StyledForm = styled.form`
