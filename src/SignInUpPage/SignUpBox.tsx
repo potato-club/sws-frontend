@@ -1,10 +1,10 @@
-//로그인 페이지
+//회원가입 페이지
 
 import styled from "styled-components";
-import LoginForm from "./LoginForm";
-const SignInUpBox=()=>{
-    const handleLoginSubmit = (username: string, password: string) =>{
-        console.log('로그인', username, password)
+import SignUpForm from "./SignUpForm";
+const SignUpBox=()=>{
+    const handleSignUpSubmit = (username: string, password: string, email:string) =>{
+        console.log('회원가입', username, password, email)
     };
 
     return(
@@ -13,7 +13,7 @@ const SignInUpBox=()=>{
             <Logo>대충 로고이미지 넣을 곳</Logo>
             <LogInBox>
                 <Contents>
-                    <LoginForm onSubmit={handleLoginSubmit}/>
+                    <SignUpForm onSubmit={handleSignUpSubmit}/>
                 </Contents>
             </LogInBox>
         </ContainerWithLogo>
@@ -21,7 +21,7 @@ const SignInUpBox=()=>{
     );
 
 }
-export default SignInUpBox;
+export default SignUpBox;
 
 
 const LogInBoxContainer = styled.div`

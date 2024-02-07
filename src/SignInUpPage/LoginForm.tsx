@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
-
+import { KakaoSignInBtn } from "./KakaoSignInBtn";
 interface LoginFormProps{
     onSubmit: (username: string, password: string) => void
 }
@@ -36,6 +36,7 @@ const LoginForm:React.FC<LoginFormProps> = ({onSubmit}) =>{
                  required/>
                  <StyledDIv/>
             </StyledLabel>
+            <KakaoSignInBtn/>
             <StyledButton type="submit">로그인</StyledButton>
         </StyledForm>
 
@@ -61,7 +62,8 @@ const StyledButton = styled.button`
     background-color: white;
     height: 50px;
     width:85%;
-    top:85px;
+    top:50px;
+    font-weight: bold;
 `;
 
 const StyledInput = styled.input`

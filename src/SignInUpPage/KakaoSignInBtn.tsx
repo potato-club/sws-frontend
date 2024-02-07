@@ -1,21 +1,29 @@
 import styled from "styled-components";
 
 export const KakaoSignInBtn = () => {
-    const REST_API_KEY = '백엔드한테 달라하자1';
-    const REDIRECT_URI = '백엔드한테 달라하자2';
+    const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
+    const REDIRECT_URI = 'http://localhost:3000/auth';
     const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-  
+    
     const loginHandler = () => {
       window.location.href = link;
     };
+    console.log(REST_API_KEY)
   
     return (
-      <StyledBtn type='button' onClick={loginHandler}>
-        로그인 하기
-      </StyledBtn>
+      <KakaoBtn onClick={loginHandler}>
+        카카오 로그인
+      </KakaoBtn>
     );
   };
 
-const StyledBtn = styled.button`
-  
+const KakaoBtn = styled.button`
+    border: none;
+    outline: none;
+    border-radius:15px;
+    background-color: yellow;
+    width:85%;
+    height: 50px;
+    font-weight:bold;
+    font-size: 25px;
 `;

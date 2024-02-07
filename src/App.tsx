@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Main from './Main';
 import Header from './Header';
 import Lounge from './Lounge';
-import Login from './Login';
-import Signup from './Signup';
 import MyPage from './MyPage';
-
+import SignInUpBox from './SignInUpPage/SignInUpBox';
+import SignUpBox from './SignInUpPage/SignUpBox';
+import RedirectHandler from './SignInUpPage/RedirectHandler';
 function App() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);//사이드 박스 열기
 
@@ -21,9 +21,10 @@ function App() {
                 <Routes>
                     <Route path="/*" element={<Main isSidebarOpen={isSidebarOpen} />} />  {/*ul업데이트 */}
                     <Route path="/Lounge" element={<Lounge isSidebarOpen={isSidebarOpen} />} />
-                    <Route path="/Login" element={<Login />} />
-                    <Route path="/Signup" element={<Signup />} />
+                    <Route path="/SignInUpPage/SignInUpBox" element={<SignInUpBox />} />
+                    <Route path="/SignInUpPage/SignUpBox" element={<SignUpBox />} />
                     <Route path="MyPage" element={<MyPage/>}/>
+                    <Route path="/auth" element={<RedirectHandler/>}/>
                 </Routes>
             </Router>
         </>

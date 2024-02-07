@@ -72,7 +72,8 @@ const StyledButton = styled.button`
     background-color: white;
     height: 50px;
     width:85%;
-    top:85px;
+    top:20px;
+    font-weight: bold;
 `;
 
 const StyledInput = styled.input`

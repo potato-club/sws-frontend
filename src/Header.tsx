@@ -36,8 +36,8 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isSidebarOpen }) => {
                     <div><CgSearch size="25" /></div>
                 </div>
                 <div className="Header_right_login">
-                    <Link to="/Login" style={{ textDecoration: "none", color: "white" }}>로그인</Link>
-                    <Link to="/Signup" style={{ textDecoration: "none", color: "white" }}>회원가입</Link>
+                    <Link to="/SignInUpPage/SignInUpBox" style={{ textDecoration: "none", color: "white" }}>로그인</Link>
+                    <Link to="/SignInUpPage/SignUpBox" style={{ textDecoration: "none", color: "white" }}>회원가입</Link>
                 </div>
             </div>
         </div>
