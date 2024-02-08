@@ -7,7 +7,8 @@ import MyPage from './MyPage';
 import SignInUpBox from './SignInUpPage/SignInUpBox';
 import SignUpBox from './SignInUpPage/SignUpBox';
 import RedirectHandler from './SignInUpPage/RedirectHandler';
-import './App.css';
+import { createGlobalStyle } from 'styled-components';
+
 function App() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -15,10 +16,16 @@ function App() {
         setIsSidebarOpen(prevState => !prevState);
     };
 
-
+    const GlobalStyle = createGlobalStyle`
+    body {
+        margin:0;
+        height:952px;
+    }
+  `;
 
     return (
         <>
+         <GlobalStyle />
             <Router>
                 <Header toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
                 <Routes>
