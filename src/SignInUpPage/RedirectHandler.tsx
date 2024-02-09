@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
+//window.location.href 현재 페이지의 url
 const RedirectHandler: React.FC = (props) => {
     const code = new URL(window.location.href).searchParams.get("code");
 

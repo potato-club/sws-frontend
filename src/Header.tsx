@@ -10,6 +10,7 @@ interface HeaderProps {
 }
 
 const HeaderContainer = styled.div`
+z-index: 9999; 
     display: flex;
     width: 100%;
     height: 70px;
