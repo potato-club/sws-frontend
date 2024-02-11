@@ -8,6 +8,7 @@ import SignInUpBox from './SignInUpPage/SignInUpBox';
 import SignUpBox from './SignInUpPage/SignUpBox';
 import RedirectHandler from './SignInUpPage/RedirectHandler';
 import { createGlobalStyle } from 'styled-components';
+import Make from './Make';
 
 function App() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -35,6 +36,7 @@ function App() {
                     <Route path="/SignInUpPage/SignUpBox" element={<SignUpBox />} />
                     <Route path="MyPage" element={<MyPage/>}/>
                     <Route path="/auth" element={<RedirectHandler/>}/>
+                    <Route path="/Make" element={<Make isSidebarOpen={isSidebarOpen}/>}/>
                 </Routes>
             </Router>
         </>

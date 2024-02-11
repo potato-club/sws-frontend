@@ -81,6 +81,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isSidebarOpen }) => {
                         <Sidebar>
                             <Link to="/Lounge" style={{ textDecoration: "none", color: "white", fontSize: "20px" }}>라운지</Link>
                             <SidebarItem>설정</SidebarItem>
+                            <Link to="/Make" style={{ textDecoration: "none", color: "white", fontSize: "20px" }}>팀 만들기</Link>
                             <hr />
                             <SidebarItem>나</SidebarItem>
                             <hr />
