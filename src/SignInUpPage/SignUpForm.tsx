@@ -3,27 +3,28 @@ import { useState } from "react";
 import styled from "styled-components";
 
 interface SignUpFormProps{
-    onSubmit: (username: string, password: string, email:string) => void
+    onSubmit: (username: string, password: string, email:string, nickname: string) => void
 }
 const SignUpForm:React.FC<SignUpFormProps> = ({onSubmit}) =>{
     const [username,setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const [nickname, setNickname] = useState('');
 
     const handleSignUp= (e:React.FormEvent)=>{
         e.preventDefault();
-        onSubmit(username,password,email);
+        onSubmit(username,password,email,nickname);
     };
 
     return(
         <StyledForm onSubmit={handleSignUp}>
-            <StyledLabel htmlFor="Id">
+            <StyledLabel htmlFor="Email">
                 <StyledInput 
-                id="Id"
+                id="Email"
                  type="text"
-                 placeholder="아이디"
-                 value={username}
-                 onChange={(e)=>setUsername(e.target.value)}
+                 placeholder="이메일"
+                 value={email}
+                 onChange={(e)=>setEmail(e.target.value)}
                  required/>
                  <StyledDIv/>
             </StyledLabel>
@@ -37,13 +38,23 @@ const SignUpForm:React.FC<SignUpFormProps> = ({onSubmit}) =>{
                  required/>
                  <StyledDIv/>
             </StyledLabel>
-            <StyledLabel htmlFor="Email">
+            <StyledLabel htmlFor="Username">
                 <StyledInput 
-                id="Email"
+                id="Username"
                  type="text"
-                 placeholder="이메일"
-                 value={email}
-                 onChange={(e)=>setEmail(e.target.value)}
+                 placeholder="이름"
+                 value={username}
+                 onChange={(e)=>setUsername(e.target.value)}
+                 required/>
+                 <StyledDIv/>
+            </StyledLabel>
+            <StyledLabel htmlFor="Nickname">
+                <StyledInput 
+                id="Nickname"
+                 type="text"
+                 placeholder="닉네임"
+                 value={nickname}
+                 onChange={(e)=>setNickname(e.target.value)}
                  required/>
                  <StyledDIv/>
             </StyledLabel>
@@ -73,7 +84,6 @@ const StyledButton = styled.button`
     background-color: white;
     height: 50px;
     width:85%;
-    top:20px;
     font-weight: bold;
 `;
 

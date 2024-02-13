@@ -3,8 +3,8 @@
 import styled from "styled-components";
 import SignUpForm from "./SignUpForm";
 const SignUpBox=()=>{
-    const handleSignUpSubmit = (username: string, password: string, email:string) =>{
-        console.log('회원가입', username, password, email)
+    const handleSignUpSubmit = (username: string, password: string, email:string, nickname: string) =>{
+        console.log('회원가입', username, password, email, nickname)
     };
 
     return(
@@ -55,7 +55,7 @@ const Contents = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 70px;
+    margin-top: 50px;
     height:100%;
     text-align: center;
 `;
