@@ -55,7 +55,7 @@ const Contents = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 70px;
+    margin-top: 50px;
     height:100%;
     text-align: center;
 `;
