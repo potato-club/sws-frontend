@@ -1,53 +1,9 @@
-// import React, { useEffect, useState }from 'react';
-// import styled from 'styled-components'
-// interface MainProps {
-//     isSidebarOpen: boolean;
-// }
-// const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
-//     const [pL, setPL] = useState(0);
-//     useEffect(() => {
-//         const Left = isSidebarOpen ? 200 : 0;
-//         setPL(Left);
-//     }, [isSidebarOpen]);
-
-
-//     const MainContainer = styled.div<{ paddingLeft: number }>`
-//     padding-top: 70px;
-//     margin-left: 0; /* 기본값 */
-//     height: 855px;
-//     padding-left: ${props => props.paddingLeft}px;
-// `;
-//     return (
-//         <MainContainer paddingLeft={pL}>
-//             라운지 입니다
-//             </MainContainer>
-//     );
-// }
-
-// export default Lounge;
-
-
 import React, { useState, useEffect } from 'react';
-
-
-
-
 import styled from 'styled-components';
 
-export const StyledBigBox = styled.div`
-    padding: auto;
-    padding-top: 0px;
-   
-    width:1860px;
-    height: 100vh;  // 수정: 뷰포트 높이로 설정
-   
-    display: flex;
-    flex-direction: column; /* 세로로 배치 */
-    position: absolute;
-    
-`;
 
-export const StyledSmallBox = styled.div`
+
+ const StyledSmallBox = styled.div`
     padding: 10px;
     margin: 5px; /* 상단과 하단 여백 */
     height: auto;
@@ -55,14 +11,13 @@ export const StyledSmallBox = styled.div`
     flex-direction: column; /* 내부에 있는 박스들을 가로로 배치 */
     align-items: flex-start; /* 세로 정렬을 맨 위로 조절 */
 `;
-
-export const TitleContainer = styled.div`
+ const TitleContainer = styled.div`
     font-size: 15px;
     margin-left: 13px;
     margin-bottom: 20px;
 `;
 
-export const InnerContainer = styled.div`
+const InnerContainer = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -70,7 +25,7 @@ export const InnerContainer = styled.div`
     align-items: flex-start; /* 세로 정렬을 맨 위로 조절 */
 `;
 
-export const InnerBox = styled.div<{ likes: number }>`
+const InnerBox = styled.div<{ likes: number }>`
     padding: 10px;
     margin: 10px;
     height: 300px;
@@ -92,13 +47,12 @@ export const InnerBox = styled.div<{ likes: number }>`
         border-radius: 10px;
     }
 `;
-
-export const UserInfoContainer = styled.div`
+ const UserInfoContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin-bottom: auto;
 `;
-const MainContainer = styled.div<{ paddingLeft: number }>`
+const MainContain = styled.div<{ paddingLeft: number }>`
      padding-top: 70px;
      margin-left: 0; 
     
@@ -169,7 +123,7 @@ const App: React.FC<MainProps> = ({ isSidebarOpen }) => {
       
            
                 
-                <MainContainer paddingLeft={pL}>
+                <MainContain paddingLeft={pL}>
                
                 {Object.entries(userData).map(([key, innerContents]) => (
                     <StyledSmallBox key={key}>
@@ -186,7 +140,7 @@ const App: React.FC<MainProps> = ({ isSidebarOpen }) => {
                     </StyledSmallBox>
                 ))}
            
-             </MainContainer>
+             </MainContain>
         
        
     );
