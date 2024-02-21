@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { AiOutlineUser } from 'react-icons/ai';
 
-const MyPageContainer = styled.div`
+const MyPageContaine = styled.div`
     width: 100%;
     height: 880px;
     display: flex;
@@ -98,7 +98,7 @@ const MPBfriendContentButton  = styled.button`
 
 const MyPage = () => {
     return (
-        <MyPageContainer>
+        <MyPageContaine>
             <MyPageContent>
                 <MyPageTop>
                     <MPTphoto><AiOutlineUser size="140" /></MPTphoto>
@@ -127,7 +127,7 @@ const MyPage = () => {
                     </div>
                 </MyPageBottom>
             </MyPageContent>
-        </MyPageContainer>
+        </MyPageContaine>
     );
 }
 
