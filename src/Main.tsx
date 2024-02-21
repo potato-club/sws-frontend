@@ -49,13 +49,22 @@ width:150px;
 justify-content:space-around;
 
 `;
-const ButtonsButton=styled.div`
-background-color: #cfd2d4;
-border-radius: 50%;
-border:none;
-width:10px;
-height:10px;
 
+
+const ButtonsButton = styled.div`
+ 
+ width: 10px;
+  height: 10px;
+  transform: translateX(-50%); 
+  background-color:#b9b9b9;
+
+  border-radius: 50%;
+  z-index: 1;
+  cursor: pointer;
+&.active {
+  background-color: black;
+ 
+}
 `;
 const Bottom=styled.div`
 height:65%;
@@ -72,7 +81,7 @@ height:50px;
 width:220px;
 border-right: 50px;
 border-radius: 25px;
-background-color: antiquewhite; 
+background-color:#b9b9b9;
 `;
 const BottomInputInput=styled.input`
 border-radius: 25px;
@@ -207,12 +216,16 @@ const Main: React.FC<MainProps> = ({ isSidebarOpen }) => {
                 <TopButton onClick={prevSlide}><BiChevronLeft size="40" /></TopButton>
                                 <Slide>
                     <SlideImg src={images[currentSlide]} alt={slides[currentSlide]}/>
+
+
                    <Buttons>
                         {slides.map((slide, index) => (
-                            <ButtonsButton key={index} onClick={() => goToSlide(index)}></ButtonsButton>
+                            <ButtonsButton  className={`ButtonsButton ${index === currentSlide ? "active" : ""}`} 
+                            key={index} onClick={() => goToSlide(index)}></ButtonsButton>
                             
                         ))}
                     </Buttons>
+                    
                     </Slide>
                 <TopButton onClick={nextSlide}><BiChevronRight size="40" /></TopButton>
                 </Top>
