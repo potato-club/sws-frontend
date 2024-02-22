@@ -88,7 +88,7 @@ background-color: #272829;
 `;
 const Sidebardiv=styled.div`
 border-right:1px solid black;
-height:70px;
+height:55px;
 width:198px;
 background-color: #272829;
 &.active {
@@ -97,7 +97,7 @@ background-color: #272829;
 }
 `;
 
-/* to="/MyPage"to="/Make"to="/Lounge"onClick={onClick}*/
+
 const Header: React.FC<HeaderProps> = ({ toggleSidebar, isSidebarOpen }) => {
     const [activeLink, setActiveLink] = useState<number | null>(null);
 
