@@ -5,7 +5,7 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import { AiOutlineEnter } from "react-icons/ai";
 import { CgHeart } from "react-icons/cg";
 import { BiSubdirectoryRight } from "react-icons/bi";
-
+import { FaHeart } from "react-icons/fa6";
 const CommunityComponent = styled.div`
   width: 100%;
   display: flex;
@@ -40,13 +40,22 @@ const Communityinput = styled.input`
   height: 70px;
   width: 70%;
 `;
+const Replyinput = styled.input`
+margin-left:200px;
+  height: 50px;
+  width: 50%;
+`;
 
 const CommunityButton = styled.button`
   border-radius: 25px;
   height: 70px;
   width: 30%;
 `;
-
+const ReplyButton = styled.button`
+  border-radius: 25px;
+  height: 50px;
+  width: 15%;
+`;
 const CommunityMid = styled.div`
   display: flex;
   width: 46%;
@@ -94,7 +103,11 @@ const Answertop = styled.div`
   align-items: center;
 `;
 
-const Answersetting = styled.div``;
+const Answersetting = styled.div`
+
+display:flex;`;
+
+
 const Answername = styled.div``;
 const Answercomponent = styled.div``;
 const Cmanswer = styled.div`
@@ -113,39 +126,49 @@ const Ca = styled.div`
 
 function Community() {
   const [inputText, setInputText] = useState("");
-  const [inputText2, setInputText2] = useState("");
   const [Community, setCommunity] = useState<string[]>([]);
-  const [isChange, setIsChange] = useState(false);
-  const [is, setIs] = useState(false);
+  
+  const [heart, setHeart] = useState(false);
 
+  const [ReplyText, setReplyText] = useState("");
+  const [Reply, setReply] = useState<string[]>([]);
+  const [Change, setChange] = useState(false);
+ 
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
-  };
-  const handleChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputText2(e.target.value);
   };
   const handleClick = () => {
     setCommunity([...Community, inputText]);
     setInputText("");
   };
 
+  
+  const heartClick = () => {
+    setHeart((prevChange) => !prevChange);
+  };
+
+
+  const ReplyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setReplyText(e.target.value);
+  };
   const handleReplyClick = () => {
     alert("대댓글을 작성하시겠습니까?");
-    setIsChange((prevIsChange) => !prevIsChange);
+    setChange((prevChange) => !prevChange);
   
   };
- 
-  const ChangeClick = () => {
-    setCommunity([...Community, inputText]);
-    setInputText("");
-    setIsChange((prevIsChange) => !prevIsChange);
-    setIs(true);
+  const ReplyClick = () => {
+    setReply([...Reply, ReplyText]);
+    setReplyText("");
+    setChange((prevChange) => !prevChange);
+   
   };
  
 
   return (
     <CommunityComponent>
       <CommunityBox>
+        
         <CommunityDetail>
           <Detailtop>
             <Detailtitle>제목 뭐시기</Detailtitle>
@@ -160,46 +183,46 @@ function Community() {
     
         
        
-    {Community.map((text:any, index:any) => (
+    {Community.map((text:string, index:number) => (
       <Communityanswer key={index}>
         <Answertop>
           <Answername>이름</Answername>
-          <Answersetting>
-            <CgHeart />/<AiOutlineEnter onClick={handleReplyClick} />/<BiDotsVerticalRounded />
+          <Answersetting >
+            <div onClick={heartClick}>{heart?(<CgHeart />):(<FaHeart />)}</div>/<div onClick={handleReplyClick} ><AiOutlineEnter /></div>/<div><BiDotsVerticalRounded /></div>
           </Answersetting>
         </Answertop>
         <Answercomponent>{text}</Answercomponent>
       </Communityanswer>
     ))}
     
-      {is&&(
-         Community.map((inputText2:any, index:any) => (
-    <Ca>
-    <BiSubdirectoryRight size="40"/>
+    
+       {Reply.map((Text2:string, index:number) => ( 
+    <Ca key={index}>
+    <BiSubdirectoryRight size="40" />
     <Cmanswer>
       <Answertop>
         <Answername>이름</Answername>
         <Answersetting>
-          <CgHeart />/<AiOutlineEnter onClick={handleReplyClick} />/<BiDotsVerticalRounded />
+        <div onClick={heartClick}>{heart?(<CgHeart />):(<FaHeart />)}</div>/<BiDotsVerticalRounded />
         </Answersetting>
       </Answertop>
-      <Answercomponent>{inputText2}</Answercomponent>
+      <Answercomponent>{Text2}</Answercomponent>
     </Cmanswer>
   </Ca> 
-   ))  
-)}
+  ))}
 
 
-  {isChange&& (
-  <>
-  <input
-   value={inputText2}
-   onChange={handleChange2}
-   placeholder="내용을 입력하세요"
-  />
-  <button onClick={ChangeClick}>대댓글 쓰기</button>
-  </>
-)}
+
+        {Change&& (
+            <>
+                <Replyinput
+                    value={ReplyText}
+                    onChange={ReplyChange}
+                    placeholder="내용을 입력하세요"
+                />
+                <ReplyButton onClick={ReplyClick}>대댓글 쓰기 </ReplyButton>
+            </>
+        )}
         </CommunityBottom>
 
         <CommunityMid>
@@ -211,12 +234,13 @@ function Community() {
               <CommunityButton onClick={handleClick}>
                 답장하기
               </CommunityButton>
-           
-          
         </CommunityMid>
+
       </CommunityBox>
     </CommunityComponent>
   );
 }
 
 export default Community;
+
+
