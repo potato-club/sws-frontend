@@ -43,7 +43,7 @@ background-color: aliceblue;`;
            
       
        
-        const MPTbutton= styled.button`
+ const MPTbutton= styled.button`
             border-radius: 25px;
             border: none;
             height: 30px;
@@ -62,10 +62,6 @@ background-color: aliceblue;`;
     padding-right: 25px;
     border-radius: 25px;
     `;
- 
-     
-    
-
 
 const MyPageBottom = styled.div`
     box-sizing: border-box;
@@ -94,9 +90,31 @@ const MPBfriendContentButton  = styled.button`
         background-color: red;
         border: none;
     `;
+const MPBfriendPage=styled.button`
+        height: 40px;
+        width: 90px;
+        border-radius: 15px;
+        border: none;
 
+`;
 
+const MPBfriend=styled.div`
+overflow-y:auto;
+`; 
 const MyPage = () => {
+
+    const friend = [
+        "테스트하는 인간",
+        "늙은 사람",
+        "강서쪽 사람",
+         ]; 
+
+const friendDelete=()=>{
+alert("삭제되었습니다.");
+
+}
+
+
     return (
         <MyPageContaine>
             <MyPageContent>
@@ -104,27 +122,25 @@ const MyPage = () => {
                     <MPTphoto><AiOutlineUser size="140" /></MPTphoto>
                     <div>
                         <MPTname>이름</MPTname>
-                        <div>#뭐시기</div>
+                        <div>#강서 #프론트엔드 #웹 개발</div>
                     </div>
                     <MPTbutton>내 정보 수정</MPTbutton>
                     </MyPageTop>
                 <MyPageBottom>
                     <MPBwrite><Link to="/">내가 쓴 글 목록 </Link></MPBwrite>
-                    <div className="MP_b_friend">
+                        <MPBfriend>
                         <div>내 친구들 </div>
-                        <MPBfriendContent>
-                            <div>친구 이름</div>
-                            <MPBfriendContentButton>친구 삭제</MPBfriendContentButton>
+                        {[...Array(3)].map((_, index) => (
+                        <MPBfriendContent key={index}>
+                            <div>{friend[index]}</div>
+                            <div>
+                            <MPBfriendPage><Link to="/">친구 페이지</Link></MPBfriendPage>
+                            <MPBfriendContentButton onClick={friendDelete}>친구 삭제</MPBfriendContentButton>
+                            </div>
                             </MPBfriendContent>
-                            <MPBfriendContent>
-                            <div>친구 이름</div>
-                            <MPBfriendContentButton>친구 삭제</MPBfriendContentButton>
-                            </MPBfriendContent>
-                        <MPBfriendContent>
-                            <div>친구 이름</div>
-                            <MPBfriendContentButton>친구 삭제</MPBfriendContentButton>
-                            </MPBfriendContent>
-                    </div>
+))}
+                           
+                           </MPBfriend>
                 </MyPageBottom>
             </MyPageContent>
         </MyPageContaine>

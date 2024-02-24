@@ -27,6 +27,7 @@ flex-direction:column;
 `;
 const MakeLeftNumber=styled.div`
 background-Color:gray;
+font-size:100px;
 width:500px;
 height:500px;
 border-radius:50%;
@@ -54,28 +55,39 @@ display:flex;
 `;
 
 const MakeRight=styled.div`
-width:50%;
+margin-top:100px;
 display:flex;
 align-items:center;
-justify-content:center;
-height:80%;
+height:660px;
 flex-direction:column;
 `;
 const MakeRightTitle=styled.div`
 background-color:gray;
-width:700px;
-height:50px;
+width:600px;
+max-height:50px;
 border-radius:25px;
 display:flex;
 align-items:center;
 justify-content:center;
 `;
-const MakeRightFriend =styled.div`
+
+const MakeRightfriend=styled.div`
+display:flex;
+`;
+const MakeRightinput =styled.input`
 height:70px;
+width:600px;
 display:flex;
 align-items:center;
 `;
-
+const MakeRightbutton =styled.button`
+display:flex;
+align-items:center;
+`;
+const MakeRightCenter=styled.div`
+height:550px;
+overflow-y: auto;
+`;
 const MakeBottom=styled.div`
 width:100%;
 height:15%;
@@ -99,43 +111,56 @@ interface MainProps {
 
 const Make: React.FC<MainProps> = ({ isSidebarOpen }) =>{
     const [pL, setPL] = useState(0);
+const[number,setNumber]=useState(0);
 
+const Click = () => {
+   alert("선택 완료");
+   
+  };
     useEffect(() => {
         const Left = isSidebarOpen ? 200 : 0;
         setPL(Left);
     }, [isSidebarOpen]);
+
+
+    const plus=()=>{
+        setNumber(number+1);
+    }
+    const minus=()=>{
+        setNumber(number-1);
+    }
     return (
 <>
         <MainContainer paddingLeft={pL}>
            <MakeTop>
                         <MakeLeft>
 <MakeLeftNumber>
-    1
+    {number}
 </MakeLeftNumber>
 <MakeLeftButtonBox>
-    <MakeLeftButton><BiChevronLeft size="40" /></MakeLeftButton>
-        <MakeLeftIn>1</MakeLeftIn>
-    <MakeLeftButton><BiChevronRight size="40" /></MakeLeftButton>
+    <MakeLeftButton><BiChevronLeft size="40" onClick={minus}/></MakeLeftButton>
+        <MakeLeftIn>{number}</MakeLeftIn>
+    <MakeLeftButton><BiChevronRight size="40"  onClick={plus}/></MakeLeftButton>
 </MakeLeftButtonBox>
             
             </MakeLeft>
+
+
             <MakeRight>
 <MakeRightTitle>
     같이 공부 할 친구를 입력하세요!
 </MakeRightTitle>
-<MakeRightFriend>
-    아이디를 입력하세요
-</MakeRightFriend>
-<MakeRightFriend>
-    asdsdasas
-</MakeRightFriend>
-<MakeRightFriend>
-    asdsdasas
-</MakeRightFriend>
-<MakeRightFriend>
-    asdsdasas
-</MakeRightFriend>
+<MakeRightCenter>
+{Array.from({ length: number }).map((_, index) => (
+    <MakeRightfriend>
+<MakeRightinput/>
+<MakeRightbutton  onClick={Click}>확인</MakeRightbutton>
+</MakeRightfriend>
+ ))}
+ </MakeRightCenter>
             </MakeRight>
+
+
             </MakeTop>
 
             <MakeBottom>
