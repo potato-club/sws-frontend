@@ -11,6 +11,7 @@ import { createGlobalStyle } from 'styled-components';
 import Make from './Make';
 import MainBox from './MainBox';
 import Community from './Community';
+import PostMainBox from './PostMainBox';
 
 function App() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -41,6 +42,8 @@ function App() {
                     <Route path="/Make" element={<Make isSidebarOpen={isSidebarOpen}/>}/>
                     <Route path="/MainBox" element={<MainBox/>}/>
                     <Route path="/Community" element={<Community/>}/>
+                    <Route path="/PostMainBox" element={<PostMainBox/>}/>
+
                 </Routes>
             </Router>
         </>
