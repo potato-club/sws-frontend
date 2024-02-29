@@ -26,7 +26,7 @@ flex-direction:column;
 
 `;
 const MakeLeftNumber=styled.div`
-background-Color:gray;
+background-color: #7ba1da;
 font-size:100px;
 width:500px;
 height:500px;
@@ -37,8 +37,11 @@ align-items:center;
 margin-bottom:50px;
 `;
 const MakeLeftButton=styled.button`
-background-color:gray;
-padding:12px;
+background-color: #7ba1da;
+padding:6px 25px 6px 25px;
+border-radius: 15px;
+color:white;
+border:0;
 
 `;
 const MakeLeftIn=styled.div`
@@ -62,7 +65,7 @@ height:660px;
 flex-direction:column;
 `;
 const MakeRightTitle=styled.div`
-background-color:gray;
+background-color: #7ba1da;
 width:600px;
 max-height:50px;
 border-radius:25px;
@@ -73,16 +76,30 @@ justify-content:center;
 
 const MakeRightfriend=styled.div`
 display:flex;
+justify-content:space-around;
+align-items:center;
 `;
 const MakeRightinput =styled.input`
 height:70px;
-width:600px;
+width:530px;
+margin-right:20px;
+border-left:0px;
+border-top:0px;
+border-right:0px;
 display:flex;
 align-items:center;
 `;
 const MakeRightbutton =styled.button`
 display:flex;
 align-items:center;
+height:60px;
+width:80px;
+justify-content:center;
+border:0px;
+color:white;
+border-radius:10px;
+background-color:#7ba1da;
+
 `;
 const MakeRightCenter=styled.div`
 height:550px;
@@ -99,8 +116,16 @@ align-items:center;
 const MakeBottomButton=styled.button`
 padding:30px 70px 30px 70px;
 font-size:30px;
+border:0;
+
 border-radius:25px;
-background-color:gray;
+background-color: #7ba1da;
+
+&:hover{
+    height:110px;
+    width:350px;
+  transition: 1s;
+}
 `;
 
 
