@@ -86,7 +86,7 @@ const App: React.FC<MainProps> = ({ isSidebarOpen }) => {
     const [userData, setUserData] = useState<UserData>({
         "인기순": [
             { username: "송태진", category: "카페", likes: 30 },
-            { username: "송태진", category: "카페", likes: 15 },
+            { username: "송태진", category: "카페", likes: 150 },
             { username: "송태진", category: "카페", likes: 10 },
             { username: "송태진", category: "카페", likes: 100 },
             { username: "송태진", category: "카페", likes: 10 },
