@@ -1,13 +1,13 @@
 import React, { useState, ChangeEvent } from 'react';
 import styled from 'styled-components';
 
-export const BigBox = styled.div`
+ const BigBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-export const Box = styled.div`
+ const Box = styled.div`
   width: 1600px;
   height: 850px;
   background-color: #E6E6E6;
@@ -19,7 +19,7 @@ export const Box = styled.div`
   justify-content: center;
 `;
 
-export const InnerBox = styled.div`
+ const InnerBox = styled.div`
   width: 1000px;
   height: 800px;
   background-color: #E6E6E6;
@@ -27,8 +27,7 @@ export const InnerBox = styled.div`
   flex-direction: column;
   border-top: 3px solid green;
 `;
-
-export const SmallBox = styled.div`
+ const SmallBox = styled.div`
   width: 100%;
   height: 50%;
   background-color: #E6E6E6;
@@ -38,7 +37,7 @@ export const SmallBox = styled.div`
 
 `;
 
-export const RowBox1 = styled.div`
+const RowBox1 = styled.div`
   width: 30%;
   height: 100%;
   background-color: #E6E6E6;
@@ -47,7 +46,7 @@ export const RowBox1 = styled.div`
   border-right: 3px solid green;
 `;
 
-export const RowBox2 = styled.div`
+const RowBox2 = styled.div`
   width: 70%;
   height: 100%;
   background-color: #E6E6E6;
@@ -55,19 +54,19 @@ export const RowBox2 = styled.div`
   flex-direction: column;
 `;
 
-export const  RowSmallBox1 = styled.div`
+ const  RowSmallBox1 = styled.div`
   width: 100%;
   height: 30%;
   background-color: #E6E6E6;
 `;
 
-export const  RowSmallBox2 = styled.div`
+ const  RowSmallBox2 = styled.div`
   width: 100%;
   height: 70%;
   background-color: #E6E6E6;
 `;
 
-export const  RowSmallBox3 = styled.div`
+const  RowSmallBox3 = styled.div`
   width: 100%;
   height: 30%;
   background-color: #E6E6E6;
@@ -76,7 +75,7 @@ export const  RowSmallBox3 = styled.div`
   justify-content: space-between; /* Added space between button and counter */
 `;
 
-export const InputFieldA = styled.textarea`
+ const InputFieldA = styled.textarea`
   width: 25%;
   height: 60%;
   margin-left: 3%;
@@ -88,7 +87,7 @@ export const InputFieldA = styled.textarea`
   resize: none; // Prevent textarea from being resized by user
 `;
 
-export const InputFieldB = styled.textarea`
+ const InputFieldB = styled.textarea`
   width: 90%;
   height: 70%;
   margin-left: 3%;
@@ -101,7 +100,7 @@ export const InputFieldB = styled.textarea`
   resize: none; // Prevent textarea from being resized by user
 `;
 
-export const RowSmallBox4 = styled.div`
+ const RowSmallBox4 = styled.div`
   width: 100%;
   height: 70%;
   background-color: #E6E6E6;
@@ -109,7 +108,7 @@ export const RowSmallBox4 = styled.div`
   align-items: center;
   justify-content: center;
 `;
-export const  MainWrite = styled.div`
+ const  MainWrite = styled.div`
   font-size: 30px;
   align-items: center;
   justify-content: center;
@@ -118,7 +117,7 @@ export const  MainWrite = styled.div`
   height: 100%;
 `;
 
-export const InnerWhiteBox = styled.div`
+ const InnerWhiteBox = styled.div`
   position: relative;
   width: 70%;
   height: 80%;
@@ -129,10 +128,11 @@ export const InnerWhiteBox = styled.div`
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  object-fit: cover;
  
 `;
 // Adding a new styled component for the image
-export const Image = styled.img`
+ const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -161,9 +161,26 @@ export const TextBox = styled.div`
   align-items: center;
 `;
 
+export const Dot = styled.span`
+  height: 10px;
+  width: 10px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 5px;
+  cursor: pointer;
+`;
+
 function SecondPage() {
   const [likes, setLikes] = useState(0);
   const [inputBValue, setInputBValue] = useState('');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const imagesLinkes = [
+    'https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/E172/production/_126241775_getty_cats.png',
+    'https://flexible.img.hani.co.kr/flexible/normal/970/777/imgdb/resize/2019/0926/00501881_20190926.JPG'
+  
+  ];
 
   const handleLike = () => {
     setLikes(likes + 1);
@@ -172,6 +189,14 @@ function SecondPage() {
   const handleInputBChange = (e: ChangeEvent<HTMLTextAreaElement>) => { // ChangeEvent<HTMLTextAreaElement> instead of ChangeEvent<HTMLInputElement>
     const value = e.target.value;
     setInputBValue(value);
+  };
+
+  const handleLeftArrowClick = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? imagesLinkes.length - 1 : prevIndex - 1));
+  };
+
+  const handleRightArrowClick = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex === imagesLinkes.length - 1 ? 0 : prevIndex + 1));
   };
 
   return (
@@ -194,8 +219,31 @@ function SecondPage() {
                 <InputFieldA rows={1} maxLength={15} /> 
               </RowSmallBox3>
               <RowSmallBox4>
-                <InnerWhiteBox>
-                  <Image src=" " alt="Your Image" />
+              <InnerWhiteBox>
+                  <Image src={imagesLinkes[currentImageIndex]} alt={`Image ${currentImageIndex + 1}`} />
+                  {/* Left Arrow */}
+                  <div
+                    style={{ position: 'absolute', top: '50%', left: '5%', cursor: 'pointer' }}
+                    onClick={handleLeftArrowClick}
+                  >
+                    {'<'}
+                  </div>
+                  {/* Right Arrow */}
+                  <div
+                    style={{ position: 'absolute', top: '50%', right: '5%', cursor: 'pointer' }}
+                    onClick={handleRightArrowClick}
+                  >
+                    {'>'}
+                  </div>
+                  {/* Dots */}
+                  <div style={{ position: 'absolute', bottom: '5%', textAlign: 'center', width: '100%' }}>
+                    {imagesLinkes.map((_, index) => (
+                      <Dot
+                        key={index}
+                        style={{ backgroundColor: index === currentImageIndex ? '#555' : '#bbb' }}
+                      />
+                    ))}
+                  </div>
                 </InnerWhiteBox>
               </RowSmallBox4>
             </RowBox2>
