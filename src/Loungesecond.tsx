@@ -171,6 +171,28 @@ export const Dot = styled.span`
   cursor: pointer;
 `;
 
+const ArrowButton = styled.div`
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+  font-size: 24px;
+`;
+
+const LeftArrow = styled(ArrowButton)`
+  left: 5%;
+`;
+
+const RightArrow = styled(ArrowButton)`
+  right: 5%;
+`;
+
+const DotsContainer = styled.div`
+  position: absolute;
+  bottom: 5%;
+  width: 100%;
+  text-align: center;
+`;
+
 function SecondPage() {
   const [likes, setLikes] = useState(0);
   const [inputBValue, setInputBValue] = useState('');
@@ -219,33 +241,26 @@ function SecondPage() {
                 <InputFieldA rows={1} maxLength={15} /> 
               </RowSmallBox3>
               <RowSmallBox4>
-              <InnerWhiteBox>
-                  <Image src={imagesLinkes[currentImageIndex]} alt={`Image ${currentImageIndex + 1}`} />
-                  {/* Left Arrow */}
-                  <div
-                    style={{ position: 'absolute', top: '50%', left: '5%', cursor: 'pointer' }}
-                    onClick={handleLeftArrowClick}
-                  >
-                    {'<'}
-                  </div>
-                  {/* Right Arrow */}
-                  <div
-                    style={{ position: 'absolute', top: '50%', right: '5%', cursor: 'pointer' }}
-                    onClick={handleRightArrowClick}
-                  >
-                    {'>'}
-                  </div>
-                  {/* Dots */}
-                  <div style={{ position: 'absolute', bottom: '5%', textAlign: 'center', width: '100%' }}>
-                    {imagesLinkes.map((_, index) => (
-                      <Dot
-                        key={index}
-                        style={{ backgroundColor: index === currentImageIndex ? '#555' : '#bbb' }}
-                      />
-                    ))}
-                  </div>
-                </InnerWhiteBox>
-              </RowSmallBox4>
+        <InnerWhiteBox>
+          <Image src={imagesLinkes[currentImageIndex]} alt={`Image ${currentImageIndex + 1}`} />
+
+          {/* Left Arrow */}
+          <LeftArrow onClick={handleLeftArrowClick}>{'<'}</LeftArrow>
+
+          {/* Right Arrow */}
+          <RightArrow onClick={handleRightArrowClick}>{'>'}</RightArrow>
+
+          {/* Dots */}
+          <DotsContainer>
+            {imagesLinkes.map((_, index) => (
+              <Dot
+                key={index}
+                style={{ backgroundColor: index === currentImageIndex ? '#555' : '#bbb' }}
+              />
+            ))}
+          </DotsContainer>
+        </InnerWhiteBox>
+      </RowSmallBox4>
             </RowBox2>
           </SmallBox>
 
