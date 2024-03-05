@@ -266,7 +266,7 @@ function SecondPage() {
 
           <SmallBox>
             <RowBox1>
-              <MainWrite>내용</MainWrite>
+              <MainWrite>내</MainWrite>
             </RowBox1>
             <RowBox2>
               <InputFieldB rows={3} value={inputBValue} onChange={handleInputBChange} maxLength={500} />
