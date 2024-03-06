@@ -12,6 +12,7 @@ import Make from './Make';
 import MainBox from './MainBox';
 import Community from './Community';
 import LoungeSecond from './Loungesecond';
+import PostMainBox from './PostMainBox';
 
 function App() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -42,8 +43,10 @@ function App() {
                     <Route path="/Make" element={<Make isSidebarOpen={isSidebarOpen}/>}/>
                     <Route path="/MainBox" element={<MainBox/>}/>
                     <Route path="/Community" element={<Community/>}/>
-                    <Route path="/Loungesecond" element={<LoungeSecond/>}/>
-                </Routes>                   
+                    <Route path="/Loungesecond" element={<LoungeSecond/>}/>                  
+                    <Route path="/PostMainBox" element={<PostMainBox/>}/>
+
+                </Routes>
             </Router>
         </>
     );

@@ -20,9 +20,10 @@ height:36%;
 
 `;
 const TopButton = styled.button`
-background-color:#272829;
+background-color: #7ba1da;
 color:white;
-border-radius: 50%;
+border-radius: 15px;
+border:0px;
 width:40px;
 height:40px;
 display:flex;
@@ -81,7 +82,7 @@ height:50px;
 width:220px;
 border-right: 50px;
 border-radius: 25px;
-background-color:#b9b9b9;
+background-color: #7ba1da;
 `;
 const BottomInputInput=styled.input`
 border-radius: 25px;
@@ -109,11 +110,19 @@ const BottomComponent1Caffee=styled.div`
 border-radius: 25px;
 
 width:250px;
-border:#272829;
-height:200px;`;
+
+height:200px;
+box-shadow: 5px 5px 5px 5px gray;
+&:hover{
+    height:220px;
+    width:270px;
+  transition: 0.5s;
+}
+`;
+
 const BottomComponent1CaffeeImg=styled.div`
 border-style: solid;
-border-bottom: 0;
+border: 0;
 border-radius:25px 25px 0px 0px;
 background-position: center;
 background-repeat: repeat;
@@ -121,12 +130,18 @@ background-size:cover;
 box-sizing: border-box;
 
 width:100%;
-height:80%;`;
+height:85%;
+`;
+
 const BottomComponent1CaffeeText=styled.div`
+height:15%;
 display:flex;
 justify-content: space-around;
-border-style: solid;
+border: 0;
+
 border-radius: 0px 0px 25px 25px;`;
+
+
 const BottomCheck=styled.div`
 display:flex;
 align-items: center;
