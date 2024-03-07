@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { AiOutlineMenu } from "react-icons/ai";
 import { Link } from 'react-router-dom';
 import { CgSearch } from "react-icons/cg";
-
+import { PRIMARY_COLOR_BLUE,PRIMARY_COLOR_SKY} from "../src/constants";
+// @ts-ignore
+import logo from "../src/img/logo.png";
 
 interface HeaderProps {
     toggleSidebar: () => void;
@@ -89,11 +91,11 @@ padding-left:15px;
 color:black; 
 background-color: white;
 &.active {
-  background-color: #7ba1da;
+  background-color:${PRIMARY_COLOR_BLUE};
   color:white; 
 }
 &:hover{
-  background-color: #b7c9e2;
+  background-color: ${PRIMARY_COLOR_SKY};
   color:white; 
   transition: 1s;
 }
@@ -116,10 +118,10 @@ background-color: white;
 }
 `;
 const Logo=styled.div`
- background-image: url(https://t3.ftcdn.net/jpg/03/53/02/50/360_F_353025063_sgL2uW9B1Euw2QOR79zFIOWcUY5CrWxZ.jpg);
+  background: url(${logo});
   background-repeat: no-repeat;
-  width:150px;
-  height:70px;
+  width:120px;
+  height:50px;
   background-position:center;
   background-size: cover;
  
@@ -134,9 +136,21 @@ width:110px;
 border-radius:15px;
 justify-content:center;
 color:white; 
-background-color: #7ba1da;
+background-color:${PRIMARY_COLOR_BLUE};
 
 
+`;
+const MenuWrapper=styled.div`
+background-color:white;
+width:55px;
+height:50px;
+display:flex;
+border-radius:50%;
+justify-content:center;
+align-items:center;
+&:active {
+    background-color:${PRIMARY_COLOR_BLUE};
+}
 `;
 
 const Header: React.FC<HeaderProps> = ({ toggleSidebar, isSidebarOpen }) => {
@@ -148,7 +162,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isSidebarOpen }) => {
     return (
         <HeaderContainer>
             <LeftContainer>
-                <div className="MenuWrapper" onClick={toggleSidebar}>
+            <MenuWrapper onClick={toggleSidebar}>
                     <AiOutlineMenu size="40" />
                     {isSidebarOpen && (
                         <Sidebar>
@@ -198,7 +212,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isSidebarOpen }) => {
                             </Sidebardiv>
                         </Sidebar>
                     )}
-                </div>
+               </MenuWrapper>
 
                 <Link to="/"><Logo></Logo></Link>
             </LeftContainer>

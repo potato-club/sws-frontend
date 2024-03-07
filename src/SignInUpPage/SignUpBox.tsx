@@ -1,5 +1,9 @@
 //회원가입 페이지
 
+import { PRIMARY_COLOR_BLUE} from "../../src/constants";
+
+// @ts-ignore
+import logo from "./logo.png";
 import styled from "styled-components";
 import SignUpForm from "./SignUpForm";
 const SignUpBox=()=>{
@@ -10,7 +14,7 @@ const SignUpBox=()=>{
     return(
 <LogInBoxContainer>
         <ContainerWithLogo>
-            <Logo>대충 로고이미지 넣을 곳</Logo>
+            <Logo></Logo>
             <LogInBox>
                 <Contents>
                     <SignUpForm onSubmit={handleSignUpSubmit}/>
@@ -33,6 +37,9 @@ const LogInBoxContainer = styled.div`
 const ContainerWithLogo = styled.div`
   text-align  :center ;
   margin-top: 150px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 `;
 
 const LogInBox = styled.div`
@@ -41,13 +48,20 @@ const LogInBox = styled.div`
     text-align: left;
     width:500px;
     height: 500px;
-    background-color: #cac8c8;
+    background-color: ${PRIMARY_COLOR_BLUE};
     border-radius: 30px;
     box-shadow: 0 0 15px rgba(0,0,0,0.4);
 `;
 
 const Logo = styled.div`
     margin-bottom: 30px;
+    background: url(${logo});
+    width:120px;
+  height:50px;
+  background-position:center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  
 `;
 
 const Contents = styled.div`
