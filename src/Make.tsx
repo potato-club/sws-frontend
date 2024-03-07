@@ -1,6 +1,8 @@
 import React , { useState, useEffect }from 'react';
 import styled from 'styled-components';
-import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import { PRIMARY_COLOR_BLUE} from "../src/constants";
+import { FaPlus } from "react-icons/fa";
+import { FaMinus } from "react-icons/fa";
 const MainContainer = styled.div<{ paddingLeft: number }>`
      padding-top: 70px;
      margin-left: 0; 
@@ -26,7 +28,9 @@ flex-direction:column;
 
 `;
 const MakeLeftNumber=styled.div`
-background-color: #7ba1da;
+box-shadow: 5px 5px 5px 5px gray;
+background-color:${PRIMARY_COLOR_BLUE};
+color:white;
 font-size:100px;
 width:500px;
 height:500px;
@@ -37,21 +41,22 @@ align-items:center;
 margin-bottom:50px;
 `;
 const MakeLeftButton=styled.button`
-background-color: #7ba1da;
-padding:6px 25px 6px 25px;
+background-color:${PRIMARY_COLOR_BLUE};
+padding:18px 25px 18px 25px;
 border-radius: 15px;
 color:white;
 border:0;
+margin-left:50px;
+margin-right:50px;
+box-shadow: 2px 2px 2px 2px gray;
+&:active{
+    height:85px;
+    width:95px;
+  transition: 0.5s;
+}
 
 `;
-const MakeLeftIn=styled.div`
-padding:12px;
-display:flex;
-align-items:center;
-justify-content:center;
-width:100px;
-font-size:40px;
-`;
+
 
 const MakeLeftButtonBox=styled.div`
 display:flex;
@@ -65,9 +70,10 @@ height:660px;
 flex-direction:column;
 `;
 const MakeRightTitle=styled.div`
-background-color: #7ba1da;
+background-color:${PRIMARY_COLOR_BLUE};
+color:white;
 width:600px;
-max-height:50px;
+min-height:50px;
 border-radius:25px;
 display:flex;
 align-items:center;
@@ -98,12 +104,24 @@ justify-content:center;
 border:0px;
 color:white;
 border-radius:10px;
-background-color:#7ba1da;
+background-color:${PRIMARY_COLOR_BLUE};
+margin-right:10px;
 
 `;
 const MakeRightCenter=styled.div`
 height:550px;
 overflow-y: auto;
+
+&::-webkit-scrollbar {
+    width: 15px;
+    height: 8px;
+    border-radius: 6px;
+   
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color:${PRIMARY_COLOR_BLUE};
+    border-radius: 6px;
+  }
 `;
 const MakeBottom=styled.div`
 width:100%;
@@ -117,14 +135,14 @@ const MakeBottomButton=styled.button`
 padding:30px 70px 30px 70px;
 font-size:30px;
 border:0;
-
+color:white;
 border-radius:25px;
-background-color: #7ba1da;
+background-color:${PRIMARY_COLOR_BLUE};
 
-&:hover{
+&:active{
     height:110px;
     width:350px;
-  transition: 1s;
+    transition: 0.5s;
 }
 `;
 
@@ -163,9 +181,9 @@ const Click = () => {
     {number}
 </MakeLeftNumber>
 <MakeLeftButtonBox>
-    <MakeLeftButton><BiChevronLeft size="40" onClick={minus}/></MakeLeftButton>
-        <MakeLeftIn>{number}</MakeLeftIn>
-    <MakeLeftButton><BiChevronRight size="40"  onClick={plus}/></MakeLeftButton>
+    <MakeLeftButton><FaMinus size="40" onClick={minus}/></MakeLeftButton>
+      
+    <MakeLeftButton><FaPlus size="40"  onClick={plus}/></MakeLeftButton>
 </MakeLeftButtonBox>
             
             </MakeLeft>
@@ -178,7 +196,7 @@ const Click = () => {
 <MakeRightCenter>
 {Array.from({ length: number }).map((_, index) => (
     <MakeRightfriend>
-<MakeRightinput/>
+<MakeRightinput placeholder='공부 할 친구의 아이디를 입력하세요'/>
 <MakeRightbutton  onClick={Click}>확인</MakeRightbutton>
 </MakeRightfriend>
  ))}
