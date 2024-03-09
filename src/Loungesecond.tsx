@@ -7,12 +7,22 @@ import styled from 'styled-components';
   align-items: center;
 `;
 
+const BigBoxWrite = styled.p`
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); //translateX를 사용함으로서 위치 결정에 영향을 주지 않고 수평으로 중심을 잡아준다.
+  display: flex;
+  justify-content: center;
+  padding-bottom: 750px;
+  padding-left: 110px;
+  font-size: 30px;
+`
+
  const Box = styled.div`
   width: 1600px;
   height: 850px;
-  background-color: #E6E6E6;
-  padding-top: 70px;
-  margin-top: 100px;
+  padding-top: 40px;
+  margin-top: 120px;
   border: black;
   display: flex;
   align-items: center;
@@ -22,7 +32,7 @@ import styled from 'styled-components';
  const InnerBox = styled.div`
   width: 1000px;
   height: 800px;
-  background-color: #E6E6E6;
+ 
   display: flex;
   flex-direction: column;
   border-top: 3px solid green;
@@ -30,7 +40,7 @@ import styled from 'styled-components';
  const SmallBox = styled.div`
   width: 100%;
   height: 50%;
-  background-color: #E6E6E6;
+  
   display: flex;
   flex-direction: row;
   border-bottom: 3px solid green;
@@ -40,7 +50,7 @@ import styled from 'styled-components';
 const RowBox1 = styled.div`
   width: 30%;
   height: 100%;
-  background-color: #E6E6E6;
+ 
   display: flex;
   flex-direction: column;
   border-right: 3px solid green;
@@ -49,7 +59,7 @@ const RowBox1 = styled.div`
 const RowBox2 = styled.div`
   width: 70%;
   height: 100%;
-  background-color: #E6E6E6;
+  
   display: flex;
   flex-direction: column;
 `;
@@ -57,44 +67,43 @@ const RowBox2 = styled.div`
  const  RowSmallBox1 = styled.div`
   width: 100%;
   height: 30%;
-  background-color: #E6E6E6;
+ 
 `;
 
  const  RowSmallBox2 = styled.div`
   width: 100%;
   height: 70%;
-  background-color: #E6E6E6;
+ 
 `;
 
 const  RowSmallBox3 = styled.div`
   width: 100%;
   height: 30%;
-  background-color: #E6E6E6;
   display: flex;
   align-items: center;
   justify-content: space-between; /* Added space between button and counter */
 `;
 
  const InputFieldA = styled.textarea`
-  width: 25%;
-  height: 60%;
+  width: 53%;
+  height: 30%;
   margin-left: 3%;
   padding: 5px;
-  border: 1px solid #000;
-  font-size: 25px;
+  border: 2px solid #A4A4A4;
+  font-size: 20px;
   text-align: left;
   box-sizing: border-box;
   resize: none; // Prevent textarea from being resized by user
 `;
 
  const InputFieldB = styled.textarea`
-  width: 90%;
-  height: 70%;
+  width: 95%;
+  height: 100%;
   margin-left: 3%;
-  margin-top: 8%;
+  margin-top: 2%;
   padding: 5px;
-  border: 1px solid #000;
-  font-size: 25px;
+  border: 2px solid #A4A4A4;
+  font-size: 20px;
   text-align: left;
   box-sizing: border-box;
   resize: none; // Prevent textarea from being resized by user
@@ -103,7 +112,7 @@ const  RowSmallBox3 = styled.div`
  const RowSmallBox4 = styled.div`
   width: 100%;
   height: 70%;
-  background-color: #E6E6E6;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -119,8 +128,8 @@ const  RowSmallBox3 = styled.div`
 
  const InnerWhiteBox = styled.div`
   position: relative;
-  width: 70%;
-  height: 80%;
+  width: 95%;
+  height: 95%;
   margin-right: auto;
   margin-left: 3%;
   background-color: white;
@@ -224,6 +233,9 @@ function SecondPage() {
   return (
     <div>
      <BigBox>
+      <BigBoxWrite>
+        글작성
+      </BigBoxWrite>
       <Box>
         <InnerBox>
           <SmallBox>
@@ -270,7 +282,7 @@ function SecondPage() {
             </RowBox1>
             <RowBox2>
               <InputFieldB rows={3} value={inputBValue} onChange={handleInputBChange} maxLength={500} />
-              <p>({inputBValue.length})</p>
+              <p>({inputBValue.length} / 500 )</p>
             </RowBox2>
           </SmallBox>
         </InnerBox>
