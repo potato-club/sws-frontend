@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { AiOutlineUser } from 'react-icons/ai';
-
+import { PRIMARY_COLOR_BLUE} from "../src/constants";
 const MyPageContaine = styled.div`
     width: 100%;
     height: 880px;
@@ -14,7 +14,7 @@ const MyPageContaine = styled.div`
 const MyPageContent = styled.div`
     box-sizing: border-box;
     margin-top: 260px;
-    background-color: rgb(155, 154, 154);
+    background-color: ${PRIMARY_COLOR_BLUE};
     width: 50%;
     height: 1000px;
 `;
@@ -33,12 +33,17 @@ border-radius: 50%;
 display: flex;
 align-items: center;
 justify-content: center;
-background-color: aliceblue;
+background-color: white;
 `;
 const MPTname  = styled.div`
-width: 230px;
-height: 40px;
-background-color: aliceblue;`;
+width: 210px;
+border-radius:5px;
+height: 30px;
+color: ${PRIMARY_COLOR_BLUE};
+display:Flex;
+align-items:center;
+justify-content:center;
+background-color: white;`;
        
            
       
@@ -47,11 +52,16 @@ background-color: aliceblue;`;
             border-radius: 25px;
             border: none;
             height: 30px;
+            width:150px;
+            background-color:white;
+            box-shadow: 3px 3px 3px 3px gray;
+            color: ${PRIMARY_COLOR_BLUE};
+            margin-bottom:20px;
       
     `;
     const MPBfriendContent  = styled.div`
     
-    background-color: aliceblue;
+    background-color: white;
     width: 750px;
     height: 110px;
     display: flex;
@@ -61,6 +71,8 @@ background-color: aliceblue;`;
     padding-left: 25px;
     padding-right: 25px;
     border-radius: 25px;
+    color: ${PRIMARY_COLOR_BLUE};
+    box-shadow: 3px 3px 3px 3px gray;
     `;
 
 const MyPageBottom = styled.div`
@@ -72,7 +84,7 @@ const MyPageBottom = styled.div`
     width: 85%;
     margin: 70px;
     `;
-const MPBwrite = styled.button`
+const MPBwrite = styled(Link)`
         width: 200px;
         height: 50px;
         display: flex;
@@ -80,27 +92,53 @@ const MPBwrite = styled.button`
         justify-content: center;
         border-radius: 25px;
         margin-bottom: 25px;
-        background-color: aliceblue;
-    `;
+        background-color: white;
+        border:none;
+        text-decoration:none;
+        color: ${PRIMARY_COLOR_BLUE};
+        box-shadow: 3px 3px 3px 3px gray;
+`;
 const MPBfriendContentButton  = styled.button`
     
         height: 40px;
         width: 80px;
         border-radius: 15px;
-        background-color: red;
+        background-color: #d13c3c;
+        color:white;
         border: none;
+       
     `;
-const MPBfriendPage=styled.button`
-        height: 40px;
+const MPBfriendPage=styled(Link)`
+    height: 40px;
         width: 90px;
+        display: flex;
+        align-items:center;
+       justify-content: center;
         border-radius: 15px;
-        border: none;
+       margin-right:15px;
+        color: white;
+        border:none;
+        text-decoration:none;
+        background-color: ${PRIMARY_COLOR_BLUE};
+       
 
 `;
 
 const MPBfriend=styled.div`
 overflow-y:auto;
+
 `; 
+const MPBTopBUTTON=styled.div`
+display:Flex;
+flex-direction:column;
+`;
+
+const MPTtag =styled.div`
+color:white;
+`;
+const MPBbottomBUTTON=styled.div`
+display:flex;
+`;
 const MyPage = () => {
 
     const friend = [
@@ -121,22 +159,25 @@ alert("삭제되었습니다.");
                 <MyPageTop>
                     <MPTphoto><AiOutlineUser size="140" /></MPTphoto>
                     <div>
-                        <MPTname>이름</MPTname>
-                        <div>#강서 #프론트엔드 #웹 개발</div>
+                        <MPTname>이름: 아무이름</MPTname>
+                        <MPTtag>#강서 #프론트엔드 #웹 개발</MPTtag>
                     </div>
+                    <MPBTopBUTTON>
                     <MPTbutton>내 정보 수정</MPTbutton>
+                    <MPTbutton>해시태그 수정</MPTbutton>
+                    </MPBTopBUTTON>
                     </MyPageTop>
                 <MyPageBottom>
-                    <MPBwrite><Link to="/">내가 쓴 글 목록 </Link></MPBwrite>
+                    <MPBwrite to="/">내가 쓴 글 목록 </MPBwrite>
                         <MPBfriend>
-                        <div>내 친구들 </div>
+                        <div style={{ color: "white" }}>내 친구들 </div>
                         {[...Array(3)].map((_, index) => (
                         <MPBfriendContent key={index}>
-                            <div>{friend[index]}</div>
-                            <div>
-                            <MPBfriendPage><Link to="/">친구 페이지</Link></MPBfriendPage>
+                            <div >{friend[index]}</div>
+                            <MPBbottomBUTTON>
+                            <MPBfriendPage to="/">친구 페이지</MPBfriendPage>
                             <MPBfriendContentButton onClick={friendDelete}>친구 삭제</MPBfriendContentButton>
-                            </div>
+                            </MPBbottomBUTTON>
                             </MPBfriendContent>
 ))}
                            

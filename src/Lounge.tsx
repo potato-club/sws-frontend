@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 
-
- const StyledSmallBox = styled.div`
+const StyledSmallBox = styled.div`
     padding: 10px;
     margin: 5px; /* 상단과 하단 여백 */
     height: auto;
@@ -47,17 +46,20 @@ const InnerBox = styled.div<{ likes: number }>`
         border-radius: 10px;
     }
 `;
- const UserInfoContainer = styled.div`
+const UserInfoContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin-bottom: auto;
+
+    .hashtags {
+        margin-top: 280px;
+        color: #333; // 원하는 색상으로 설정
+    }
 `;
 const MainContain = styled.div<{ paddingLeft: number }>`
      padding-top: 70px;
      margin-left: 0; 
-    
      height: 855px;
-     
      padding-left: ${props => props.paddingLeft}px;
  `;
 
@@ -65,6 +67,7 @@ interface UserDataItem {
     username: string;
     category: string;
     likes: number;
+    hashtags?: string[]; // 새로운 hashtags 속성 추가
 }
 
 interface UserData {
@@ -85,8 +88,8 @@ const App: React.FC<MainProps> = ({ isSidebarOpen }) => {
 
     const [userData, setUserData] = useState<UserData>({
         "인기순": [
-            { username: "송태진", category: "카페", likes: 30 },
-            { username: "송태진", category: "카페", likes: 15 },
+            { username: "송태진", category: "카페", likes: 30, hashtags: ["#커피", "#디저트","#맛있다"] },
+            { username: "송태진", category: "카페", likes: 150 },
             { username: "송태진", category: "카페", likes: 10 },
             { username: "송태진", category: "카페", likes: 100 },
             { username: "송태진", category: "카페", likes: 10 },
@@ -131,10 +134,17 @@ const App: React.FC<MainProps> = ({ isSidebarOpen }) => {
                         <InnerContainer>
                             {sortInnerContents(innerContents).map((userContent, index) => (
                                 <InnerBox key={index} likes={userContent.likes}>
-                                    <UserInfoContainer>
-                                        {/* Render user information here */}
-                                    </UserInfoContainer>
-                                </InnerBox>
+                                <UserInfoContainer>
+                                    {/* Render user information here */}
+                                   
+                                    <div className="hashtags">
+                                        {/* Render hashtags here */}
+                                        {userContent.hashtags && userContent.hashtags.map((tag, tagIndex) => (
+                                            <span key={tagIndex}>{tag} </span>
+                                        ))}
+                                    </div>
+                                </UserInfoContainer>
+                            </InnerBox>
                             ))}
                         </InnerContainer>
                     </StyledSmallBox>
@@ -147,3 +157,8 @@ const App: React.FC<MainProps> = ({ isSidebarOpen }) => {
 };
 
 export default App;
+
+
+
+
+
