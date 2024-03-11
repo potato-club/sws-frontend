@@ -68,7 +68,8 @@ export default SignUpForm;
 const StyledLabel = styled.label`
     margin-bottom: 50px;
     display: block;
-   
+   width: 290px;
+   height: 30px;
 `;
 
 const StyledForm = styled.form`
@@ -77,14 +78,22 @@ const StyledForm = styled.form`
 
 const StyledButton = styled.button`
     position: relative;
-    font-size: 30px;
+    font-size: 20px;
     border: none;
     outline: none;
     border-radius:15px;
     background-color: white;
-    height: 50px;
-    width:85%;
+    height: 45px;
+    width:80%;
     font-weight: bold;
+
+    transition: all 0.4s ease;
+    &:hover {
+        transform: scale(1.2);
+        background-color: #ff9900;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    }
+
 `;
 
 const StyledInput = styled.input`
@@ -95,6 +104,16 @@ const StyledInput = styled.input`
     font-size: 16px;
     font-weight: bold;
     width: 280px;
+
+    transition: all 0.4s ease;
+    &:hover {
+        transform: scale(1.1);
+        border: 1.5px solid grey;
+        border-radius: 15px;
+        background-color: white;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0);
+    }
+
 `;
 
 const StyledDIv = styled.div`

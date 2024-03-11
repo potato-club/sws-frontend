@@ -22,8 +22,14 @@ const KakaoBtn = styled.button`
     outline: none;
     border-radius:15px;
     background-color: yellow;
-    width:85%;
-    height: 50px;
+    width:80%;
+    height: 45px;
     font-weight:bold;
-    font-size: 25px;
+    font-size: 20px;
+
+    transition: all 0.4s ease;
+    &:hover {
+        transform: scale(1.2);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    }
 `;
