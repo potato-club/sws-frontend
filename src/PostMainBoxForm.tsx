@@ -84,9 +84,7 @@ const PostMainBoxForm:React.FC<PostCafeProps> = ({ onSubmit = () => {} }) =>{
                     {images.map((file, index) => (
                         <div key={index}>
                             {file.name}
-                            <StyledBTN type="button" onClick={() => handleRemoveImage(index)}>
-                                X
-                            </StyledBTN>
+                            <StyledBTN type="button" onClick={() => handleRemoveImage(index)}/>
                         </div>
                     ))}
                 </SelectedFileNames>
@@ -121,16 +119,22 @@ const StyledForm = styled.form`
 
 const StyledButton = styled.button`
     position: relative;
-    font-size: 30px;
+    font-size: 20px;
     border: none;
     outline: none;
     border-radius:15px;
     background-color: white;
-    height: 50px;
-    width:50%;
+    height: 45px;
+    width:45%;
     top:50px;
     font-weight: bold;
     cursor: pointer;
+
+    transition: all 0.4s ease;
+    &:hover{
+        transform: scale(1.2);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    }
 `;
 
 const StyledInput = styled.input`
@@ -195,7 +199,13 @@ const SelectedFileNames = styled.div`
 
 const StyledBTN = styled.button`
     border-radius  : 30px;
-    font-size: 10px;
-    background-color: #cac8c8;
+    font-size: 8px;
+    background-color: #ffffff;
+    border: solid 1px grey;
+    
+    &::before{
+        content: 'x';
+        cursor: pointer;
+    }
 `;
 
