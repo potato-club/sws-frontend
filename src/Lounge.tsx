@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
 
@@ -18,22 +19,25 @@ const StyledSmallBox = styled.div`
 
 const InnerContainer = styled.div`
     display: flex;
-    flex-direction: row;
     width: 100%;
-    width: row;
-    align-items: flex-start; /* 세로 정렬을 맨 위로 조절 */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    justify-content: flex-start; /* Adjust alignment based on your preference */
+    background-color: #7ba1da;
+    border-radius: 50px;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
 `;
 
 const InnerBox = styled.div<{ likes: number }>`
+    flex: 0 0 auto; /* Prevent flex items from growing and shrinking */
     padding: 10px;
-    margin: 10px;
-    height: 300px;
-    width: 100%;
+    margin: 15px;
+    width: 350px; /* Adjust the width based on your design */
     border-radius: 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #BDBDBD;
+    background-color: white;
     position: relative;
 
     &::after {
@@ -41,11 +45,21 @@ const InnerBox = styled.div<{ likes: number }>`
         position: absolute;
         bottom: 0;
         right: 0;
-        background-color: yellow;  // 추가: 배경색을 흰색으로 지정
-        padding: 10px;  // 추가: 좋아요 횟수에 여백 추가
+        background-color: #3f7bd6;
+        padding: 10px;
         border-radius: 10px;
     }
+
+    &:hover {
+        cursor: pointer;
+    }
 `;
+
+const UserInfoContainerLink = styled(Link)`
+    text-decoration: none;
+    color: inherit;
+`
+
 const UserInfoContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -64,8 +78,6 @@ const MainContain = styled.div<{ paddingLeft: number }>`
  `;
 
 interface UserDataItem {
-    username: string;
-    category: string;
     likes: number;
     hashtags?: string[]; // 새로운 hashtags 속성 추가
 }
@@ -88,26 +100,36 @@ const App: React.FC<MainProps> = ({ isSidebarOpen }) => {
 
     const [userData, setUserData] = useState<UserData>({
         "인기순": [
-            { username: "송태진", category: "카페", likes: 30, hashtags: ["#커피", "#디저트","#맛있다"] },
-            { username: "송태진", category: "카페", likes: 150 },
-            { username: "송태진", category: "카페", likes: 10 },
-            { username: "송태진", category: "카페", likes: 100 },
-            { username: "송태진", category: "카페", likes: 10 },
+            { likes: 30, hashtags: ["#커피", "#디저트","#맛있다"] },
+            { likes: 150, hashtags: ["#카공족"] },
+            { likes: 10, hashtags: ["#카공족"] },
+            { likes: 100 },
+            { likes: 10 },
+            { likes: 10 },
+            { likes: 10 },
+            { likes: 10 },
+
         ],
         
         "카테고리별": [
-            { username: "사용자1", category: "카페", likes: 10 },
-            { username: "사용자1", category: "카페", likes: 5 },
-            { username: "사용자1", category: "카페", likes: 10 },
-            { username: "사용자1", category: "카페", likes: 10 },
-            { username: "사용자1", category: "카페", likes: 10 },
+            { likes: 10 },
+            { likes: 10 },
+            { likes: 10 },
+            { likes: 10 },
+            { likes: 10 },
+            { likes: 10 },
+            
+            
+
         ],
         "친구 구해요!": [
-            { username: "사용자1", category: "카페", likes: 30 },
-            { username: "사용자1", category: "카페", likes: 15 }, 
-            { username: "사용자1", category: "카페", likes: 5 },  
-            { username: "사용자1", category: "카페", likes: 10 },
-            { username: "사용자1", category: "카페", likes: 10 },
+            { likes: 10 },
+            { likes: 10}, 
+            { likes: 10},  
+            { likes: 10 },
+            { likes: 10 },
+            { likes: 10 },
+
         ]
     });
 
@@ -122,10 +144,7 @@ const App: React.FC<MainProps> = ({ isSidebarOpen }) => {
         return contents.slice().sort((a, b) => b.likes - a.likes);
     };
 
-    return (
-      
-           
-                
+    return ( 
                 <MainContain paddingLeft={pL}>
                
                 {Object.entries(userData).map(([key, innerContents]) => (
@@ -133,7 +152,9 @@ const App: React.FC<MainProps> = ({ isSidebarOpen }) => {
                         <TitleContainer>{key}</TitleContainer>
                         <InnerContainer>
                             {sortInnerContents(innerContents).map((userContent, index) => (
-                                <InnerBox key={index} likes={userContent.likes}>
+                 
+                               <InnerBox key={index} likes={userContent.likes}>
+                                <UserInfoContainerLink to="/Loungesecond">
                                 <UserInfoContainer>
                                     {/* Render user information here */}
                                    
@@ -144,6 +165,7 @@ const App: React.FC<MainProps> = ({ isSidebarOpen }) => {
                                         ))}
                                     </div>
                                 </UserInfoContainer>
+                               </UserInfoContainerLink> 
                             </InnerBox>
                             ))}
                         </InnerContainer>
