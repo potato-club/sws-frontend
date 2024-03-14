@@ -35,7 +35,7 @@ const BigBoxWrite = styled.p`
  
   display: flex;
   flex-direction: column;
-  border-top: 3px solid green;
+  border-top: 3px solid #7ba1da;
 `;
  const SmallBox = styled.div`
   width: 100%;
@@ -43,7 +43,7 @@ const BigBoxWrite = styled.p`
   
   display: flex;
   flex-direction: row;
-  border-bottom: 3px solid green;
+  border-bottom: 3px solid #7ba1da;
 
 `;
 
@@ -53,7 +53,7 @@ const RowBox1 = styled.div`
  
   display: flex;
   flex-direction: column;
-  border-right: 3px solid green;
+  border-right: 3px solid #7ba1da;
 `;
 
 const RowBox2 = styled.div`
@@ -85,11 +85,11 @@ const  RowSmallBox3 = styled.div`
 `;
 
  const InputFieldA = styled.textarea`
-  width: 53%;
+  width: 95%;
   height: 30%;
   margin-left: 3%;
   padding: 5px;
-  border: 2px solid #A4A4A4;
+  border: 3px solid #A4A4A4;
   font-size: 20px;
   text-align: left;
   box-sizing: border-box;
@@ -102,7 +102,7 @@ const  RowSmallBox3 = styled.div`
   margin-left: 3%;
   margin-top: 2%;
   padding: 5px;
-  border: 2px solid #A4A4A4;
+  border: 3px solid #A4A4A4;
   font-size: 20px;
   text-align: left;
   box-sizing: border-box;
@@ -112,7 +112,6 @@ const  RowSmallBox3 = styled.div`
  const RowSmallBox4 = styled.div`
   width: 100%;
   height: 70%;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -202,6 +201,27 @@ const DotsContainer = styled.div`
   text-align: center;
 `;
 
+const CompletionBox = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate()(-50%, -50%);
+  background-color: #ffffff;
+  padding: 10px;
+  border: 1px solid #000000;
+`
+const CompletionButton = styled.button`
+  font-size: 15px;
+  padding: 5px 10px;
+  background-color: #7ba1da;
+  border-radius: 10px;
+`
+const CompletionButtonContainer = styled.div`
+  margin-top: auto;
+  margin-left: 1550px;
+  align-self: flex-start;
+`
+
 function SecondPage() {
   const [likes, setLikes] = useState(0);
   const [inputBValue, setInputBValue] = useState('');
@@ -216,6 +236,15 @@ function SecondPage() {
   const handleLike = () => {
     setLikes(likes + 1);
   };
+
+  const [isCompleted, setIsCompleted] = useState(false);
+
+  const handleCompletion = () => {
+    setIsCompleted(true);
+    setTimeout(()=> {
+      setIsCompleted(false);
+    }, 3500);
+  }
 
   const handleInputBChange = (e: ChangeEvent<HTMLTextAreaElement>) => { // ChangeEvent<HTMLTextAreaElement> instead of ChangeEvent<HTMLInputElement>
     const value = e.target.value;
@@ -250,7 +279,7 @@ function SecondPage() {
             
             <RowBox2>
               <RowSmallBox3>
-                <InputFieldA rows={1} maxLength={15} /> 
+                <InputFieldA rows={1} maxLength={20} /> 
               </RowSmallBox3>
               <RowSmallBox4>
         <InnerWhiteBox>
@@ -283,11 +312,21 @@ function SecondPage() {
             <RowBox2>
               <InputFieldB rows={3} value={inputBValue} onChange={handleInputBChange} maxLength={500} />
               <p>({inputBValue.length} / 500 )</p>
+
+              {isCompleted && (
+            <CompletionBox>
+              <p>작성완료가 되었습니다.</p>
+            </CompletionBox> 
+          )}
+              
             </RowBox2>
           </SmallBox>
         </InnerBox>
       </Box>
-    </BigBox>  
+    </BigBox>
+    <CompletionButtonContainer>
+        <CompletionButton onClick={handleCompletion}>작성완료</CompletionButton>
+      </CompletionButtonContainer>  
     </div>
   );
 }
