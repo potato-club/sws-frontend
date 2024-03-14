@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { KakaoSignInBtn } from "./KakaoSignInBtn";
-
+import { PRIMARY_COLOR_BLUE} from "../../src/constants";
 interface LoginFormProps{
     onSubmit: (username: string, password: string) => void
 }
@@ -80,7 +80,7 @@ const StyledButton = styled.button`
 const StyledInput = styled.input`
     border: none;
     outline: none;
-    background-color: #cac8c8;
+    background-color: ${PRIMARY_COLOR_BLUE};
     padding: 10px;
     font-size: 16px;
     font-weight: bold;
@@ -99,5 +99,5 @@ const StyledInput = styled.input`
 
 const StyledDIv = styled.div`
     background-color: black;
-    height: 2px;
+    height: 1.5px;
 `;
