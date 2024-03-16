@@ -181,7 +181,7 @@ function Community() {
 
         <CommunityBottom>
     
-        
+       
        
     {Community.map((text:string, index:number) => (
       <Communityanswer key={index}>
