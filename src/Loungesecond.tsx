@@ -5,6 +5,7 @@ import styled from 'styled-components';
   display: flex;
   justify-content: center;
   align-items: center;
+ 
 `;
 
 const BigBoxWrite = styled.p`
@@ -16,6 +17,7 @@ const BigBoxWrite = styled.p`
   padding-bottom: 750px;
   padding-left: 110px;
   font-size: 30px;
+  color: #7ba1da;
 `
 
  const Box = styled.div`
@@ -23,45 +25,51 @@ const BigBoxWrite = styled.p`
   height: 850px;
   padding-top: 40px;
   margin-top: 120px;
-  border: black;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: white;
 `;
 
  const InnerBox = styled.div`
   width: 1000px;
   height: 800px;
- 
   display: flex;
   flex-direction: column;
   border-top: 3px solid #7ba1da;
+  border-radius: 20px;
+  background-color: white;
+  //box-shadow: 3px 3px 3px 3px gray;
 `;
  const SmallBox = styled.div`
   width: 100%;
   height: 50%;
-  
+  border-radius: 20px;
   display: flex;
   flex-direction: row;
   border-bottom: 3px solid #7ba1da;
-
+  background-color:#7ba1da; 
+  box-shadow: 2px 2px 2px 2px gray;
 `;
 
 const RowBox1 = styled.div`
   width: 30%;
   height: 100%;
- 
+  background-color:#7ba1da; 
   display: flex;
   flex-direction: column;
   border-right: 3px solid #7ba1da;
+  border-radius: 20px;
+
 `;
 
 const RowBox2 = styled.div`
   width: 70%;
   height: 100%;
-  
+  background-color:#7ba1da;
   display: flex;
   flex-direction: column;
+  border-radius: 20px;
 `;
 
  const  RowSmallBox1 = styled.div`
@@ -94,6 +102,11 @@ const  RowSmallBox3 = styled.div`
   text-align: left;
   box-sizing: border-box;
   resize: none; // Prevent textarea from being resized by user
+
+  &:hover { //hover를 넘으로써 애니메이션 적용
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        transform: scale(1.0);
+    }
 `;
 
  const InputFieldB = styled.textarea`
@@ -107,6 +120,11 @@ const  RowSmallBox3 = styled.div`
   text-align: left;
   box-sizing: border-box;
   resize: none; // Prevent textarea from being resized by user
+
+  &:hover { //hover를 넘으로써 애니메이션 적용
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        transform: scale(1.0);
+    }
 `;
 
  const RowSmallBox4 = styled.div`
@@ -117,12 +135,15 @@ const  RowSmallBox3 = styled.div`
   justify-content: center;
 `;
  const  MainWrite = styled.div`
-  font-size: 30px;
+  font-size: 20px;
   align-items: center;
   justify-content: center;
   display: flex;
   width: 100%;
   height: 100%;
+  border: 1px solid white;
+  border-radius: 10px;
+  color: #ffff 
 `;
 
  const InnerWhiteBox = styled.div`
@@ -137,6 +158,11 @@ const  RowSmallBox3 = styled.div`
   justify-content: center;
   overflow: hidden;
   object-fit: cover;
+
+  &:hover{
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    transform: scale(1.0);
+  }
  
 `;
 // Adding a new styled component for the image
@@ -208,13 +234,18 @@ const CompletionBox = styled.div`
   transform: translate()(-50%, -50%);
   background-color: #ffffff;
   padding: 10px;
-  border: 1px solid #000000;
+  border: 1px solid #ffffff;
 `
 const CompletionButton = styled.button`
   font-size: 15px;
   padding: 5px 10px;
   background-color: #7ba1da;
   border-radius: 10px;
+
+  &:hover { //hover를 넘으로써 애니메이션 적용
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        transform: scale(1.0);
+    }
 `
 const CompletionButtonContainer = styled.div`
   margin-top: auto;

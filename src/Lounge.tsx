@@ -22,23 +22,25 @@ const InnerContainer = styled.div`
     width: 100%;
     overflow-x: auto; /* Enable horizontal scrolling */
     justify-content: flex-start; /* Adjust alignment based on your preference */
-    background-color: #7ba1da;
+    //background-color: #7ba1da;
     border-radius: 50px;
-    scrollbar-width: thin;
-    scrollbar-color: transparent transparent;
+    scrollbar-width: thin; //스크롤바 가리기
+    scrollbar-color: transparent transparent; //스크롤바 안보이게 가리기
 `;
 
 const InnerBox = styled.div<{ likes: number }>`
     flex: 0 0 auto; /* Prevent flex items from growing and shrinking */
     padding: 10px;
     margin: 15px;
-    width: 350px; /* Adjust the width based on your design */
+    width: 450px; /* Adjust the width based on your design */
+    height: 400px;
     border-radius: 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: white;
+    background-color: #7093c0;
     position: relative;
+    opacity: 1;
 
     &::after {
         content: '${(props) => (props.likes ? `${props.likes} likes` : '')}';
@@ -52,6 +54,8 @@ const InnerBox = styled.div<{ likes: number }>`
 
     &:hover {
         cursor: pointer;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        transform: scale(1.0);
     }
 `;
 
@@ -64,6 +68,8 @@ const UserInfoContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin-bottom: auto;
+    margin-top: 100px;
+    margin-left: 10px;
 
     .hashtags {
         margin-top: 280px;
