@@ -1,11 +1,11 @@
-
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { AiOutlineEnter } from "react-icons/ai";
 import { CgHeart } from "react-icons/cg";
 import { BiSubdirectoryRight } from "react-icons/bi";
 import { FaHeart } from "react-icons/fa6";
+import { PRIMARY_COLOR_BLUE } from "../src/constants";
 const CommunityComponent = styled.div`
   width: 100%;
   display: flex;
@@ -20,7 +20,7 @@ const CommunityBox = styled.div`
   margin-top: 70px;
   padding-bottom: 30px;
   margin-bottom: 110px;
-  background-color: gray;
+  background-color: ${PRIMARY_COLOR_BLUE};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,7 +41,7 @@ const Communityinput = styled.input`
   width: 70%;
 `;
 const Replyinput = styled.input`
-margin-left:200px;
+  margin-left: 200px;
   height: 50px;
   width: 50%;
 `;
@@ -64,7 +64,7 @@ const CommunityMid = styled.div`
   padding-right: 38px;
   margin-top: 70px;
   align-items: center;
-  background-color: gray;
+  background-color: ${PRIMARY_COLOR_BLUE};
   top: 770px;
   position: fixed;
 `;
@@ -104,14 +104,13 @@ const Answertop = styled.div`
 `;
 
 const Answersetting = styled.div`
-
-display:flex;`;
-
+  display: flex;
+`;
 
 const Answername = styled.div``;
 const Answercomponent = styled.div``;
 const Cmanswer = styled.div`
-  background-color:white;
+  background-color: white;
   margin-top: 20px;
   width: 80%;
   height: 70px;
@@ -127,14 +126,13 @@ const Ca = styled.div`
 function Community() {
   const [inputText, setInputText] = useState("");
   const [Community, setCommunity] = useState<string[]>([]);
-  
+
   const [heart, setHeart] = useState(false);
 
   const [ReplyText, setReplyText] = useState("");
   const [Reply, setReply] = useState<string[]>([]);
   const [Change, setChange] = useState(false);
- 
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
   };
@@ -143,11 +141,9 @@ function Community() {
     setInputText("");
   };
 
-  
   const heartClick = () => {
     setHeart((prevChange) => !prevChange);
   };
-
 
   const ReplyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setReplyText(e.target.value);
@@ -155,92 +151,91 @@ function Community() {
   const handleReplyClick = () => {
     alert("대댓글을 작성하시겠습니까?");
     setChange((prevChange) => !prevChange);
-  
   };
   const ReplyClick = () => {
     setReply([...Reply, ReplyText]);
     setReplyText("");
     setChange((prevChange) => !prevChange);
-   
   };
- 
 
   return (
     <CommunityComponent>
       <CommunityBox>
-        
         <CommunityDetail>
           <Detailtop>
             <Detailtitle>제목 뭐시기</Detailtitle>
             <Detailname>이름</Detailname>
           </Detailtop>
           <Detailcomponent>
-            내용 안녕하세요 저는 어디살고 무슨 공부를 하는 사람입니다. 혹시 같이 프로젝트 할사람있으면 같이 해용!
+            내용 안녕하세요 저는 어디살고 무슨 공부를 하는 사람입니다. 혹시 같이
+            프로젝트 할사람있으면 같이 해용!
           </Detailcomponent>
         </CommunityDetail>
 
         <CommunityBottom>
-    
-       
-       
-    {Community.map((text:string, index:number) => (
-      <Communityanswer key={index}>
-        <Answertop>
-          <Answername>이름</Answername>
-          <Answersetting >
-            <div onClick={heartClick}>{heart?(<CgHeart />):(<FaHeart />)}</div>/<div onClick={handleReplyClick} ><AiOutlineEnter /></div>/<div><BiDotsVerticalRounded /></div>
-          </Answersetting>
-        </Answertop>
-        <Answercomponent>{text}</Answercomponent>
-      </Communityanswer>
-    ))}
-    
-    
-       {Reply.map((Text2:string, index:number) => ( 
-    <Ca key={index}>
-    <BiSubdirectoryRight size="40" />
-    <Cmanswer>
-      <Answertop>
-        <Answername>이름</Answername>
-        <Answersetting>
-        <div onClick={heartClick}>{heart?(<CgHeart />):(<FaHeart />)}</div>/<BiDotsVerticalRounded />
-        </Answersetting>
-      </Answertop>
-      <Answercomponent>{Text2}</Answercomponent>
-    </Cmanswer>
-  </Ca> 
-  ))}
+          {Community.map((text: string, index: number) => (
+            <Communityanswer key={index}>
+              <Answertop>
+                <Answername>이름</Answername>
+                <Answersetting>
+                  <div onClick={heartClick}>
+                    {heart ? <CgHeart /> : <FaHeart />}
+                  </div>
+                  /
+                  <div onClick={handleReplyClick}>
+                    <AiOutlineEnter />
+                  </div>
+                  /
+                  <div>
+                    <BiDotsVerticalRounded />
+                  </div>
+                </Answersetting>
+              </Answertop>
+              <Answercomponent>{text}</Answercomponent>
+            </Communityanswer>
+          ))}
 
+          {Reply.map((Text2: string, index: number) => (
+            <Ca key={index}>
+              <BiSubdirectoryRight size="40" />
+              <Cmanswer>
+                <Answertop>
+                  <Answername>이름</Answername>
+                  <Answersetting>
+                    <div onClick={heartClick}>
+                      {heart ? <CgHeart /> : <FaHeart />}
+                    </div>
+                    /<BiDotsVerticalRounded />
+                  </Answersetting>
+                </Answertop>
+                <Answercomponent>{Text2}</Answercomponent>
+              </Cmanswer>
+            </Ca>
+          ))}
 
-
-        {Change&& (
+          {Change && (
             <>
-                <Replyinput
-                    value={ReplyText}
-                    onChange={ReplyChange}
-                    placeholder="내용을 입력하세요"
-                />
-                <ReplyButton onClick={ReplyClick}>대댓글 쓰기 </ReplyButton>
+              <Replyinput
+                value={ReplyText}
+                onChange={ReplyChange}
+                placeholder="내용을 입력하세요"
+              />
+              <ReplyButton onClick={ReplyClick}>대댓글 쓰기 </ReplyButton>
             </>
-        )}
+          )}
         </CommunityBottom>
 
         <CommunityMid>
-              <Communityinput
-                value={inputText}
-                onChange={handleChange}
-                placeholder="내용을 입력하세요"
-              />
-              <CommunityButton onClick={handleClick}>
-                답장하기
-              </CommunityButton>
+          <Communityinput
+            value={inputText}
+            onChange={handleChange}
+            placeholder="내용을 입력하세요"
+          />
+          <CommunityButton onClick={handleClick}>답장하기</CommunityButton>
         </CommunityMid>
-
       </CommunityBox>
     </CommunityComponent>
   );
 }
 
 export default Community;
-
-
