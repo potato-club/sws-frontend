@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState} from 'react';
 import PostMainBoxForm from "./PostMainBoxForm";
-
+import { PRIMARY_COLOR_BLUE } from "./constants";
 
 const PostMainBox =()=>{
     const [error, setError] = useState<string>("");
@@ -49,7 +49,7 @@ const MainBoxContainer = styled.div`
 const ContainerArea = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #cac8c8;
+  background-color: ${PRIMARY_COLOR_BLUE};
   width: 800px;
   min-height: 800px;
   margin-top: 70px;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from 'react';
 import SlideShow from "./SilderForMainBox";
-
+import { PRIMARY_COLOR_BLUE } from "./constants";
 const MainBox =()=>{
     const [rating, setRating] = useState<number | null>(null);
     const [hoverRating, setHoverRating] = useState<number | null>(null);
@@ -71,7 +71,7 @@ const MainBoxContainer = styled.div`
 const ContainerArea = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #cac8c8;
+  background-color: ${PRIMARY_COLOR_BLUE};
   width: 800px;
   height: 700px;
   margin-top: 70px;

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
+import { PRIMARY_COLOR_BLUE } from "./constants";
 interface PostCafeProps{
     onSubmit: (cafeName: string, cafeInfo: string, images:File[])=> void
 }
@@ -140,7 +141,7 @@ const StyledButton = styled.button`
 const StyledInput = styled.input`
     border: none;
     outline: none;
-    background-color: #cac8c8;
+    background-color: ${PRIMARY_COLOR_BLUE};
     padding: 10px;
     font-size: 16px;
     font-weight: bold;
@@ -150,14 +151,14 @@ const StyledInput = styled.input`
 `;
 
 const StyledDIv = styled.div`
-    background-color: black;
+    background-color: white;
     height:2px;
 `;
 
 const StyledTextArea = styled.textarea`
     border: none;
     outline: none;
-    background-color: #cac8c8;
+    background-color: ${PRIMARY_COLOR_BLUE};
     padding: 10px;
     font-size: 16px;
     font-weight: bold;
