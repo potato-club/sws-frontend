@@ -5,7 +5,6 @@ import Header from "./Header";
 import Lounge from "./Lounge";
 import MyPage from "./MyPage";
 import SignInUpBox from "./SignInUpPage/SignInUpBox";
-import SignUpBox from "./SignInUpPage/SignUpBox";
 import RedirectHandler from "./SignInUpPage/RedirectHandler";
 import { createGlobalStyle } from "styled-components";
 import Make from "./Make";
@@ -41,7 +40,6 @@ function App() {
             element={<Lounge isSidebarOpen={isSidebarOpen} />}
           />
           <Route path="/SignInUpPage/SignInUpBox" element={<SignInUpBox />} />
-          <Route path="/SignInUpPage/SignUpBox" element={<SignUpBox />} />
           <Route path="MyPage" element={<MyPage />} />
           <Route path="/auth" element={<RedirectHandler />} />
           <Route

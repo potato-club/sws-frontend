@@ -223,8 +223,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isSidebarOpen }) => {
 
                 </SearchContainer>
                 <LoginContainer>
-                    <HeadLink to="/SignInUpPage/SignInUpBox">로그인</HeadLink>
-                    <HeadLink to="/SignInUpPage/SignUpBox">회원가입</HeadLink>
+                    <HeadLink to="/SignInUpPage/SignInUpBox">Sign In/Up</HeadLink>
                 </LoginContainer>
             </RightContainer>
         </HeaderContainer>
