@@ -29,14 +29,12 @@ const SignInUpBox=()=>{
         </Tabs>
       </TabsContainer>
         <LogInBox>
-        <ContentsWrapper isLoginTab={isLoginTab}>
-            <Contents isLoginTab={isLoginTab}>
-              <LoginForm onSubmit={handleLoginSubmit} />
-            </Contents>
-            <Contents isLoginTab={!isLoginTab}>
-              <SignUpForm onSubmit={handleSignUpSubmit} />
-            </Contents>
-          </ContentsWrapper>
+        <Contents visible={isLoginTab}>
+            <LoginForm onSubmit={handleLoginSubmit} />
+          </Contents>
+          <Contents visible={!isLoginTab}>
+            <SignUpForm onSubmit={handleSignUpSubmit} />
+          </Contents>
         </LogInBox>
       </ContainerWithLogo>
     </LogInBoxContainer>
@@ -54,7 +52,7 @@ const LogInBoxContainer = styled.div`
 
 const ContainerWithLogo = styled.div`
   text-align  :center ;
-  margin-top: 150px;
+  margin-top: 125px;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -104,22 +102,12 @@ const Tab = styled.div<{ active: boolean }>`
   }
 `;
 
-const ContentsWrapper = styled.div<{ isLoginTab: boolean }>`
-  display: flex;
-  width: 200%;
-  transform: ${props => props.isLoginTab ? 'translateX(0%)' : 'translateX(-50%)'};
-  transition: transform 0.5s ease;
-`;
-
-const Contents = styled.div<{ isLoginTab: boolean }>`
-  display: flex;
-  flex-direction: column;
+const Contents = styled.div<{ visible: boolean }>`
+   display: ${(props) => (props.visible ? "flex" : "none")};
   justify-content: center;
   align-items: center;
   margin-top: 70px;
   height: 100%;
   text-align: center;
-  visibility: ${props => props.isLoginTab ? 'visible' : 'hidden'};
-  opacity: ${props => props.isLoginTab ? 1 : 0};
-  width: 50%;
+  width: 100%;
 `;
