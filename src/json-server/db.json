@@ -1,0 +1,73 @@
+{
+  "MyPage": [
+    {
+      "id": 1,
+      "name": "테스트하는 인간"
+    },
+    {
+      "id": 2,
+      "name": "늙은 사람"
+    },
+    {
+      "id": 3,
+      "name": "강서쪽 사람"
+    }
+  ],
+
+  "Main": [
+    {
+      "id": 1,
+      "images": "https://www.lge.co.kr/kr/upload/admin/storyThumbnail/tvc_codezero_thumb[20230607_105950].jpg"
+    },
+    {
+      "id": 2,
+      "images": "https://company.eduwill.net/img/promotion/20230331154337ef62af81-9b54-4e6f-8f86-044e3e55f5fc.png"
+    },
+    {
+      "id": 3,
+      "images": "https://www.samchully.co.kr/upload/pr/paperad/l3tppifzgysi7kp3k8re.png"
+    }
+  ],
+  "MainCt": [
+    {
+      "id": "1",
+      "title": "강서",
+      "img": "https://a.cdn-hotels.com/gdcs/production161/d1403/b5f1876a-9e64-4d13-ab7a-a0fd2cbc5224.jpg"
+    },
+    {
+      "id": "2",
+      "title": "인천",
+      "img": "https://img.freepik.com/premium-photo/generative-ai-a-large-bright-cafe-environment-with-chairs-concrete-walls-and-a-hardwood-floor_28914-19636.jpg"
+    },
+    {
+      "id": "3",
+      "title": "김포",
+      "img": "https://i.namu.wiki/i/5FGUIiyTGl3EkaSlnnRnmoAsPBMkL8w1tVdj5pgDOoydk2T0brSqYsWyLgGqyELwn5oP8HWRhF8A-p8ZyN4FtQ.webp"
+    },
+    {
+      "id": "4",
+      "title": "당정",
+      "img": "https://cdn.imweb.me/thumbnail/20230522/31017371829ad.jpg"
+    },
+    {
+      "id": "5",
+      "title": "홍대",
+      "img": "https://www.qplace.kr/content/images/2022/10/No.3185------.jpg"
+    },
+    {
+      "id": "6",
+      "title": "이태원",
+      "img": "https://media.istockphoto.com/id/1286692956/ko/%EC%82%AC%EC%A7%84/%EC%9D%98%EC%9E%90%EC%99%80-%ED%85%8C%EC%9D%B4%EB%B8%94%EC%9D%B4-%EC%9E%88%EB%8A%94-%EB%B9%88-%EC%B9%B4%ED%8E%98-%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4.jpg?s=612x612&w=0&k=20&c=dgWlZUPam-dJb_bRpXqCPUyRd-UWaYxCKiFkJT4fYSQ="
+    },
+    {
+      "id": "7",
+      "title": "강남",
+      "img": "https://gyeongju.go.kr/upload/content/thumb/20200429/AF0FBCACF6E141DEBAD30FDB6082D979.jpg"
+    },
+    {
+      "id": "8",
+      "title": "판교",
+      "img": "https://media.istockphoto.com/id/1428594094/ko/%EC%82%AC%EC%A7%84/%EB%82%98%EB%AC%B4-%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%BB%A4%ED%94%BC-%EB%A9%94%EC%9D%B4%EC%BB%A4-%ED%8C%A8%EC%8A%A4%ED%8A%B8%EB%A6%AC-%EB%B0%8F-%ED%8E%9C%EB%8D%98%ED%8A%B8-%EC%A1%B0%EB%AA%85%EC%9D%B4%EC%9E%88%EB%8A%94-%EB%B9%88-%EC%BB%A4%ED%94%BC-%EC%88%8D-%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4.jpg?s=612x612&w=0&k=20&c=5bHJXVEZ4D9zsN_ZV-XVZsTxwxL5GdUOo5D0PPs3fsI="
+    }
+  ]
+}
