@@ -15,6 +15,7 @@ const MainContainer = styled.div<{ paddingLeft: number }>`
 `;
 const MakeTop = styled.div`
   display: flex;
+  
   width: 100%;
   height: 90%;
 `;
