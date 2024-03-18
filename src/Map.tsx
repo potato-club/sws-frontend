@@ -13,7 +13,7 @@ const Mapc = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 883px;
+  height: 855px;
 `;
 const MapBottom = styled.div`
   padding-top: 70px;
