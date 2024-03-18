@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-interface SliderProps {
-  slides: JSX.Element[];
-  currentSlide: number;
-  setCurrentSlide: React.Dispatch<React.SetStateAction<number>>;
-}
+const SlideShow: React.FC = () => {
+  const slides = [
+    "https://health.chosun.com/site/data/img_dir/2024/01/19/2024011901219_0.jpg",
+    "https://dispatch.cdnser.be/wp-content/uploads/2017/11/20171127233235_16.jpg",
+    "https://blog.kakaocdn.net/dn/9nrrA/btrEcRxcaJs/7EhjOTc02PEIkI4E68BK2k/img.jpg"
+  ];
 
-const Slider: React.FC<SliderProps> = ({ slides, currentSlide, setCurrentSlide }) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
   const nextSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
   };
@@ -16,21 +18,26 @@ const Slider: React.FC<SliderProps> = ({ slides, currentSlide, setCurrentSlide }
     setCurrentSlide((prevSlide) => (prevSlide === 0 ? slides.length - 1 : prevSlide - 1));
   };
 
-  const handleIndicatorClick = (index: number) => {
-    setCurrentSlide(index);
-  };
-
   return (
-    <SliderContainer>
-      <Leftbtn onClick={prevSlide}>&lt;</Leftbtn>
-      <Slide>{slides[currentSlide]}</Slide>
-      <Rightbtn onClick={nextSlide}>&gt;</Rightbtn>
+    <SliderContainer 
+    onMouseEnter={() => setIsHovered(true)}
+    onMouseLeave={() => setIsHovered(false)}>
+       {isHovered && currentSlide !== 0 && <Leftbtn onClick={prevSlide}>&lt;</Leftbtn>}
+      {isHovered && currentSlide !== slides.length - 1 && <Rightbtn onClick={nextSlide}>&gt;</Rightbtn>}
+      <SlideContainer style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+        {slides.map((slide, index) => (
+          <Slide key={index}>
+            <img src={slide} alt={`Slide ${index}`} />
+          </Slide>
+        ))}
+      </SlideContainer>
+
       <Indicators>
         {slides.map((_, index) => (
-          <div
+          <Indicator
             key={index}
-            className={`Indicator ${index === currentSlide ? "active" : ""}`}
-            onClick={() => handleIndicatorClick(index)}
+            className={index === currentSlide ? "active" : ""}
+            onClick={() => setCurrentSlide(index)}
           />
         ))}
       </Indicators>
@@ -38,89 +45,75 @@ const Slider: React.FC<SliderProps> = ({ slides, currentSlide, setCurrentSlide }
   );
 };
 
-const SlideShow: React.FC = () => {
-  const slides: JSX.Element[] =
-    [
-        <img src="https://i.namu.wiki/i/IVOyx7FiOXQMGwY4TqD7qHmV0gPcIRUcDnRCEEzC6Xede7OCkv2qQ3iYd7wmtkgRbDcq4ewRVkhE7qrHdEgvGRmsOC5JwWKQ6ZCZRRgOIi4BT3lX411MzCh6iV2YU-sB6D-_KW3VmxPu39uFVOj3dA.webp" alt="이미지1"/>,
-        <img src="https://dispatch.cdnser.be/wp-content/uploads/2017/11/20171127233235_16.jpg" alt="이미지2"/>,   
-        <img src="https://blog.kakaocdn.net/dn/9nrrA/btrEcRxcaJs/7EhjOTc02PEIkI4E68BK2k/img.jpg" alt="이미지3"/>
-    
-    ];
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  return (
-    <Slider slides={slides}
-    currentSlide={currentSlide}
-    setCurrentSlide={setCurrentSlide} />
-  );
-};
-
 export default SlideShow;
 
 const SliderContainer = styled.div`
- width: 100%;
+  width: 100%;
   height: 480px;
   overflow: hidden;
   position: relative;
 `;
 
-const Leftbtn = styled.button`
- left: 10px;
- position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.5em;
-  background: transparent;
-  border: none;
-  cursor: pointer;
+const SlideContainer = styled.div`
+  display: flex;
+  transition: transform 0.5s ease;
+  position: relative; 
+  z-index: 1; 
 `;
-
-
-const Rightbtn = styled.button`
- right: 10px;
- position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.5em;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-`;
-
 
 const Slide = styled.div`
-    z-index: 0;
+  width: 100%;
+  flex-shrink: 0;
+  img {
     width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img {
-      width: 90%; 
-      height: 400px; 
+    height: 480px;
+    object-fit: cover;
+  }
+`;
 
-    }
+const Leftbtn = styled.button`
+  left: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5em;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  color: red;
+`;
+
+const Rightbtn = styled.button`
+  right: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5em;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  color: red;
 `;
 
 const Indicators = styled.div`
   display: flex;
   position: absolute;
-  bottom: 17px; 
+  bottom: 10px;
   left: 50%;
-  transform: translateX(-50%); 
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
+  transform: translateX(-50%);
+  z-index: 2; 
+`;
 
-  .Indicator {
+const Indicator = styled.div`
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background-color: #ffffff;
   margin: 0 5px;
   cursor: pointer;
-}
-.Indicator.active {
-  background-color: black;
-}
+  &.active {
+    background-color: black;
+  }
 `;
