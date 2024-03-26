@@ -1,5 +1,5 @@
-import React, { useState, ChangeEvent } from 'react';
-import styled from 'styled-components';
+import React, { useState, ChangeEvent } from "react";
+import styled from "styled-components";
 
 const BigBox = styled.div`
   display: flex;
@@ -28,7 +28,6 @@ const Box = styled.div`
   align-items: center;
   justify-content: center;
   background-color: white;
-
 `;
 
 const InnerBox = styled.div`
@@ -40,7 +39,6 @@ const InnerBox = styled.div`
   border-radius: 20px;
   background-color: white;
 `;
-
 const SmallBox = styled.div`
   width: 100%;
   height: 50%;
@@ -102,7 +100,7 @@ const InputFieldA = styled.textarea`
 
   &:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-    transform: scale(1.0);
+    transform: scale(1);
   }
 `;
 
@@ -120,7 +118,7 @@ const InputFieldB = styled.textarea`
 
   &:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-    transform: scale(1.0);
+    transform: scale(1);
   }
 `;
 
@@ -131,7 +129,6 @@ const RowSmallBox4 = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
 const MainWrite = styled.div`
   font-size: 20px;
   align-items: center;
@@ -159,17 +156,17 @@ const InnerWhiteBox = styled.div`
 
   &:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-    transform: scale(1.0);
+    transform: scale(1);
   }
 `;
-
 const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
 `;
 
-const ModalBackground = styled.div` //modal 기능을 통해서 사진 확대 축소 기능 넣음
+const ModalBackground = styled.div`
+  //modal 기능을 통해서 사진 확대 축소 기능 넣음
   position: fixed;
   top: 0;
   left: 0;
@@ -252,12 +249,11 @@ const CompletionBox = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate()(-50%, -50%);
+  transform: translate() (-50%, -50%);
   background-color: #ffffff;
   padding: 10px;
   border: 1px solid #ffffff;
 `;
-
 const CompletionButton = styled.button`
   font-size: 15px;
   padding: 5px 10px;
@@ -266,7 +262,7 @@ const CompletionButton = styled.button`
 
   &:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-    transform: scale(1.0);
+    transform: scale(1);
   }
 `;
 
@@ -297,18 +293,18 @@ const FilledStar = styled(Star)`
 
 function SecondPage() {
   const [likes, setLikes] = useState(0);
-  const [inputBValue, setInputBValue] = useState('');
+  const [inputBValue, setInputBValue] = useState("");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [rating, setRating] = useState(0);
   const [hoveredRating, setHoveredRating] = useState(0);
   const [showModal, setShowModal] = useState(false);
-  const [modalImageUrl, setModalImageUrl] = useState('');
-  
+  const [modalImageUrl, setModalImageUrl] = useState("");
+
   const imagesLinks = [
-    'https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/E172/production/_126241775_getty_cats.png',
-    'https://flexible.img.hani.co.kr/flexible/normal/970/777/imgdb/resize/2019/0926/00501881_20190926.JPG',
-    'https://health.chosun.com/site/data/img_dir/2023/07/17/2023071701753_0.jpg',
-    'https://lifet-img.s3.ap-northeast-2.amazonaws.com/6b980705-1d57-46a4-8193-ca490d19d00d'
+    "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/E172/production/_126241775_getty_cats.png",
+    "https://flexible.img.hani.co.kr/flexible/normal/970/777/imgdb/resize/2019/0926/00501881_20190926.JPG",
+    "https://health.chosun.com/site/data/img_dir/2023/07/17/2023071701753_0.jpg",
+    "https://lifet-img.s3.ap-northeast-2.amazonaws.com/6b980705-1d57-46a4-8193-ca490d19d00d",
   ];
 
   const handleImageClick = (imageUrl: string) => {
@@ -339,11 +335,15 @@ function SecondPage() {
   };
 
   const handleLeftArrowClick = () => {
-    setCurrentImageIndex(prevIndex => (prevIndex === 0 ? imagesLinks.length - 1 : prevIndex - 1));
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? imagesLinks.length - 1 : prevIndex - 1
+    );
   };
 
   const handleRightArrowClick = () => {
-    setCurrentImageIndex(prevIndex => (prevIndex === imagesLinks.length - 1 ? 0 : prevIndex + 1));
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === imagesLinks.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
   const handleStarClick = (index: number) => {
@@ -352,21 +352,21 @@ function SecondPage() {
 
   const handleMouseMove = (index: number) => {
     setRating(index + 1);
-  } //마우스 기능을 넣기 위해 handleMouseMove의 index number를 만들어줬다.
+  }; //마우스 기능을 넣기 위해 handleMouseMove의 index number를 만들어줬다.
   const handleMouseLeave = () => {
     setHoveredRating(0);
   };
 
   const handleClick = (index: number) => {
     setRating(index + 1);
-  }
+  };
 
   return (
     <div>
       <BigBox>
         <BigBoxWrite>글작성</BigBoxWrite>
         <Box>
-        <StarRatingContainer onMouseLeave={handleMouseLeave}>
+          <StarRatingContainer onMouseLeave={handleMouseLeave}>
             {[...Array(5)].map((_, index) => {
               if (index < (hoveredRating || rating)) {
                 return (
@@ -409,16 +409,27 @@ function SecondPage() {
                 </RowSmallBox3>
                 <RowSmallBox4>
                   <InnerWhiteBox>
-                    <Image src={imagesLinks[currentImageIndex]} alt={`Image ${currentImageIndex + 1}`}  onClick={() => handleImageClick(imagesLinks[currentImageIndex])} />
-                    
-                    <LeftArrow onClick={handleLeftArrowClick}>{'<'}</LeftArrow>
-                    <RightArrow onClick={handleRightArrowClick}>{'>'}</RightArrow>
+                    <Image
+                      src={imagesLinks[currentImageIndex]}
+                      alt={`Image ${currentImageIndex + 1}`}
+                      onClick={() =>
+                        handleImageClick(imagesLinks[currentImageIndex])
+                      }
+                    />
+
+                    <LeftArrow onClick={handleLeftArrowClick}>{"<"}</LeftArrow>
+                    <RightArrow onClick={handleRightArrowClick}>
+                      {">"}
+                    </RightArrow>
 
                     <DotsContainer>
                       {imagesLinks.map((_, index) => (
                         <Dot
                           key={index}
-                          style={{ backgroundColor: index === currentImageIndex ? '#555' : '#bbb' }}
+                          style={{
+                            backgroundColor:
+                              index === currentImageIndex ? "#555" : "#bbb",
+                          }}
                         />
                       ))}
                     </DotsContainer>
@@ -432,7 +443,12 @@ function SecondPage() {
                 <MainWrite>내용</MainWrite>
               </RowBox1>
               <RowBox2>
-                <InputFieldB rows={3} value={inputBValue} onChange={handleInputBChange} maxLength={500} />
+                <InputFieldB
+                  rows={3}
+                  value={inputBValue}
+                  onChange={handleInputBChange}
+                  maxLength={500}
+                />
                 <p>({inputBValue.length} / 500 )</p>
 
                 {isCompleted && (
@@ -462,4 +478,3 @@ function SecondPage() {
 }
 
 export default SecondPage;
-
