@@ -10,9 +10,7 @@ const BigBox = styled.div`
 const BigBoxWrite = styled.p`
   position: absolute;
   left: 50%;
-  transform: translateX(
-    -50%
-  ); //translateX를 사용함으로서 위치 결정에 영향을 주지 않고 수평으로 중심을 잡아준다.
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
   padding-bottom: 750px;
@@ -40,7 +38,6 @@ const InnerBox = styled.div`
   border-top: 3px solid #7ba1da;
   border-radius: 20px;
   background-color: white;
-  //box-shadow: 3px 3px 3px 3px gray;
 `;
 const SmallBox = styled.div`
   width: 100%;
@@ -87,7 +84,7 @@ const RowSmallBox3 = styled.div`
   height: 30%;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Added space between button and counter */
+  justify-content: space-between;
 `;
 
 const InputFieldA = styled.textarea`
@@ -99,10 +96,9 @@ const InputFieldA = styled.textarea`
   font-size: 20px;
   text-align: left;
   box-sizing: border-box;
-  resize: none; // Prevent textarea from being resized by user
+  resize: none;
 
   &:hover {
-    //hover를 넘으로써 애니메이션 적용
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
     transform: scale(1);
   }
@@ -118,10 +114,9 @@ const InputFieldB = styled.textarea`
   font-size: 20px;
   text-align: left;
   box-sizing: border-box;
-  resize: none; // Prevent textarea from being resized by user
+  resize: none;
 
   &:hover {
-    //hover를 넘으로써 애니메이션 적용
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
     transform: scale(1);
   }
@@ -164,11 +159,35 @@ const InnerWhiteBox = styled.div`
     transform: scale(1);
   }
 `;
-// Adding a new styled component for the image
 const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+`;
+
+const ModalBackground = styled.div`
+  //modal 기능을 통해서 사진 확대 축소 기능 넣음
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1); /* 반투명한 검은 배경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* 다른 요소들 위에 보이도록 설정 */
+`;
+
+const ModalContent = styled.div`
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+`;
+
+const ModalImage = styled.img`
+  max-width: 90vw; /* 화면 너비의 90%까지만 차지 */
+  max-height: 90vh; /* 화면 높이의 90%까지만 차지 */
 `;
 
 export const TextareaField = styled.textarea`
@@ -179,7 +198,7 @@ export const TextareaField = styled.textarea`
   padding: 5px;
   border: 1px solid #000;
   font-size: 25px;
-  resize: none; // Prevent textarea from being resized by user
+  resize: none;
 `;
 
 export const TextBox = styled.div`
@@ -242,26 +261,60 @@ const CompletionButton = styled.button`
   border-radius: 10px;
 
   &:hover {
-    //hover를 넘으로써 애니메이션 적용
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
     transform: scale(1);
   }
 `;
+
 const CompletionButtonContainer = styled.div`
   margin-top: auto;
   margin-left: 1550px;
   align-self: flex-start;
 `;
 
+const StarRatingContainer = styled.div`
+  position: absolute; //위치 조정을 위해서 position을 사용한다음 top left right bottom을 사용하였다.
+  top: 130px;
+  right: 650px;
+  display: flex;
+  align-items: center;
+  align-items: flex-end; //텍스트를 아래로 정렬
+`;
+
+const Star = styled.span`
+  font-size: 30px;
+  cursor: pointer;
+  color: #bbb;
+`;
+
+const FilledStar = styled(Star)`
+  color: #ffc107;
+`;
+
 function SecondPage() {
   const [likes, setLikes] = useState(0);
   const [inputBValue, setInputBValue] = useState("");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [rating, setRating] = useState(0);
+  const [hoveredRating, setHoveredRating] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [modalImageUrl, setModalImageUrl] = useState("");
 
-  const imagesLinkes = [
+  const imagesLinks = [
     "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/E172/production/_126241775_getty_cats.png",
     "https://flexible.img.hani.co.kr/flexible/normal/970/777/imgdb/resize/2019/0926/00501881_20190926.JPG",
+    "https://health.chosun.com/site/data/img_dir/2023/07/17/2023071701753_0.jpg",
+    "https://lifet-img.s3.ap-northeast-2.amazonaws.com/6b980705-1d57-46a4-8193-ca490d19d00d",
   ];
+
+  const handleImageClick = (imageUrl: string) => {
+    setModalImageUrl(imageUrl);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   const handleLike = () => {
     setLikes(likes + 1);
@@ -277,21 +330,35 @@ function SecondPage() {
   };
 
   const handleInputBChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    // ChangeEvent<HTMLTextAreaElement> instead of ChangeEvent<HTMLInputElement>
     const value = e.target.value;
     setInputBValue(value);
   };
 
   const handleLeftArrowClick = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? imagesLinkes.length - 1 : prevIndex - 1
+      prevIndex === 0 ? imagesLinks.length - 1 : prevIndex - 1
     );
   };
 
   const handleRightArrowClick = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === imagesLinkes.length - 1 ? 0 : prevIndex + 1
+      prevIndex === imagesLinks.length - 1 ? 0 : prevIndex + 1
     );
+  };
+
+  const handleStarClick = (index: number) => {
+    setRating(index + 1);
+  };
+
+  const handleMouseMove = (index: number) => {
+    setRating(index + 1);
+  }; //마우스 기능을 넣기 위해 handleMouseMove의 index number를 만들어줬다.
+  const handleMouseLeave = () => {
+    setHoveredRating(0);
+  };
+
+  const handleClick = (index: number) => {
+    setRating(index + 1);
   };
 
   return (
@@ -299,6 +366,32 @@ function SecondPage() {
       <BigBox>
         <BigBoxWrite>글작성</BigBoxWrite>
         <Box>
+          <StarRatingContainer onMouseLeave={handleMouseLeave}>
+            {[...Array(5)].map((_, index) => {
+              if (index < (hoveredRating || rating)) {
+                return (
+                  <FilledStar
+                    key={index}
+                    onMouseMove={() => handleMouseMove(index)}
+                    onClick={() => handleClick(index)}
+                  >
+                    &#9733;
+                  </FilledStar>
+                );
+              } else {
+                return (
+                  <Star
+                    key={index}
+                    onMouseMove={() => handleMouseMove(index)}
+                    onClick={() => handleClick(index)}
+                  >
+                    &#9733;
+                  </Star>
+                );
+              }
+            })}
+            ({hoveredRating || rating}점)
+          </StarRatingContainer>
           <InnerBox>
             <SmallBox>
               <RowBox1>
@@ -317,21 +410,20 @@ function SecondPage() {
                 <RowSmallBox4>
                   <InnerWhiteBox>
                     <Image
-                      src={imagesLinkes[currentImageIndex]}
+                      src={imagesLinks[currentImageIndex]}
                       alt={`Image ${currentImageIndex + 1}`}
+                      onClick={() =>
+                        handleImageClick(imagesLinks[currentImageIndex])
+                      }
                     />
 
-                    {/* Left Arrow */}
                     <LeftArrow onClick={handleLeftArrowClick}>{"<"}</LeftArrow>
-
-                    {/* Right Arrow */}
                     <RightArrow onClick={handleRightArrowClick}>
                       {">"}
                     </RightArrow>
 
-                    {/* Dots */}
                     <DotsContainer>
-                      {imagesLinkes.map((_, index) => (
+                      {imagesLinks.map((_, index) => (
                         <Dot
                           key={index}
                           style={{
@@ -369,6 +461,15 @@ function SecondPage() {
           </InnerBox>
         </Box>
       </BigBox>
+
+      {showModal && (
+        <ModalBackground onClick={handleCloseModal}>
+          <ModalContent>
+            <ModalImage src={modalImageUrl} alt="Enlarged Image" />
+          </ModalContent>
+        </ModalBackground>
+      )}
+
       <CompletionButtonContainer>
         <CompletionButton onClick={handleCompletion}>작성완료</CompletionButton>
       </CompletionButtonContainer>
