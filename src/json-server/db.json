@@ -13,11 +13,11 @@
       "name": "강서쪽 사람"
     },
     {
-      "id": 3,
+      "id": 4,
       "name": "강서쪽 사람"
     },
     {
-      "id": 3,
+      "id": 5,
       "name": "강서쪽 사람"
     }
   ],
@@ -34,6 +34,60 @@
     {
       "id": 3,
       "images": "https://www.samchully.co.kr/upload/pr/paperad/l3tppifzgysi7kp3k8re.png"
+    },
+    {
+      "id": 3,
+      "images": "https://www.samchully.co.kr/upload/pr/paperad/l3tppifzgysi7kp3k8re.png"
+    }
+  ],
+  "Community": [
+    {
+      "id": "1",
+      "title": "제목 1",
+      "name": "테스트",
+      "like": 6,
+      "contents": "내용 안녕하세요 저는 어디살고 무슨 공부를 하는 사람입니다. 혹시 같이프로젝트 할사람있으면 같이 해용!",
+      "hash": "홍대"
+    },
+    {
+      "id": "2",
+      "title": "제목2",
+      "name": "강서쪽 사람",
+      "like": 150,
+      "contents": "내용 안녕하세요 저는 어디살고 무슨 공부를 하는 사람입니다. 혹시 같이프로젝트 할사람있으면 같이 해용!",
+      "hash": "홍대"
+    },
+    {
+      "id": "3",
+      "title": "제ssssssssssssssssss목3",
+      "name": "스므디",
+      "like": 23,
+      "contents": "혹시 같이프로젝트 할사람있으면 같이 해용!",
+      "hash": "홍"
+    },
+    {
+      "id": "4",
+      "title": "제목3",
+      "name": "스므디",
+      "like": 23,
+      "contents": "혹시 같이프로젝트 할사람있으면 같이 해용!",
+      "hash": "홍"
+    },
+    {
+      "id": "3",
+      "title": "제sss목3",
+      "name": "스므디",
+      "like": 23,
+      "contents": "혹시 같이프로젝트 할사람있으면 같이 해용!",
+      "hash": "홍"
+    },
+    {
+      "id": "3",
+      "title": "제목dd3",
+      "name": "스므디",
+      "like": 23,
+      "contents": "혹시 같이프로젝트 할사람있으면 같이 해용!",
+      "hash": "홍"
     }
   ],
   "MainCt": [
@@ -230,6 +284,11 @@
       "id": "22",
       "title": "이태원",
       "img": "https://media.istockphoto.com/id/1286692956/ko/%EC%82%AC%EC%A7%84/%EC%9D%98%EC%9E%90%EC%99%80-%ED%85%8C%EC%9D%B4%EB%B8%94%EC%9D%B4-%EC%9E%88%EB%8A%94-%EB%B9%88-%EC%B9%B4%ED%8E%98-%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4.jpg?s=612x612&w=0&k=20&c=dgWlZUPam-dJb_bRpXqCPUyRd-UWaYxCKiFkJT4fYSQ="
+    },
+    {
+      "id": "21",
+      "title": "홍대",
+      "img": "https://www.qplace.kr/content/images/2022/10/No.3185------.jpg"
     }
   ]
 }
