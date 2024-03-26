@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 interface UserDataItem {
   likes: number;
   hashtags?: string[]; // 새로운 hashtags 속성 추가
@@ -23,6 +26,25 @@ interface community {
   hash: string;
 }
 const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
+  function SampleNextArrow() {
+    return <div />;
+  }
+
+  function SamplePrevArrow() {
+    return <div />;
+  }
+  const settings = {
+    infinite: true,
+    speed: 1000, // 넘어가는 속도 (ms)
+    autoplay: true, // 자동 넘김 활성화
+    autoplaySpeed: 5000, // 자동 넘김 속도 (ms)
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    pauseOnHover: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+  };
   const [pL, setPL] = useState(0);
 
   useEffect(() => {
@@ -44,27 +66,55 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
 
   return (
     <MainContain paddingLeft={pL}>
-      <StyledSmallBox>
-        <TitleContainer></TitleContainer>
-        <InnerContainer>
-          {commu.map((b) => (
-            <InnerBox key={b.id} likes={b.like}>
-              <UserInfoContainerLink to={`/Community/${b.id}`}>
-                <UserInfoContainer>
-                  <div className="hashtags">
-                    <span>{b.hash} </span>
-                  </div>
-                </UserInfoContainer>
-              </UserInfoContainerLink>
-            </InnerBox>
-          ))}
-        </InnerContainer>
-      </StyledSmallBox>
+      <StyledSlider {...settings}>
+        <StyledSmallBox>
+          <TitleContainer></TitleContainer>
+          <InnerContainer>
+            {commu.map((b) => (
+              <InnerBox likes={b.like}>
+                <UserInfoContainerLink to={`/Community/${b.id}`}>
+                  <UserInfoContainer>
+                    <div className="hashtags">
+                      <span>
+                        {b.id} {b.hash}{" "}
+                      </span>
+                    </div>
+                  </UserInfoContainer>
+                </UserInfoContainerLink>
+              </InnerBox>
+            ))}
+          </InnerContainer>
+        </StyledSmallBox>
+      </StyledSlider>
     </MainContain>
   );
 };
 
 export default Lounge;
+const StyledSlider = styled(Slider)`
+  .slick-prev {
+    z-index: 1;
+    left: 30px;
+  }
+
+  .slick-next {
+    right: 40px;
+  }
+
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 30px;
+    opacity: 1;
+    color: black;
+  }
+  li button:before {
+    color: white;
+  }
+
+  li.slick-active button:before {
+    color: white;
+  }
+`;
 
 const StyledSmallBox = styled.div`
   padding: 10px;
@@ -87,8 +137,8 @@ const InnerContainer = styled.div`
   justify-content: flex-start; /* Adjust alignment based on your preference */
   //background-color: #7ba1da;
   border-radius: 50px;
-  scrollbar-width: thin; //스크롤바 가리기
-  scrollbar-color: transparent transparent; //스크롤바 안보이게 가리기
+  /* scrollbar-width: thin; //스크롤바 가리기
+  scrollbar-color: transparent transparent; //스크롤바 안보이게 가리기 */
 `;
 
 const InnerBox = styled.div<{ likes: number }>`
