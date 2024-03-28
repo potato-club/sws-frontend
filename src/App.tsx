@@ -47,7 +47,7 @@ function App() {
             element={<Make isSidebarOpen={isSidebarOpen} />}
           />
           <Route path="/MainBox" element={<MainBox />} />
-          <Route path="/Community" element={<Community />} />
+          <Route path="/Community/:id" element={<Community />} />
           <Route path="/Loungesecond" element={<LoungeSecond />} />
           <Route path="/PostMainBox" element={<PostMainBox />} />
           <Route path="/Map" element={<Map />} />
