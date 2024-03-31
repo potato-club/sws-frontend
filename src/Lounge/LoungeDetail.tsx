@@ -6,7 +6,7 @@ import { AiOutlineEnter } from "react-icons/ai";
 import { CgHeart } from "react-icons/cg";
 import { BiSubdirectoryRight } from "react-icons/bi";
 import { FaHeart } from "react-icons/fa6";
-import { PRIMARY_COLOR_BLUE } from "../src/constants";
+import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
 import { useParams } from "react-router-dom";
 interface c {
   id: string;
