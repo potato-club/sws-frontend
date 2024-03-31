@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
-import SlideShow from "../SilderForMainBox";
+import SlideShow from "./SilderForMainBox";
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
 import Board from "../Board";
 const MainBox = () => {
