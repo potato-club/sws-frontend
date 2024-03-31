@@ -1,39 +1,61 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
+import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
+interface Slide {
+  id: string;
+  img: string;
+}
 
 const SlideShow: React.FC = () => {
-  const slides = [
-    "https://health.chosun.com/site/data/img_dir/2024/01/19/2024011901219_0.jpg",
-    "https://dispatch.cdnser.be/wp-content/uploads/2017/11/20171127233235_16.jpg",
-    "https://blog.kakaocdn.net/dn/9nrrA/btrEcRxcaJs/7EhjOTc02PEIkI4E68BK2k/img.jpg"
-  ];
-
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [imgSrc, setImgSrc] = useState<Slide[]>([]);
+
   const nextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % imgSrc.length);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide === 0 ? slides.length - 1 : prevSlide - 1));
+    setCurrentSlide((prevSlide) =>
+      prevSlide === 0 ? imgSrc.length - 1 : prevSlide - 1
+    );
   };
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/MainBox")
+      .then((response) => {
+        setImgSrc(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
-    <SliderContainer 
-    onMouseEnter={() => setIsHovered(true)}
-    onMouseLeave={() => setIsHovered(false)}>
-       {isHovered && currentSlide !== 0 && <Leftbtn onClick={prevSlide}>&lt;</Leftbtn>}
-      {isHovered && currentSlide !== slides.length - 1 && <Rightbtn onClick={nextSlide}>&gt;</Rightbtn>}
-      <SlideContainer style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-        {slides.map((slide, index) => (
+    <SliderContainer
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {isHovered && currentSlide !== 0 && (
+        <Leftbtn onClick={prevSlide}>&lt;</Leftbtn>
+      )}
+      {isHovered && currentSlide !== imgSrc.length - 1 && (
+        <Rightbtn onClick={nextSlide}>&gt;</Rightbtn>
+      )}
+      <SlideContainer
+        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+      >
+        {imgSrc.map((slide, index) => (
           <Slide key={index}>
-            <img src={slide} alt={`Slide ${index}`} />
+            <img src={slide.img} alt={`Slide ${slide.id}`} />
           </Slide>
         ))}
       </SlideContainer>
 
       <Indicators>
-        {slides.map((_, index) => (
+        {imgSrc.map((_, index) => (
           <Indicator
             key={index}
             className={index === currentSlide ? "active" : ""}
@@ -56,9 +78,9 @@ const SliderContainer = styled.div`
 
 const SlideContainer = styled.div`
   display: flex;
-  transition: transform 0.5s ease;
-  position: relative; 
-  z-index: 1; 
+  transition: transform 0.8s ease;
+  position: relative;
+  z-index: 1;
 `;
 
 const Slide = styled.div`
@@ -76,12 +98,15 @@ const Leftbtn = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1.5em;
-  background: transparent;
   border: none;
   cursor: pointer;
   z-index: 2;
-  color: red;
+  background-color: ${PRIMARY_COLOR_BLUE};
+  width: 40px;
+  height: 40px;
+  color: white;
+  border-radius: 15px;
+  font-size: 20px;
 `;
 
 const Rightbtn = styled.button`
@@ -89,12 +114,17 @@ const Rightbtn = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1.5em;
+  font-size: 3.5em;
   background: transparent;
   border: none;
   cursor: pointer;
   z-index: 2;
-  color: red;
+  background-color: ${PRIMARY_COLOR_BLUE};
+  width: 40px;
+  height: 40px;
+  color: white;
+  border-radius: 15px;
+  font-size: 20px;
 `;
 
 const Indicators = styled.div`
@@ -103,7 +133,7 @@ const Indicators = styled.div`
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2; 
+  z-index: 2;
 `;
 
 const Indicator = styled.div`

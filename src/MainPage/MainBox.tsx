@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import SlideShow from "../SilderForMainBox";
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
+import Board from "../Board";
 const MainBox = () => {
   const [rating, setRating] = useState<number | null>(null);
   const [hoverRating, setHoverRating] = useState<number | null>(null);
@@ -59,6 +60,7 @@ const MainBox = () => {
           저희 카페는 어쩌고 저쩌고....
           <br />
         </CafeInfo>
+        <Board />
       </ContainerArea>
     </MainBoxContainer>
   );
@@ -100,6 +102,7 @@ const CafeInfo = styled.div`
   justify-content: center;
   margin-top: 10px;
   padding: 5px;
+  border-radius: 5px;
 `;
 
 const StarRatingContainer = styled.div`

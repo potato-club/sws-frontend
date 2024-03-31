@@ -2,10 +2,11 @@ import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
+import axios from "axios";
 interface PostCafeProps {
   onSubmit: (cafeName: string, cafeInfo: string, images: File[]) => void;
 }
-const PostMainBoxForm: React.FC<PostCafeProps> = ({ onSubmit = () => {} }) => {
+const PostMainBoxForm: React.FC<PostCafeProps> = () => {
   const [cafeName, setCafeName] = useState("");
   const [cafeInfo, setCafeInfo] = useState("");
   const [images, setImages] = useState<File[]>([]);
@@ -13,12 +14,21 @@ const PostMainBoxForm: React.FC<PostCafeProps> = ({ onSubmit = () => {} }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (images.length === 0) {
-      console.log("사진 첨부 필요");
-    } else {
-      console.log("등록", cafeName, cafeInfo, images);
-      onSubmit(cafeName, cafeInfo, images);
-    }
+    const formData = {
+      cafeName: cafeName,
+      cafeInfo: cafeInfo,
+      images: images.map((file) => ({ img: file })),
+    };
+    console.log(images[0]);
+
+    axios
+      .post("http://localhost:3001/MainBox", formData)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
