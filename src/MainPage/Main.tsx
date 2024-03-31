@@ -1,10 +1,10 @@
-import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
 import MainContents from "./MainContents";
-
 import React, { useEffect, useState } from "react";
 import Pagenation from "../Components/Pagenation";
-import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import Slider from "react-slick";
 import styled from "styled-components";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
 
 interface MainProps {
@@ -22,7 +22,6 @@ interface Ct {
   id: string;
 }
 const Main: React.FC<MainProps> = ({ isSidebarOpen }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [paddingLeft, setPaddingLeft] = useState(0);
   const [main, setMain] = useState<MainDB[]>([]);
 
@@ -38,35 +37,11 @@ const Main: React.FC<MainProps> = ({ isSidebarOpen }) => {
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [currentSlide]);
-
-  useEffect(() => {
     const newPaddingLeft = isSidebarOpen ? 200 : 0;
     setPaddingLeft(newPaddingLeft);
   }, [isSidebarOpen]);
 
-  const nextSlide = () => {
-    setCurrentSlide((prevSlide) =>
-      prevSlide === main.length - 1 ? 0 : prevSlide + 1
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prevSlide) =>
-      prevSlide === 0 ? main.length - 1 : prevSlide - 1
-    );
-  };
-
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index);
-  };
-
   const [pagecontent, setpageContent] = useState([]);
-
   async function handlePostInfo() {
     const result = await axios({
       url: "http://localhost:3001/MainCt",
@@ -77,11 +52,9 @@ const Main: React.FC<MainProps> = ({ isSidebarOpen }) => {
     });
     setpageContent(result.data);
   }
-
   useEffect(() => {
     handlePostInfo();
   }, []);
-
   const [currentpage, setcurrentPage] = useState(1); //페이지
   const eight = 8; // posts가 보일 최대한의 갯수
   const startindex = (currentpage - 1) * eight; //2-1*8=8 result로 가면
@@ -93,33 +66,27 @@ const Main: React.FC<MainProps> = ({ isSidebarOpen }) => {
     }
   };
   //pagecontent 종합 즉 38 개
+
+  const settings = {
+    infinite: true,
+    speed: 1000, // 넘어가는 속도 (ms)
+    autoplay: true, // 자동 넘김 활성화
+    autoplaySpeed: 5000, // 자동 넘김 속도 (ms)
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    pauseOnHover: true,
+  };
   return (
     <MainContainer paddingLeft={paddingLeft}>
       <Top>
-        <TopButton onClick={prevSlide}>
-          <BiChevronLeft size="40" />
-        </TopButton>
-        <Slide>
-          <SlideImg
-            src={main.length > 0 ? main[currentSlide].images : ""}
-            alt="Slide"
-          />
-
-          <Buttons>
-            {main.map((_, id) => (
-              <ButtonsButton
-                className={`ButtonsButton ${
-                  id === currentSlide ? "active" : ""
-                }`}
-                key={id}
-                onClick={() => goToSlide(id)}
-              ></ButtonsButton>
-            ))}
-          </Buttons>
-        </Slide>
-        <TopButton onClick={nextSlide}>
-          <BiChevronRight size="40" />
-        </TopButton>
+        <StyledSlider {...settings}>
+          {main.map((m) => (
+            <Slide>
+              <SlideImg src={m.images} alt="Slide" />
+            </Slide>
+          ))}
+        </StyledSlider>
       </Top>
 
       <Bottom>
@@ -137,6 +104,44 @@ const Main: React.FC<MainProps> = ({ isSidebarOpen }) => {
 
 export default Main;
 
+const StyledSlider = styled(Slider)`
+  width: 100%;
+  .slick-prev {
+    z-index: 1;
+    left: 30px;
+    top: 135px;
+  }
+
+  .slick-next {
+    z-index: 1;
+    right: 40px;
+    top: 135px;
+  }
+
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 30px;
+    opacity: 0.3;
+    color: black;
+  }
+  .slick-prev:before:hover,
+  .slick-next:before:hover {
+    opacity: 1;
+  }
+`;
+
+const Slide = styled.div`
+  height: 290px;
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+`;
+
+const SlideImg = styled.img`
+  height: 100%;
+  width: 100%;
+`;
 const MainContainer = styled.div<{ paddingLeft: number }>`
   padding-top: 70px;
   margin-left: 0;
@@ -147,55 +152,8 @@ const MainContainer = styled.div<{ paddingLeft: number }>`
 const Top = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+
   height: 37%;
-`;
-
-const TopButton = styled.button`
-  background-color: ${PRIMARY_COLOR_BLUE};
-  color: white;
-  border-radius: 15px;
-  border: 0px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Slide = styled.div`
-  height: 400px;
-  width: 1200px;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const SlideImg = styled.img`
-  width: 80%;
-  height: 60%;
-`;
-
-const Buttons = styled.div`
-  margin-top: 20px;
-  display: flex;
-  width: 150px;
-  justify-content: space-around;
-`;
-
-const ButtonsButton = styled.div`
-  width: 10px;
-  height: 10px;
-  transform: translateX(-50%);
-  background-color: #b9b9b9;
-  border-radius: 50%;
-  z-index: 1;
-  cursor: pointer;
-  &.active {
-    background-color: black;
-  }
 `;
 
 const Bottom = styled.div`
