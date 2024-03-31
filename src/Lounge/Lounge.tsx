@@ -26,13 +26,6 @@ interface community {
   hash: string;
 }
 const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
-  function SampleNextArrow() {
-    return <div />;
-  }
-
-  function SamplePrevArrow() {
-    return <div />;
-  }
   const settings = {
     infinite: true,
     speed: 1000, // 넘어가는 속도 (ms)
@@ -42,8 +35,6 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
     slidesToScroll: 1,
     arrows: true,
     pauseOnHover: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
   };
   const [pL, setPL] = useState(0);
 

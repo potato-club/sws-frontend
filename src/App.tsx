@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Main from "./Main";
-import Header from "./Header";
-import Lounge from "./Lounge";
-import MyPage from "./MyPage";
+import Main from "./MainPage/Main";
+import Header from "./Components/Header";
+import Lounge from "./Lounge/Lounge";
+import MyPage from "./MyPage/MyPage";
 import SignInUpBox from "./SignInUpPage/SignInUpBox";
 import RedirectHandler from "./SignInUpPage/RedirectHandler";
 import { createGlobalStyle } from "styled-components";
-import Make from "./Make";
-import Map from "./Map";
-import MainBox from "./MainBox";
-import Community from "./Community";
-import LoungeSecond from "./Loungesecond";
-import PostMainBox from "./PostMainBox";
+import Make from "./TeamMake/Make";
+import Map from "./TeamMake/Map";
+import MainBox from "./MainPage/MainBox";
+import Community from "./Lounge/LoungeDetail";
+import LoungeSecond from "./Lounge/Loungesecond";
+import PostMainBox from "./MainPage/PostMainBox";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
