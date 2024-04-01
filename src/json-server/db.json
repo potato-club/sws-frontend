@@ -13,11 +13,11 @@
       "name": "강서쪽 사람"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "강서쪽 사람"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "강서쪽 사람"
     }
   ],
@@ -305,19 +305,19 @@
   "MainBox": [
     {
       "id": "1",
-      "img": "https://media.istockphoto.com/id/1286692956/ko/%EC%82%AC%EC%A7%84/%EC%9D%98%EC%9E%90%EC%99%80-%ED%85%8C%EC%9D%B4%EB%B8%94%EC%9D%B4-%EC%9E%88%EB%8A%94-%EB%B9%88-%EC%B9%B4%ED%8E%98-%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4.jpg?s=612x612&w=0&k=20&c=dgWlZUPam-dJb_bRpXqCPUyRd-UWaYxCKiFkJT4fYSQ="
+      "images": "https://media.istockphoto.com/id/1286692956/ko/%EC%82%AC%EC%A7%84/%EC%9D%98%EC%9E%90%EC%99%80-%ED%85%8C%EC%9D%B4%EB%B8%94%EC%9D%B4-%EC%9E%88%EB%8A%94-%EB%B9%88-%EC%B9%B4%ED%8E%98-%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4.jpg?s=612x612&w=0&k=20&c=dgWlZUPam-dJb_bRpXqCPUyRd-UWaYxCKiFkJT4fYSQ="
     },
     {
-      "id": "1",
-      "img": "https://media.istockphoto.com/id/1286692956/ko/%EC%82%AC%EC%A7%84/%EC%9D%98%EC%9E%90%EC%99%80-%ED%85%8C%EC%9D%B4%EB%B8%94%EC%9D%B4-%EC%9E%88%EB%8A%94-%EB%B9%88-%EC%B9%B4%ED%8E%98-%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4.jpg?s=612x612&w=0&k=20&c=dgWlZUPam-dJb_bRpXqCPUyRd-UWaYxCKiFkJT4fYSQ="
+      "id": "2",
+      "images": "https://media.istockphoto.com/id/1286692956/ko/%EC%82%AC%EC%A7%84/%EC%9D%98%EC%9E%90%EC%99%80-%ED%85%8C%EC%9D%B4%EB%B8%94%EC%9D%B4-%EC%9E%88%EB%8A%94-%EB%B9%88-%EC%B9%B4%ED%8E%98-%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4.jpg?s=612x612&w=0&k=20&c=dgWlZUPam-dJb_bRpXqCPUyRd-UWaYxCKiFkJT4fYSQ="
     },
     {
-      "id": "1",
-      "img": "https://media.istockphoto.com/id/1286692956/ko/%EC%82%AC%EC%A7%84/%EC%9D%98%EC%9E%90%EC%99%80-%ED%85%8C%EC%9D%B4%EB%B8%94%EC%9D%B4-%EC%9E%88%EB%8A%94-%EB%B9%88-%EC%B9%B4%ED%8E%98-%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4.jpg?s=612x612&w=0&k=20&c=dgWlZUPam-dJb_bRpXqCPUyRd-UWaYxCKiFkJT4fYSQ="
+      "id": "3",
+      "images": "https://media.istockphoto.com/id/1286692956/ko/%EC%82%AC%EC%A7%84/%EC%9D%98%EC%9E%90%EC%99%80-%ED%85%8C%EC%9D%B4%EB%B8%94%EC%9D%B4-%EC%9E%88%EB%8A%94-%EB%B9%88-%EC%B9%B4%ED%8E%98-%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4.jpg?s=612x612&w=0&k=20&c=dgWlZUPam-dJb_bRpXqCPUyRd-UWaYxCKiFkJT4fYSQ="
     },
     {
-      "id": "1",
-      "img": "https://gyeongju.go.kr/upload/content/thumb/20200429/AF0FBCACF6E141DEBAD30FDB6082D979.jpg"
+      "id": "4",
+      "images": "https://gyeongju.go.kr/upload/content/thumb/20200429/AF0FBCACF6E141DEBAD30FDB6082D979.jpg"
     }
   ],
   "Posts": [
@@ -326,40 +326,8 @@
       "content": "ㅇㄴㅁㅇ"
     },
     {
-      "id": "1b32",
-      "content": "ㅇㄴㅁ"
-    },
-    {
-      "id": "df70",
-      "content": "ㅇㄴㅁ"
-    },
-    {
-      "id": "42a3",
-      "content": "ㅇㄴㅁ"
-    },
-    {
-      "id": "14e5",
-      "content": "ㅇ"
-    },
-    {
-      "id": "bbec",
-      "content": "ㅁㅇ"
-    },
-    {
-      "id": "a544",
-      "content": "ㅁㄴ"
-    },
-    {
-      "id": "732e",
-      "content": "ㅁㄴ"
-    },
-    {
-      "id": "9cd5",
-      "content": "ㅇㄴ"
-    },
-    {
-      "id": "1416",
-      "content": "ㅁㅇ"
+      "id": "07ec",
+      "content": "ASDSADSADASD"
     }
   ]
 }
