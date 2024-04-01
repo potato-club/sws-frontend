@@ -4,7 +4,7 @@ import axios from "axios";
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
 interface Slide {
   id: string;
-  img: string;
+  images: string;
 }
 
 const SlideShow: React.FC = () => {
@@ -49,7 +49,7 @@ const SlideShow: React.FC = () => {
       >
         {imgSrc.map((slide, index) => (
           <Slide key={index}>
-            <img src={slide.img} alt={`Slide ${slide.id}`} />
+            <img src={slide.images} alt={`Slide ${slide.id}`} />
           </Slide>
         ))}
       </SlideContainer>
