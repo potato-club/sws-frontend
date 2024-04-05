@@ -262,4 +262,5 @@ const Top = styled.div`
 
 const Bottom = styled.div`
   height: 65%;
+  flex-wrap: wrap;
 `;
