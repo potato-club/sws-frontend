@@ -4,6 +4,68 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
+
+interface Frined {
+  id: number;
+  name: string;
+}
+const MyPage = () => {
+  const friendDelete = () => {
+    alert("삭제되었습니다.");
+  };
+
+  const [friend, setFriend] = useState<Frined[]>();
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/MyPage")
+      .then((response) => {
+        setFriend(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  return (
+    <MyPageContaine>
+      <MyPageContent>
+        <MyPageTop>
+          <MPTphoto>
+            <AiOutlineUser size="140" />
+          </MPTphoto>
+          <div>
+            <MPTname>이름: 아무이름</MPTname>
+            <MPTtag>#강서 #프론트엔드 #웹 개발</MPTtag>
+          </div>
+          <MPBTopBUTTON>
+            <MPTbutton>내 정보 수정</MPTbutton>
+            <MPTbutton>해시태그 수정</MPTbutton>
+          </MPBTopBUTTON>
+        </MyPageTop>
+        <MyPageBottom>
+          <MPBwrite to="/">내가 쓴 글 목록 </MPBwrite>
+          <div style={{ color: "white" }}>내 친구들 </div>
+          <MPBfriend>
+            {friend?.map((fr) => (
+              <MPBfriendContent>
+                <MPBfriendName>{fr.name}</MPBfriendName>
+                <MPBbottomBUTTON>
+                  <MPBfriendPage to="/">친구 페이지</MPBfriendPage>
+                  <MPBfriendContentButton onClick={friendDelete}>
+                    친구 삭제
+                  </MPBfriendContentButton>
+                </MPBbottomBUTTON>
+              </MPBfriendContent>
+            ))}
+          </MPBfriend>
+        </MyPageBottom>
+      </MyPageContent>
+    </MyPageContaine>
+  );
+};
+
+export default MyPage;
 const MyPageContaine = styled.div`
   width: 100%;
   height: 880px;
@@ -18,6 +80,15 @@ const MyPageContent = styled.div`
   background-color: ${PRIMARY_COLOR_BLUE};
   width: 50%;
   height: 1000px;
+  @media screen and (max-width: 1200px) {
+    width: 1200px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 760px;
+  }
+  @media screen and (max-width: 500px) {
+    width: 500px;
+  }
 `;
 const MyPageTop = styled.div`
   width: 100%;
@@ -59,8 +130,8 @@ const MPTbutton = styled.button`
 `;
 const MPBfriendContent = styled.div`
   background-color: white;
-  width: 750px;
-  height: 110px;
+  width: 90%;
+  height: 30%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -70,6 +141,16 @@ const MPBfriendContent = styled.div`
   border-radius: 25px;
   color: ${PRIMARY_COLOR_BLUE};
   box-shadow: 3px 3px 3px 3px gray;
+  @media screen and (max-width: 1200px) {
+    width: 87%;
+  }
+  @media screen and (max-width: 500px) {
+    width: 50%;
+  }
+  @media screen and (max-width: 768px) {
+    height: 30%;
+    width: 80%;
+  }
 `;
 
 const MyPageBottom = styled.div`
@@ -119,8 +200,12 @@ const MPBfriendPage = styled(Link)`
 
 const MPBfriend = styled.div`
   overflow-y: auto;
-  width: 850px;
+  width: 100%;
   height: 420px;
+  @media screen and (max-width: 1200px) {
+    width: 90%;
+  }
+
   &::-webkit-scrollbar {
     width: 15px;
     height: 8px;
@@ -142,65 +227,19 @@ const MPTtag = styled.div`
 const MPBbottomBUTTON = styled.div`
   display: flex;
 `;
-
-interface Frined {
-  id: number;
-  name: string;
-}
-const MyPage = () => {
-  const friendDelete = () => {
-    alert("삭제되었습니다.");
-  };
-
-  const [friend, setFriend] = useState<Frined[]>();
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:3001/MyPage")
-      .then((response) => {
-        setFriend(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
-  return (
-    <MyPageContaine>
-      <MyPageContent>
-        <MyPageTop>
-          <MPTphoto>
-            <AiOutlineUser size="140" />
-          </MPTphoto>
-          <div>
-            <MPTname>이름: 아무이름</MPTname>
-            <MPTtag>#강서 #프론트엔드 #웹 개발</MPTtag>
-          </div>
-          <MPBTopBUTTON>
-            <MPTbutton>내 정보 수정</MPTbutton>
-            <MPTbutton>해시태그 수정</MPTbutton>
-          </MPBTopBUTTON>
-        </MyPageTop>
-        <MyPageBottom>
-          <MPBwrite to="/">내가 쓴 글 목록 </MPBwrite>
-          <div style={{ color: "white" }}>내 친구들 </div>
-          <MPBfriend>
-            {friend?.map((fr) => (
-              <MPBfriendContent>
-                <div>{fr.name}</div>
-                <MPBbottomBUTTON>
-                  <MPBfriendPage to="/">친구 페이지</MPBfriendPage>
-                  <MPBfriendContentButton onClick={friendDelete}>
-                    친구 삭제
-                  </MPBfriendContentButton>
-                </MPBbottomBUTTON>
-              </MPBfriendContent>
-            ))}
-          </MPBfriend>
-        </MyPageBottom>
-      </MyPageContent>
-    </MyPageContaine>
-  );
-};
-
-export default MyPage;
+const MPBfriendName = styled.div`
+  height: 40px;
+  width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  margin-right: 15px;
+  color: ${PRIMARY_COLOR_BLUE};
+  border: none;
+  text-decoration: none;
+  background-color: white;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
