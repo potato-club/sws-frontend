@@ -49,7 +49,7 @@ const MyPage = () => {
           <MPBfriend>
             {friend?.map((fr) => (
               <MPBfriendContent>
-                <div>{fr.name}</div>
+                <MPBfriendName>{fr.name}</MPBfriendName>
                 <MPBbottomBUTTON>
                   <MPBfriendPage to="/">친구 페이지</MPBfriendPage>
                   <MPBfriendContentButton onClick={friendDelete}>
@@ -80,6 +80,15 @@ const MyPageContent = styled.div`
   background-color: ${PRIMARY_COLOR_BLUE};
   width: 50%;
   height: 1000px;
+  @media screen and (max-width: 1200px) {
+    width: 1200px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 760px;
+  }
+  @media screen and (max-width: 500px) {
+    width: 500px;
+  }
 `;
 const MyPageTop = styled.div`
   width: 100%;
@@ -132,6 +141,16 @@ const MPBfriendContent = styled.div`
   border-radius: 25px;
   color: ${PRIMARY_COLOR_BLUE};
   box-shadow: 3px 3px 3px 3px gray;
+  @media screen and (max-width: 1200px) {
+    width: 87%;
+  }
+  @media screen and (max-width: 500px) {
+    width: 50%;
+  }
+  @media screen and (max-width: 768px) {
+    height: 30%;
+    width: 80%;
+  }
 `;
 
 const MyPageBottom = styled.div`
@@ -181,8 +200,12 @@ const MPBfriendPage = styled(Link)`
 
 const MPBfriend = styled.div`
   overflow-y: auto;
-  width: 850px;
+  width: 100%;
   height: 420px;
+  @media screen and (max-width: 1200px) {
+    width: 90%;
+  }
+
   &::-webkit-scrollbar {
     width: 15px;
     height: 8px;
@@ -203,4 +226,20 @@ const MPTtag = styled.div`
 `;
 const MPBbottomBUTTON = styled.div`
   display: flex;
+`;
+const MPBfriendName = styled.div`
+  height: 40px;
+  width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  margin-right: 15px;
+  color: ${PRIMARY_COLOR_BLUE};
+  border: none;
+  text-decoration: none;
+  background-color: white;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;

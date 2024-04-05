@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Main from "./MainPage/Main";
+import Main from "./MainCafePage/Main";
 import Header from "./Components/Header";
 import Lounge from "./Lounge/Lounge";
 import MyPage from "./MyPage/MyPage";
@@ -9,10 +9,10 @@ import RedirectHandler from "./SignInUpPage/RedirectHandler";
 import { createGlobalStyle } from "styled-components";
 import Make from "./TeamMake/Make";
 import Map from "./TeamMake/Map";
-import MainBox from "./MainPage/MainBox";
+import MainBox from "./MainCafePage/MainBox";
 import Community from "./Lounge/LoungeDetail";
 import LoungeSecond from "./Lounge/Loungesecond";
-import PostMainBox from "./MainPage/PostMainBox";
+import PostMainBox from "./MainCafePage/PostMainBox";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
