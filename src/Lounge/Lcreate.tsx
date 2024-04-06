@@ -291,7 +291,7 @@ const FilledStar = styled(Star)`
   color: #ffc107;
 `;
 
-function SecondPage() {
+function Lcreate() {
   const [likes, setLikes] = useState(0);
   const [inputBValue, setInputBValue] = useState("");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -477,4 +477,4 @@ function SecondPage() {
   );
 }
 
-export default SecondPage;
+export default Lcreate;

@@ -1,188 +1,123 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import Slick from "../libs/Slick";
 import axios from "axios";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-interface UserDataItem {
-  likes: number;
-  hashtags?: string[]; // 새로운 hashtags 속성 추가
-}
-
-interface UserData {
-  [key: string]: UserDataItem[];
-}
-
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
 interface MainProps {
   isSidebarOpen: boolean;
 }
-interface community {
-  id: string;
-  title: string;
-  name: string;
-  like: number;
-  contents: string;
-  hash: string;
+interface MainDB {
+  id: number;
+  images: string;
 }
 const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
-  const settings = {
-    infinite: true,
-    speed: 1000, // 넘어가는 속도 (ms)
-    autoplay: true, // 자동 넘김 활성화
-    autoplaySpeed: 5000, // 자동 넘김 속도 (ms)
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: true,
-    pauseOnHover: true,
-  };
   const [pL, setPL] = useState(0);
-
-  useEffect(() => {
-    const Left = isSidebarOpen ? 200 : 0;
-    setPL(Left);
-  }, [isSidebarOpen]);
-
-  const [commu, setCommu] = useState<community[]>([]);
+  const [main, setMain] = useState<MainDB[]>([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3001/Community")
-      .then((res) => {
-        setCommu(res.data);
+      .get("http://localhost:3001/Main")
+      .then((response) => {
+        setMain(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  });
-
+  }, []);
+  useEffect(() => {
+    const Left = isSidebarOpen ? 200 : 0;
+    setPL(Left);
+  }, [isSidebarOpen]);
+  const settings = {
+    infinite: true,
+    speed: 1000,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <MainContain paddingLeft={pL}>
-      <StyledSlider {...settings}>
-        <StyledSmallBox>
-          <TitleContainer></TitleContainer>
-          <InnerContainer>
-            {commu.map((b) => (
-              <InnerBox likes={b.like}>
-                <UserInfoContainerLink to={`/Community/${b.id}`}>
-                  <UserInfoContainer>
-                    <div className="hashtags">
-                      <span>
-                        {b.id} {b.hash}{" "}
-                      </span>
-                    </div>
-                  </UserInfoContainer>
-                </UserInfoContainerLink>
-              </InnerBox>
-            ))}
-          </InnerContainer>
-        </StyledSmallBox>
-      </StyledSlider>
+      <Loungeleft>
+        <Llefttop>
+          <Llefttoptitle>
+            <h1>최신 게시판</h1> <Link to="/Lboard">더보기</Link>
+          </Llefttoptitle>
+          <LlefttopM>dasdasd</LlefttopM>
+        </Llefttop>
+
+        <Lleftbottom>
+          <Llefttoptitle>
+            <h1>친구 구해요</h1> <Link to="/Lboard">더보기</Link>
+          </Llefttoptitle>
+          <LleftbottomM>dasdasd</LleftbottomM>
+        </Lleftbottom>
+      </Loungeleft>
+      <Loungeright>
+        <LoungeSlick>
+          <Slick settings={settings} slides={main} />
+        </LoungeSlick>
+        <Llefttop>
+          <Llefttoptitle>
+            <h1>최신 게시판</h1> <Link to="/Lboard">더보기</Link>
+          </Llefttoptitle>
+          <LlefttopM>dasdasd</LlefttopM>
+        </Llefttop>
+      </Loungeright>
     </MainContain>
   );
 };
-
 export default Lounge;
-const StyledSlider = styled(Slider)`
-  .slick-prev {
-    z-index: 1;
-    left: 30px;
-  }
-
-  .slick-next {
-    right: 40px;
-  }
-
-  .slick-prev:before,
-  .slick-next:before {
-    font-size: 30px;
-    opacity: 1;
-    color: black;
-  }
-  li button:before {
-    color: white;
-  }
-
-  li.slick-active button:before {
-    color: white;
-  }
-`;
-
-const StyledSmallBox = styled.div`
-  padding: 10px;
-  margin: 5px; /* 상단과 하단 여백 */
-  height: auto;
-  display: flex;
-  flex-direction: column; /* 내부에 있는 박스들을 가로로 배치 */
-  align-items: flex-start; /* 세로 정렬을 맨 위로 조절 */
-`;
-const TitleContainer = styled.div`
-  font-size: 15px;
-  margin-left: 13px;
-  margin-bottom: 20px;
-`;
-
-const InnerContainer = styled.div`
-  display: flex;
-  width: 100%;
-  overflow-x: auto; /* Enable horizontal scrolling */
-  justify-content: flex-start; /* Adjust alignment based on your preference */
-  //background-color: #7ba1da;
-  border-radius: 50px;
-  /* scrollbar-width: thin; //스크롤바 가리기
-  scrollbar-color: transparent transparent; //스크롤바 안보이게 가리기 */
-`;
-
-const InnerBox = styled.div<{ likes: number }>`
-  flex: 0 0 auto; /* Prevent flex items from growing and shrinking */
-  padding: 10px;
-  margin: 15px;
-  width: 450px; /* Adjust the width based on your design */
-  height: 400px;
-  border-radius: 50px;
+const Loungeright = styled.div`
+  width: 50%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+`;
+const LoungeSlick = styled.div`
+  width: 70%;
+  margin-top: 200px;
+`;
+
+const Loungeleft = styled.div`
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Llefttop = styled.div`
+  height: 1050px;
+`;
+
+const Llefttoptitle = styled.div`
+  height: 200px;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
-  background-color: #7093c0;
-  position: relative;
-  opacity: 1;
-
-  &::after {
-    content: "${(props) => (props.likes ? `${props.likes} likes` : "")}";
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background-color: #3f7bd6;
-    padding: 10px;
-    border-radius: 10px;
-  }
-
-  &:hover {
-    cursor: pointer;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-    transform: scale(1);
-  }
+`;
+const LlefttopM = styled.div`
+  background-color: ${PRIMARY_COLOR_BLUE};
+  width: 700px;
+  height: 850px;
+  border-radius: 25px;
+`;
+const LleftbottomM = styled.div`
+  background-color: ${PRIMARY_COLOR_BLUE};
+  width: 700px;
+  height: 450px;
+  border-radius: 25px;
+`;
+const Lleftbottom = styled.div`
+  height: 850px;
 `;
 
-const UserInfoContainerLink = styled(Link)`
-  text-decoration: none;
-  color: inherit;
-`;
-
-const UserInfoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: auto;
-  margin-top: 100px;
-  margin-left: 10px;
-
-  .hashtags {
-    margin-top: 280px;
-    color: #333; // 원하는 색상으로 설정
-  }
-`;
 const MainContain = styled.div<{ paddingLeft: number }>`
   padding-top: 70px;
   margin-left: 0;
-  height: 855px;
+  height: 1800px;
   padding-left: ${(props) => props.paddingLeft}px;
+  display: flex;
+
+  justify-content: center;
 `;
