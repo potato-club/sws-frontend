@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
-import Board from "./Board";
+import Board from "../Components/CommentBox";
 import Slick from "../libs/Slick";
 interface MainDB {
   id: number;
@@ -40,7 +40,7 @@ const MainBox = () => {
     infinite: true,
     speed: 1000,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 3000,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
@@ -128,7 +128,7 @@ const CafeInfo = styled.div`
   background-color: white;
   font-style: italic;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 30px;
   padding: 5px;
   border-radius: 5px;
 `;
