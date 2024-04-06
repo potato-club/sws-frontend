@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Main from "./MainCafePage/Main";
 import Header from "./Components/Header";
 import Lounge from "./Lounge/Lounge";
+import Lboard from "./Lounge/Lboard";
+
 import MyPage from "./MyPage/MyPage";
 import SignInUpBox from "./SignInUpPage/SignInUpBox";
 import RedirectHandler from "./SignInUpPage/RedirectHandler";
@@ -11,7 +13,7 @@ import Make from "./TeamMake/Make";
 import Map from "./TeamMake/Map";
 import MainBox from "./MainCafePage/MainBox";
 import Community from "./Lounge/LoungeDetail";
-import LoungeSecond from "./Lounge/Loungesecond";
+import Lcreate from "./Lounge/Lcreate";
 import PostMainBox from "./MainCafePage/PostMainBox";
 
 function App() {
@@ -39,6 +41,7 @@ function App() {
             path="/Lounge"
             element={<Lounge isSidebarOpen={isSidebarOpen} />}
           />
+          <Route path="/Lboard" element={<Lboard />} />
           <Route path="/SignInUpPage/SignInUpBox" element={<SignInUpBox />} />
           <Route path="MyPage" element={<MyPage />} />
           <Route path="/auth" element={<RedirectHandler />} />
@@ -48,7 +51,7 @@ function App() {
           />
           <Route path="/MainBox" element={<MainBox />} />
           <Route path="/Community/:id" element={<Community />} />
-          <Route path="/Loungesecond" element={<LoungeSecond />} />
+          <Route path="/LoungeCreate" element={<Lcreate />} />
           <Route path="/PostMainBox" element={<PostMainBox />} />
           <Route path="/Map" element={<Map />} />
         </Routes>
@@ -58,3 +61,9 @@ function App() {
 }
 
 export default App;
+{
+  /* <Route
+path="/Lounge"
+element={<Lounge isSidebarOpen={isSidebarOpen} />}
+/> */
+}
