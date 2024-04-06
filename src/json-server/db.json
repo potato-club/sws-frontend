@@ -318,6 +318,46 @@
     {
       "id": "4",
       "images": "https://gyeongju.go.kr/upload/content/thumb/20200429/AF0FBCACF6E141DEBAD30FDB6082D979.jpg"
+    },
+    {
+      "id": "dfc7",
+      "cafeName": "44",
+      "cafeInfo": "14",
+      "images": [
+        {
+          "img": {}
+        }
+      ]
+    },
+    {
+      "id": "1bcb",
+      "cafeName": "44",
+      "cafeInfo": "14",
+      "images": [
+        {
+          "img": {}
+        }
+      ]
+    },
+    {
+      "id": "a943",
+      "cafeName": "44",
+      "cafeInfo": "14",
+      "images": [
+        {
+          "img": {}
+        }
+      ]
+    },
+    {
+      "id": "4e10",
+      "cafeName": "44",
+      "cafeInfo": "14",
+      "images": [
+        {
+          "img": {}
+        }
+      ]
     }
   ],
   "Posts": [
@@ -328,6 +368,10 @@
     {
       "id": "ed9b",
       "content": "dsadas"
+    },
+    {
+      "id": "34d7",
+      "content": "asdfas"
     }
   ]
 }
