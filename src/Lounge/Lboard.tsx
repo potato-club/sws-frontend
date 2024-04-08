@@ -1,79 +1,88 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Pagenation from "../Components/Pagenation";
+import LoungeMain from "./LoungeMain";
+import {
+  PRIMARY_COLOR_WHITE,
+  PRIMARY_COLOR_SKY,
+  PRIMARY_COLOR_BLUE,
+} from "../Constants/constants";
 import axios from "axios";
-
-interface community {
-  id: string;
+interface Ct {
   title: string;
-  name: string;
-  like: number;
-  contents: string;
-  hash: string;
+  img: string;
+  id: string;
 }
 const Lboard = () => {
-  const [commu, setCommu] = useState<community[]>([]);
+  const [pagecontent, setPageContent] = useState<Ct[]>([]);
+  const [currentpage, setCurrentPage] = useState(1);
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/Community")
-      .then((res) => {
-        setCommu(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  });
-
+    async function fetchPageContent() {
+      const result = await axios.get("http://localhost:3001/MainCt");
+      setPageContent(result.data);
+    }
+    fetchPageContent();
+  }, []);
   return (
     <MainContain>
       <LoungeTop>최신 게시판</LoungeTop>
+
       <Loungemargin>
-        {commu.map((b) => (
-          <InnerBox likes={b.like}>
-            <Link to={`/Community/${b.id}`}>
-              {b.id} {b.hash}
-              {b.like}
-            </Link>
-          </InnerBox>
-        ))}
+        <LoungeMain />
+        <Loungebottom>
+          <Pagenation
+            eight={8}
+            currentpage={currentpage}
+            total={pagecontent.length}
+            setPage={setCurrentPage}
+          />
+          <LoungeLink to="/LoungeCreate">글쓰기</LoungeLink>
+        </Loungebottom>
       </Loungemargin>
-      <Loungebottom to="/LoungeCreate">글쓰기</Loungebottom>
     </MainContain>
   );
 };
 
 export default Lboard;
-const Loungebottom = styled(Link)`
-  width: 700px;
-
-  margin-top: 50px;
+const Loungebottom = styled.div`
+  height: 100px;
+  width: 100%;
+  display: Flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: ${PRIMARY_COLOR_BLUE};
 `;
-const LoungeTop = styled.div`
-  width: 700px;
 
-  margin-top: 50px;
+const LoungeLink = styled(Link)`
+  background-color: ${PRIMARY_COLOR_SKY};
+  color: ${PRIMARY_COLOR_WHITE};
+  width: 100px;
+  height: 50px;
+  border-radius: 15px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: ${PRIMARY_COLOR_BLUE};
+    color: white;
+    transition: 1s;
+  }
+`;
+const LoungeTop = styled.h1`
+  width: 900px;
 `;
 const Loungemargin = styled.div`
   display: flex;
   width: 900px;
+  border-radius: 25px 25px 0px 0px;
+  padding: 40px 20px 0px 20px;
 
   align-items: center;
 
   flex-direction: column;
-  background-color: gray;
-`;
-const InnerBox = styled.div<{ likes: number }>`
-  padding: 10px;
-  margin: 15px;
-  width: 90%;
-  height: 100px;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: #7093c0;
-  position: relative;
-  opacity: 1;
+  background-color: ${PRIMARY_COLOR_BLUE};
 `;
 
 const MainContain = styled.div`

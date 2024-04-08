@@ -3,7 +3,9 @@ import Slick from "../libs/Slick";
 import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+
 import { PRIMARY_COLOR_BLUE, PRIMARY_COLOR_SKY } from "../Constants/constants";
+import LoungeMain from "./LoungeMain";
 interface MainProps {
   isSidebarOpen: boolean;
 }
@@ -11,14 +13,7 @@ interface MainDB {
   id: number;
   images: string;
 }
-interface community {
-  id: string;
-  title: string;
-  name: string;
-  like: number;
-  contents: string;
-  hash: string;
-}
+
 const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
   const [pL, setPL] = useState(0);
   const [main, setMain] = useState<MainDB[]>([]);
@@ -44,17 +39,7 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-  const [commu, setCommu] = useState<community[]>([]);
-  useEffect(() => {
-    axios
-      .get("http://localhost:3001/Community")
-      .then((res) => {
-        setCommu(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  });
+
   return (
     <MainContain paddingLeft={pL}>
       <Loungeleft>
@@ -63,16 +48,7 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
             <h1>최신 게시판</h1> <LoungeLink to="/Lboard">더보기</LoungeLink>
           </Llefttoptitle>
           <LlefttopM>
-            {commu.map((b) => (
-              <Loungein to={`/Community/${b.id}`}>
-                <div>
-                  <div>{b.title}</div>
-                  <div>{b.name}</div>
-                </div>
-                <Incontents>{b.contents}</Incontents>
-                좋아요{b.like}
-              </Loungein>
-            ))}
+            <LoungeMain />
           </LlefttopM>
         </Llefttop>
 
@@ -81,16 +57,7 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
             <h1>친구 구해요</h1> <LoungeLink to="/Lboard">더보기</LoungeLink>
           </Llefttoptitle>
           <LleftbottomM>
-            {commu.map((b) => (
-              <Loungein to={`/Community/${b.id}`}>
-                <div>
-                  <div>{b.title}</div>
-                  <div>{b.name}</div>
-                </div>
-                <Incontents>{b.contents}</Incontents>
-                좋아요{b.like}
-              </Loungein>
-            ))}
+            <LoungeMain />
           </LleftbottomM>
         </Llefttop>
       </Loungeleft>
@@ -103,16 +70,7 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
             <h1>인기 게시판</h1> <LoungeLink to="/Lboard">더보기</LoungeLink>
           </Llefttoptitle>
           <LlefttopM>
-            {commu.map((b) => (
-              <Loungein to={`/Community/${b.id}`}>
-                <div>
-                  <div>{b.title}</div>
-                  <div>{b.name}</div>
-                </div>
-                <Incontents>{b.contents}</Incontents>
-                좋아요{b.like}
-              </Loungein>
-            ))}
+            <LoungeMain />
           </LlefttopM>
         </Llefttop>
       </Loungeleft>
@@ -120,21 +78,7 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
   );
 };
 export default Lounge;
-const Incontents = styled.div`
-  width: 450px;
-  padding-left: 20px;
-  padding-right: 20px;
-`;
-const Loungein = styled(Link)`
-  width: 100%;
-  color: white;
-  text-decoration: none;
-  height: 50px;
-  padding: 30px 0px 30px 0px;
 
-  display: Flex;
-  border-bottom: 1px solid black;
-`;
 const LlefttopM = styled.div`
   background-color: ${PRIMARY_COLOR_BLUE};
   width: 640px;
@@ -164,6 +108,7 @@ const LoungeLink = styled(Link)`
 
 const LoungeSlick = styled.div`
   width: 70%;
+  height: 200px;
   margin-top: 200px;
   margin-bottom: 100px;
 `;
