@@ -53,7 +53,10 @@ const PostMainBoxForm: React.FC<PostCafeProps> = () => {
       }
     }
   };
-  const handleRemoveImage = (index: number) => {
+  const handleRemoveImage = (index: number, e:React.MouseEvent) => {
+    //기본 동작 방지(이미지 x버튼 누르면 파일 첨부까지 함께 눌러짐.)
+    e.preventDefault(); 
+
     const newImages = [...images];
     newImages.splice(index, 1);
     setImages(newImages);
@@ -102,7 +105,7 @@ const PostMainBoxForm: React.FC<PostCafeProps> = () => {
                 {file.name}
                 <StyledBTN
                   type="button"
-                  onClick={() => handleRemoveImage(index)}
+                  onClick={(e) => handleRemoveImage(index,e)}
                 />
               </div>
             ))}

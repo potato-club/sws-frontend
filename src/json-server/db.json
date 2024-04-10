@@ -346,16 +346,14 @@
   ],
   "Posts": [
     {
-      "id": "2d41",
-      "content": "dsa"
-    },
-    {
-      "id": "ed9b",
-      "content": "dsadas"
-    },
-    {
-      "id": "34d7",
-      "content": "asdfas"
+      "id": "56ae",
+      "content": "여기 맛집임",
+      "replies": [
+        {
+          "id": 1712665002167,
+          "content": "ㅇㄴㅁㅇㅁㄴ"
+        }
+      ]
     }
   ]
 }
