@@ -42,44 +42,44 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
 
   return (
     <MainContain paddingLeft={pL}>
-      <Loungeleft>
-        <Llefttop>
+      <Lentire>
+        <Lcomponent>
           <Llefttoptitle>
             <h1>최신 게시판</h1> <LoungeLink to="/Lboard">더보기</LoungeLink>
           </Llefttoptitle>
-          <LlefttopM>
-            <LoungeMain />
-          </LlefttopM>
-        </Llefttop>
+          <LMtop>
+            <LoungeMain showCount={7} />
+          </LMtop>
+        </Lcomponent>
 
-        <Llefttop>
+        <Lcomponent>
           <Llefttoptitle>
             <h1>친구 구해요</h1> <LoungeLink to="/Lboard">더보기</LoungeLink>
           </Llefttoptitle>
-          <LleftbottomM>
-            <LoungeMain />
-          </LleftbottomM>
-        </Llefttop>
-      </Loungeleft>
-      <Loungeleft>
+          <LMbottom>
+            <LoungeMain showCount={4} />
+          </LMbottom>
+        </Lcomponent>
+      </Lentire>
+      <Lentire>
         <LoungeSlick>
           <Slick settings={settings} slides={main} />
         </LoungeSlick>
-        <Llefttop>
+        <Lcomponent>
           <Llefttoptitle>
             <h1>인기 게시판</h1> <LoungeLink to="/Lboard">더보기</LoungeLink>
           </Llefttoptitle>
-          <LlefttopM>
-            <LoungeMain />
-          </LlefttopM>
-        </Llefttop>
-      </Loungeleft>
+          <LMtop>
+            <LoungeMain showCount={7} />
+          </LMtop>
+        </Lcomponent>
+      </Lentire>
     </MainContain>
   );
 };
 export default Lounge;
 
-const LlefttopM = styled.div`
+const LMtop = styled.div`
   background-color: ${PRIMARY_COLOR_BLUE};
   width: 640px;
   height: 750px;
@@ -113,14 +113,14 @@ const LoungeSlick = styled.div`
   margin-bottom: 100px;
 `;
 
-const Loungeleft = styled.div`
-  width: 50%;
+const Lentire = styled.div`
+  width: 950px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const Llefttop = styled.div``;
+const Lcomponent = styled.div``;
 
 const Llefttoptitle = styled.div`
   height: 200px;
@@ -129,7 +129,7 @@ const Llefttoptitle = styled.div`
   justify-content: space-between;
 `;
 
-const LleftbottomM = styled.div`
+const LMbottom = styled.div`
   background-color: ${PRIMARY_COLOR_BLUE};
   width: 640px;
   height: 350px;
