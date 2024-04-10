@@ -10,8 +10,18 @@ interface Frined {
   name: string;
 }
 const MyPage = () => {
-  const friendDelete = () => {
+  const friendDelete = async (id: number) => {
+    await axios.delete(`http://localhost:3001/MyPage/${id}`);
     alert("삭제되었습니다.");
+    // 삭제 후 친구 목록을 다시 불러와서 상태를 업데이트합니다.
+    axios
+      .get("http://localhost:3001/MyPage")
+      .then((response) => {
+        setFriend(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const [friend, setFriend] = useState<Frined[]>();
@@ -52,7 +62,7 @@ const MyPage = () => {
                 <MPBfriendName>{fr.name}</MPBfriendName>
                 <MPBbottomBUTTON>
                   <MPBfriendPage to="/">친구 페이지</MPBfriendPage>
-                  <MPBfriendContentButton onClick={friendDelete}>
+                  <MPBfriendContentButton onClick={() => friendDelete(fr.id)}>
                     친구 삭제
                   </MPBfriendContentButton>
                 </MPBbottomBUTTON>
