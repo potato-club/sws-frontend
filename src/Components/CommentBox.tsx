@@ -5,6 +5,12 @@ import styled from "styled-components";
 interface Post {
   id: number;
   content: string;
+  replies: Reply[];
+}
+
+interface Reply {
+  id: number;
+  content: string;
 }
 
 const Board: React.FC = () => {
@@ -25,18 +31,54 @@ const Board: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!newPost) return;
-    await axios.post("http://localhost:3001/Posts", { content: newPost });
+    await axios.post("http://localhost:3001/Posts", {
+      content: newPost,
+      replies: [],
+    });
     setNewPost("");
     fetchPosts();
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDeletePost = async (id: number) => {
     await axios.delete(`http://localhost:3001/Posts/${id}`);
     fetchPosts();
   };
 
+  const handleDeleteReply = async (postId: number, replyId: number) => {
+    try {
+        const postResponse = await axios.get(`http://localhost:3001/Posts/${postId}`);
+        const post = postResponse.data;
+        const updatedReplies = post.replies.filter((reply:Reply) => reply.id !== replyId);
+        post.replies = updatedReplies;
+
+        await axios.put(`http://localhost:3001/Posts/${postId}`, post);
+        fetchPosts();
+    } catch (error) {
+        console.error("error:", error);
+    }
+};
+
   const handleShowMore = () => {
     setVisibleCount((prevCount) => prevCount + 5);
+  };
+
+  const handleReplySubmit = async (postId: number, content: string) => {
+    try {
+      const postResponse = await axios.get(
+        `http://localhost:3001/Posts/${postId}`
+      );
+      const post = postResponse.data;
+      const newReply = {
+        id: Date.now(),
+        content: content
+      };
+      const updatedReplies = [...post.replies, newReply];
+      post.replies = updatedReplies;
+      await axios.put(`http://localhost:3001/Posts/${postId}`, post);
+      fetchPosts();
+    } catch (error) {
+      console.error("error:", error);
+    }
   };
 
   return (
@@ -44,9 +86,41 @@ const Board: React.FC = () => {
       <PostsContainer>
         {posts.slice(0, visibleCount).map((post) => (
           <PostItem key={post.id}>
-            <PostId>ID: {post.id}</PostId>
-            <PostContent>{post.content}</PostContent>
-            <DeleteButton onClick={() => handleDelete(post.id)}>X</DeleteButton>
+            <PostContentContainer>
+              <PostId>ID: {post.id}</PostId>
+              <PostContent>{post.content}</PostContent>
+              {post.replies.map((reply) => (
+                <ReplyItem key={reply.id}>
+                  <ReplyId>ID: {reply.id}</ReplyId>
+                  <ReplyContent>- {reply.content}</ReplyContent>
+                  <DeleteButton
+                    onClick={() => handleDeleteReply(post.id, reply.id)}
+                  >
+                    X
+                  </DeleteButton>
+                </ReplyItem>
+              ))}
+            </PostContentContainer>
+            <ReplyInput
+              onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+                e.preventDefault();
+                const target = e.target as typeof e.target & {
+                  reply: { value: string };
+                };
+                handleReplySubmit(post.id, target.reply.value);
+                target.reply.value="";
+              }}
+            >
+              <StyledInput
+                type="text"
+                name="reply"
+                placeholder="대댓글 작성..."
+              />
+              <SubmitButton type="submit">등록</SubmitButton>
+            </ReplyInput>
+            <DeleteButton onClick={() => handleDeletePost(post.id)}>
+              X
+            </DeleteButton>
           </PostItem>
         ))}
       </PostsContainer>
@@ -88,6 +162,10 @@ const PostItem = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
+const PostContentContainer = styled.div`
+  position: relative;
+`;
+
 const PostId = styled.div`
   font-size: 12px;
   color: #707070;
@@ -102,16 +180,33 @@ const PostContent = styled.div`
 
 const DeleteButton = styled.button`
   position: absolute;
-  top: 0;
-  right: 0;
-  border: none;
+  top: 5px;
+  right: 5px;
   background-color: transparent;
+  border: none;
   color: #707070;
   cursor: pointer;
+`;
 
-  &:hover {
-    color: red;
-  }
+const ReplyItem = styled.div`
+  position: relative;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+`;
+
+const ReplyContent = styled.div`
+  font-size: 14px;
+  color: #555;
+  padding-left: 10px;
+`;
+
+const ReplyInput = styled.form`
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
 `;
 
 const InputArea = styled.form`
@@ -162,4 +257,10 @@ const ShowMoreButton = styled.button`
   &:hover {
     background-color: #2980b9;
   }
+`;
+
+const ReplyId = styled.div`
+  font-size: 12px;
+  color: #707070;
+  margin-bottom: 5px;
 `;
