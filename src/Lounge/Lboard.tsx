@@ -19,7 +19,7 @@ const Lboard = () => {
   const [currentpage, setCurrentPage] = useState(1);
   useEffect(() => {
     async function fetchPageContent() {
-      const result = await axios.get("http://localhost:3001/MainCt");
+      const result = await axios.get("http://localhost:3001/Community");
       setPageContent(result.data);
     }
     fetchPageContent();
@@ -29,10 +29,10 @@ const Lboard = () => {
       <LoungeTop>최신 게시판</LoungeTop>
 
       <Loungemargin>
-        <LoungeMain />
+        <LoungeMain showCount={8} />
         <Loungebottom>
           <Pagenation
-            eight={8}
+            eight={5}
             currentpage={currentpage}
             total={pagecontent.length}
             setPage={setCurrentPage}

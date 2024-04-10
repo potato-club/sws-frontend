@@ -4,6 +4,10 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa6";
 
+interface LoungeMainProps {
+  showCount?: number;
+}
+
 interface community {
   id: string;
   title: string;
@@ -12,8 +16,10 @@ interface community {
   contents: string;
   hash: string;
 }
-function LoungeMain() {
+
+function LoungeMain({ showCount }: LoungeMainProps) {
   const [commu, setCommu] = useState<community[]>([]);
+
   useEffect(() => {
     axios
       .get("http://localhost:3001/Community")
@@ -23,11 +29,17 @@ function LoungeMain() {
       .catch((error) => {
         console.log(error);
       });
-  });
+  }, []);
+
+  let displayedData = commu;
+  if (showCount !== undefined) {
+    displayedData = commu.slice(0, showCount);
+  }
+
   return (
     <>
-      {commu.map((b) => (
-        <Loungein to={`/Community/${b.id}`}>
+      {displayedData.map((b) => (
+        <Loungein key={b.id} to={`/Community/${b.id}`}>
           <Loungein2>
             <div>{b.title}</div>
             <div>{b.name}</div>
@@ -44,6 +56,7 @@ function LoungeMain() {
 }
 
 export default LoungeMain;
+
 const Loungein2 = styled.div`
   display: flex;
   flex-direction: column;

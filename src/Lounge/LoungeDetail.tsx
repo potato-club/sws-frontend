@@ -8,6 +8,8 @@ import { BiSubdirectoryRight } from "react-icons/bi";
 import { FaHeart } from "react-icons/fa6";
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
 import { useParams } from "react-router-dom";
+import CommentBox from "../Components/CommentBox";
+
 interface c {
   id: string;
   title: string;
@@ -91,7 +93,7 @@ function Community() {
           <Detailcomponent>{commun.contents}</Detailcomponent>
         </CommunityDetail>
 
-        <CommunityBottom>
+        {/* <CommunityBottom>
           {Community.map((text: string, index: number) => (
             <Communityanswer key={index}>
               <Answertop>
@@ -142,16 +144,17 @@ function Community() {
               <ReplyButton onClick={ReplyClick}>대댓글 쓰기 </ReplyButton>
             </>
           )}
-        </CommunityBottom>
+        </CommunityBottom> */}
 
-        <CommunityMid>
+        {/* <CommunityMid>
           <Communityinput
             value={inputText}
             onChange={handleChange}
             placeholder="내용을 입력하세요"
           />
           <CommunityButton onClick={handleClick}>답장하기</CommunityButton>
-        </CommunityMid>
+        </CommunityMid> */}
+        <CommentBox />
       </CommunityBox>
     </CommunityComponent>
   );
