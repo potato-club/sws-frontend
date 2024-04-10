@@ -93,7 +93,132 @@ function Community() {
           <Detailcomponent>{commun.contents}</Detailcomponent>
         </CommunityDetail>
 
-        {/* <CommunityBottom>
+        <CommentBox />
+      </CommunityBox>
+    </CommunityComponent>
+  );
+}
+
+export default Community;
+
+const CommunityComponent = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const CommunityBox = styled.div`
+  width: 950px;
+  min-height: 100vh;
+  padding-top: 30px;
+  margin-top: 70px;
+  padding-bottom: 30px;
+  margin-bottom: 110px;
+  background-color: ${PRIMARY_COLOR_BLUE};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  overflow-y: auto;
+`;
+
+const CommunityDetail = styled.div`
+  width: 750px;
+  border-radius: 25px;
+  padding: 50px;
+  height: 500px;
+  background-color: white;
+`;
+const Detailtop = styled.div`
+  display: flex;
+  height: 70px;
+  justify-content: space-between;
+`;
+
+const Detailtitle = styled.div`
+  font-size: 25px;
+`;
+
+const Detailname = styled.div``;
+const Detailcomponent = styled.div``;
+
+const Communityinput = styled.input`
+  height: 70px;
+  width: 70%;
+`;
+const Replyinput = styled.input`
+  margin-left: 200px;
+  height: 50px;
+  width: 50%;
+`;
+
+const CommunityButton = styled.button`
+  border-radius: 25px;
+  height: 70px;
+  width: 30%;
+`;
+const ReplyButton = styled.button`
+  border-radius: 25px;
+  height: 50px;
+  width: 15%;
+`;
+const CommunityMid = styled.div`
+  display: flex;
+  width: 46%;
+  height: 120px;
+  padding-left: 38px;
+  padding-right: 38px;
+  margin-top: 70px;
+  align-items: center;
+  background-color: ${PRIMARY_COLOR_BLUE};
+  top: 770px;
+  position: fixed;
+`;
+
+const CommunityBottom = styled.div`
+  width: 90%;
+  margin-top: 20px;
+`;
+
+const Communityanswer = styled.div`
+  margin-top: 20px;
+  width: 100%;
+  height: 80px;
+  border-radius: 15px;
+  background-color: white;
+`;
+
+const Answertop = styled.div`
+  display: flex;
+  padding: 10px;
+  height: 25px;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Answersetting = styled.div`
+  display: flex;
+`;
+
+const Answername = styled.div``;
+const Answercomponent = styled.div``;
+const Cmanswer = styled.div`
+  background-color: white;
+  margin-top: 20px;
+  width: 80%;
+  height: 70px;
+  border-radius: 15px;
+`;
+
+const Ca = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+{
+  /* <CommunityBottom>
           {Community.map((text: string, index: number) => (
             <Communityanswer key={index}>
               <Answertop>
@@ -144,137 +269,16 @@ function Community() {
               <ReplyButton onClick={ReplyClick}>대댓글 쓰기 </ReplyButton>
             </>
           )}
-        </CommunityBottom> */}
+        </CommunityBottom> */
+}
 
-        {/* <CommunityMid>
+{
+  /* <CommunityMid>
           <Communityinput
             value={inputText}
             onChange={handleChange}
             placeholder="내용을 입력하세요"
           />
           <CommunityButton onClick={handleClick}>답장하기</CommunityButton>
-        </CommunityMid> */}
-        <CommentBox />
-      </CommunityBox>
-    </CommunityComponent>
-  );
+        </CommunityMid> */
 }
-
-export default Community;
-
-const CommunityComponent = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const CommunityBox = styled.div`
-  width: 50%;
-  min-height: 90vh;
-  padding-top: 30px;
-  margin-top: 70px;
-  padding-bottom: 30px;
-  margin-bottom: 110px;
-  background-color: ${PRIMARY_COLOR_BLUE};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-y: scroll;
-  overflow-y: auto;
-`;
-
-const CommunityDetail = styled.div`
-  width: 80%;
-  border-radius: 25px;
-  padding: 50px;
-  height: 500px;
-  background-color: white;
-`;
-
-const Communityinput = styled.input`
-  height: 70px;
-  width: 70%;
-`;
-const Replyinput = styled.input`
-  margin-left: 200px;
-  height: 50px;
-  width: 50%;
-`;
-
-const CommunityButton = styled.button`
-  border-radius: 25px;
-  height: 70px;
-  width: 30%;
-`;
-const ReplyButton = styled.button`
-  border-radius: 25px;
-  height: 50px;
-  width: 15%;
-`;
-const CommunityMid = styled.div`
-  display: flex;
-  width: 46%;
-  height: 120px;
-  padding-left: 38px;
-  padding-right: 38px;
-  margin-top: 70px;
-  align-items: center;
-  background-color: ${PRIMARY_COLOR_BLUE};
-  top: 770px;
-  position: fixed;
-`;
-
-const CommunityBottom = styled.div`
-  width: 90%;
-  margin-top: 20px;
-`;
-
-const Communityanswer = styled.div`
-  margin-top: 20px;
-  width: 100%;
-  height: 80px;
-  border-radius: 15px;
-  background-color: white;
-`;
-
-const Detailtop = styled.div`
-  display: flex;
-  height: 70px;
-  justify-content: space-between;
-`;
-
-const Detailtitle = styled.div`
-  font-size: 25px;
-`;
-
-const Detailname = styled.div``;
-const Detailcomponent = styled.div``;
-
-const Answertop = styled.div`
-  display: flex;
-  padding: 10px;
-  height: 25px;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const Answersetting = styled.div`
-  display: flex;
-`;
-
-const Answername = styled.div``;
-const Answercomponent = styled.div``;
-const Cmanswer = styled.div`
-  background-color: white;
-  margin-top: 20px;
-  width: 80%;
-  height: 70px;
-  border-radius: 15px;
-`;
-
-const Ca = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`;

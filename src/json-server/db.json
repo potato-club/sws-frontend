@@ -13,11 +13,11 @@
       "name": "강서쪽 사람"
     },
     {
-      "id": "3",
+      "id": "5",
       "name": "강서쪽 사람"
     },
     {
-      "id": "3",
+      "id": "4",
       "name": "강서쪽 사람"
     }
   ],
@@ -376,5 +376,21 @@
       ]
     }
   ],
-  "Posts": []
+  "Posts": [
+    {
+      "id": "97ff",
+      "content": "asasasasasasasasasasasasasasasasas",
+      "replies": []
+    },
+    {
+      "id": "8a1b",
+      "content": "ㅁㄴㅇㄴㅇㅁㄴㅇㅇㅁㅇㅁㄴ",
+      "replies": []
+    },
+    {
+      "id": "1f45",
+      "content": "ㅁㄴㅇㅁㄴ",
+      "replies": []
+    }
+  ]
 }
