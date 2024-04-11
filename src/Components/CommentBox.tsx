@@ -63,6 +63,7 @@ const Board: React.FC = () => {
   };
 
   const handleReplySubmit = async (postId: number, content: string) => {
+    if(!content) return;
     try {
       const postResponse = await axios.get(
         `http://localhost:3001/Posts/${postId}`
