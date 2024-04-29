@@ -1,10 +1,6 @@
 {
   "MyPage": [
     {
-      "id": "1",
-      "name": "테스트하는 인간"
-    },
-    {
       "id": "2",
       "name": "늙은 사람"
     },
@@ -374,23 +370,17 @@
           "img": {}
         }
       ]
+    },
+    {
+      "id": "14b0",
+      "cafeName": "ddd",
+      "cafeInfo": "dddd",
+      "images": [
+        {
+          "img": {}
+        }
+      ]
     }
   ],
-  "Posts": [
-    {
-      "id": "97ff",
-      "content": "asasasasasasasasasasasasasasasasas",
-      "replies": []
-    },
-    {
-      "id": "8a1b",
-      "content": "ㅁㄴㅇㄴㅇㅁㄴㅇㅇㅁㅇㅁㄴ",
-      "replies": []
-    },
-    {
-      "id": "1f45",
-      "content": "ㅁㄴㅇㅁㄴ",
-      "replies": []
-    }
-  ]
+  "Posts": []
 }
