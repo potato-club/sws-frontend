@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
+import { PRIMARY_COLOR_B } from "../Constants/constants";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa6";
-
-interface LoungeMainProps {
-  showCount?: number;
-}
 
 interface community {
   id: string;
@@ -16,29 +12,14 @@ interface community {
   contents: string;
   hash: string;
 }
+interface info {
+  showCount: any;
+}
 
-function LoungeMain({ showCount }: LoungeMainProps) {
-  const [commu, setCommu] = useState<community[]>([]);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:3001/Community")
-      .then((res) => {
-        setCommu(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
-  let displayedData = commu;
-  if (showCount !== undefined) {
-    displayedData = commu.slice(0, showCount);
-  }
-
+const LoungeMain: React.FC<info> = ({ showCount }) => {
   return (
     <>
-      {displayedData.map((b) => (
+      {showCount.map((b: community) => (
         <Loungein key={b.id} to={`/Community/${b.id}`}>
           <Loungein2>
             <div>{b.title}</div>
@@ -53,7 +34,7 @@ function LoungeMain({ showCount }: LoungeMainProps) {
       ))}
     </>
   );
-}
+};
 
 export default LoungeMain;
 
@@ -82,6 +63,11 @@ const Loungein = styled(Link)`
   display: Flex;
 
   border-top: 1px solid black;
+  &:hover {
+    transition: all 2s;
+    background-color: ${PRIMARY_COLOR_B};
+    color: white;
+  }
 `;
 const Incontents = styled.div`
   width: 450px;

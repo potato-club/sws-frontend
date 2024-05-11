@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Pagenation from "../Components/Pagenation";
 import LoungeMain from "./LoungeMain";
+import { ImArrowLeft } from "react-icons/im";
 import {
   PRIMARY_COLOR_WHITE,
   PRIMARY_COLOR_SKY,
   PRIMARY_COLOR_BLUE,
+  PRIMARY_COLOR_B,
 } from "../Constants/constants";
 import axios from "axios";
 interface Ct {
@@ -26,13 +28,20 @@ const Lboard = () => {
   }, []);
   return (
     <MainContain>
-      <LoungeTop>최신 게시판</LoungeTop>
+      <LoungeTop>
+        <LinkTop to="/Lounge">
+          <ImArrowLeft />
+        </LinkTop>
+        최신 게시판
+      </LoungeTop>
 
       <Loungemargin>
-        <LoungeMain showCount={8} />
+        <LoungeMain
+          showCount={pagecontent.slice((currentpage - 1) * 8, currentpage * 8)}
+        />
         <Loungebottom>
           <Pagenation
-            eight={5}
+            eight={8}
             currentpage={currentpage}
             total={pagecontent.length}
             setPage={setCurrentPage}
@@ -53,7 +62,12 @@ const Loungebottom = styled.div`
   justify-content: space-around;
   background-color: ${PRIMARY_COLOR_BLUE};
 `;
-
+const LinkTop = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+`;
 const LoungeLink = styled(Link)`
   background-color: ${PRIMARY_COLOR_SKY};
   color: ${PRIMARY_COLOR_WHITE};
@@ -65,13 +79,17 @@ const LoungeLink = styled(Link)`
   align-items: center;
   justify-content: center;
   &:hover {
-    background-color: ${PRIMARY_COLOR_BLUE};
+    background-color: ${PRIMARY_COLOR_B};
     color: white;
     transition: 1s;
   }
 `;
 const LoungeTop = styled.h1`
-  width: 900px;
+  width: 300px;
+  display: flex;
+
+  justify-content: space-around;
+  margin-right: 650px;
 `;
 const Loungemargin = styled.div`
   display: flex;

@@ -13,7 +13,11 @@ interface MainDB {
   id: number;
   images: string;
 }
-
+interface Ct {
+  title: string;
+  img: string;
+  id: string;
+}
 const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
   const [pL, setPL] = useState(0);
   const [main, setMain] = useState<MainDB[]>([]);
@@ -39,6 +43,15 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+  const [pagecontent, setPageContent] = useState<Ct[]>([]);
+
+  useEffect(() => {
+    async function fetchPageContent() {
+      const result = await axios.get("http://localhost:3001/Community");
+      setPageContent(result.data);
+    }
+    fetchPageContent();
+  }, []);
 
   return (
     <MainContain paddingLeft={pL}>
@@ -48,7 +61,7 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
             <h1>최신 게시판</h1> <LoungeLink to="/Lboard">더보기</LoungeLink>
           </Llefttoptitle>
           <LMtop>
-            <LoungeMain showCount={7} />
+            <LoungeMain showCount={pagecontent.slice(0, 8)} />
           </LMtop>
         </Lcomponent>
 
@@ -57,7 +70,7 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
             <h1>친구 구해요</h1> <LoungeLink to="/Lboard">더보기</LoungeLink>
           </Llefttoptitle>
           <LMbottom>
-            <LoungeMain showCount={4} />
+            <LoungeMain showCount={pagecontent.slice(0, 4)} />
           </LMbottom>
         </Lcomponent>
       </Lentire>
@@ -70,7 +83,7 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
             <h1>인기 게시판</h1> <LoungeLink to="/Lboard">더보기</LoungeLink>
           </Llefttoptitle>
           <LMtop>
-            <LoungeMain showCount={7} />
+            <LoungeMain showCount={pagecontent.slice(0, 8)} />
           </LMtop>
         </Lcomponent>
       </Lentire>
