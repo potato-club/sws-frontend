@@ -1,5 +1,5 @@
 import React from "react";
-import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
+import { PRIMARY_COLOR_BLUE, PRIMARY_COLOR_B } from "../Constants/constants";
 import styled from "styled-components";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
@@ -77,13 +77,13 @@ const BottomCheckLink = styled.div`
   height: 35px;
 
   &:hover {
-    background-color: ${PRIMARY_COLOR_BLUE};
+    background-color: ${PRIMARY_COLOR_B};
     color: white;
   }
 `;
 
 const BottomCheckButton = styled.button`
-  background-color: ${PRIMARY_COLOR_BLUE};
+  background-color: ${PRIMARY_COLOR_B};
   border: 1px solid ${PRIMARY_COLOR_BLUE};
   display: flex;
   align-items: center;
