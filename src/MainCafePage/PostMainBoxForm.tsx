@@ -72,7 +72,7 @@ const PostMainBoxForm: React.FC<PostCafeProps> = () => {
         <StyledInput
           id="Name"
           type="text"
-          placeholder="카페이름"
+          placeholder="모임명"
           value={cafeName}
           onChange={(e) => setCafeName(e.target.value)}
           required
@@ -82,7 +82,7 @@ const PostMainBoxForm: React.FC<PostCafeProps> = () => {
       <StyledLabel htmlFor="Info">
         <StyledTextArea
           id="Info"
-          placeholder="카페정보"
+          placeholder="모임정보"
           value={cafeInfo}
           onChange={(e) => setCafeInfo(e.target.value)}
           required
