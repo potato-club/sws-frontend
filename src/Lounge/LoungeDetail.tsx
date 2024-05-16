@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
-
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
 import { useParams } from "react-router-dom";
 import CommentBox from "../Components/CommentBox";
 
-interface c {
+interface CommunityData {
   id: string;
   title: string;
   name: string;
@@ -15,10 +14,13 @@ interface c {
   hash: string;
 }
 
-function Community() {
-  const { id } = useParams<{ id: string }>();
+interface CommunityProps {
+  endpoint: string;
+}
 
-  const [commun, setCommun] = useState<c>({
+const Community: React.FC<CommunityProps> = ({ endpoint }) => {
+  const { id } = useParams<{ id: string }>();
+  const [commun, setCommun] = useState<CommunityData>({
     id: "",
     title: "",
     name: "",
@@ -29,15 +31,14 @@ function Community() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/Community/${id}`)
+      .get(`http://localhost:3001/${endpoint}/${id}`)
       .then((res) => {
         setCommun(res.data);
-        console.log(id);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
-  }, [id]); // id가 변경될 때만 useEffect 실행
+  }, [endpoint, id]);
 
   return (
     <CommunityComponent>
@@ -57,12 +58,11 @@ function Community() {
           </Detailtop>
           <Detailcomponent>{commun.contents}</Detailcomponent>
         </CommunityDetail>
-
         <CommentBox />
       </CommunityBox>
     </CommunityComponent>
   );
-}
+};
 
 export default Community;
 

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa6";
 
-interface community {
+interface Community {
   id: string;
   title: string;
   name: string;
@@ -12,15 +12,17 @@ interface community {
   contents: string;
   hash: string;
 }
-interface info {
-  showCount: any;
+
+interface LoungeMainProps {
+  showCount: Community[];
+  linkPath: string;
 }
 
-const LoungeMain: React.FC<info> = ({ showCount }) => {
+const LoungeMain: React.FC<LoungeMainProps> = ({ showCount, linkPath }) => {
   return (
     <>
-      {showCount.map((b: community) => (
-        <Loungein key={b.id} to={`/Community/${b.id}`}>
+      {showCount.map((b: Community) => (
+        <Loungein key={b.id} to={`/${linkPath}/${b.id}`}>
           <Loungein2>
             <div>{b.title}</div>
             <div>{b.name}</div>

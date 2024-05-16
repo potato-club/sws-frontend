@@ -3,9 +3,10 @@ import Slick from "../libs/Slick";
 import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
+import { Routes, Route } from "react-router-dom";
 import { PRIMARY_COLOR_BLUE, PRIMARY_COLOR_SKY } from "../Constants/constants";
 import LoungeMain from "./LoungeMain";
+import LFriends from "./Lfriends";
 interface MainProps {
   isSidebarOpen: boolean;
 }
@@ -17,6 +18,14 @@ interface Ct {
   title: string;
   img: string;
   id: string;
+}
+interface Community {
+  id: string;
+  title: string;
+  name: string;
+  like: number;
+  contents: string;
+  hash: string;
 }
 const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
   const [pL, setPL] = useState(0);
@@ -43,16 +52,32 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-  const [pagecontent, setPageContent] = useState<Ct[]>([]);
+  const [pagecontent, setPageContent] = useState<Community[]>([]);
 
   useEffect(() => {
     async function fetchPageContent() {
-      const result = await axios.get("http://localhost:3001/Community");
+      const result = await axios.get("http://localhost:3001/Lboard");
       setPageContent(result.data);
     }
     fetchPageContent();
   }, []);
+  const [page, setPage] = useState<Community[]>([]);
 
+  useEffect(() => {
+    async function fetchPageContent() {
+      const result = await axios.get("http://localhost:3001/LFriends");
+      setPage(result.data);
+    }
+    fetchPageContent();
+  }, []);
+  const [content, setcontent] = useState<Community[]>([]);
+  useEffect(() => {
+    async function fetchPageContent() {
+      const result = await axios.get("http://localhost:3001/LPopular");
+      setcontent(result.data);
+    }
+    fetchPageContent();
+  }, []);
   return (
     <MainContain paddingLeft={pL}>
       <Lentire>
@@ -61,16 +86,16 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
             <h1>최신 게시판</h1> <LoungeLink to="/Lboard">더보기</LoungeLink>
           </Llefttoptitle>
           <LMtop>
-            <LoungeMain showCount={pagecontent.slice(0, 8)} />
+            <LoungeMain linkPath="Lboard" showCount={pagecontent.slice(0, 8)} />
           </LMtop>
         </Lcomponent>
 
         <Lcomponent>
           <Llefttoptitle>
-            <h1>친구 구해요</h1> <LoungeLink to="/Lboard">더보기</LoungeLink>
+            <h1>친구 구해요</h1> <LoungeLink to="/LFriends">더보기</LoungeLink>
           </Llefttoptitle>
           <LMbottom>
-            <LoungeMain showCount={pagecontent.slice(0, 4)} />
+            <LoungeMain linkPath="LFriends" showCount={page.slice(0, 4)} />
           </LMbottom>
         </Lcomponent>
       </Lentire>
@@ -80,10 +105,10 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
         </LoungeSlick>
         <Lcomponent>
           <Llefttoptitle>
-            <h1>인기 게시판</h1> <LoungeLink to="/Lboard">더보기</LoungeLink>
+            <h1>인기 게시판</h1> <LoungeLink to="/LPopular">더보기</LoungeLink>
           </Llefttoptitle>
           <LMtop>
-            <LoungeMain showCount={pagecontent.slice(0, 8)} />
+            <LoungeMain linkPath="LPopular" showCount={content.slice(0, 8)} />
           </LMtop>
         </Lcomponent>
       </Lentire>

@@ -24,12 +24,12 @@ interface Community {
   contents: string;
   hash: string;
 }
-const Lboard = () => {
+const LPopular = () => {
   const [pagecontent, setPageContent] = useState<Community[]>([]);
   const [currentpage, setCurrentPage] = useState(1);
   useEffect(() => {
     async function fetchPageContent() {
-      const result = await axios.get("http://localhost:3001/Lboard");
+      const result = await axios.get("http://localhost:3001/LPopular");
       setPageContent(result.data);
     }
     fetchPageContent();
@@ -41,12 +41,12 @@ const Lboard = () => {
         <LinkTop to="/Lounge">
           <ImArrowLeft />
         </LinkTop>
-        최신 게시판
+        인기 게시판
       </LoungeTop>
 
       <Loungemargin>
         <LoungeMain
-          linkPath="Lboard"
+          linkPath="LPopular"
           showCount={pagecontent.slice((currentpage - 1) * 8, currentpage * 8)}
         />
         <Loungebottom>
@@ -63,7 +63,7 @@ const Lboard = () => {
   );
 };
 
-export default Lboard;
+export default LPopular;
 
 const Loungebottom = styled.div`
   margin-top: 100px;
