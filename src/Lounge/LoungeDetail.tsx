@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { BiDotsVerticalRounded } from "react-icons/bi";
-import { AiOutlineEnter } from "react-icons/ai";
-import { CgHeart } from "react-icons/cg";
-import { BiSubdirectoryRight } from "react-icons/bi";
-import { FaHeart } from "react-icons/fa6";
+
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
 import { useParams } from "react-router-dom";
 import CommentBox from "../Components/CommentBox";
@@ -20,39 +16,8 @@ interface c {
 }
 
 function Community() {
-  const [inputText, setInputText] = useState("");
-  const [Community, setCommunity] = useState<string[]>([]);
   const { id } = useParams<{ id: string }>();
-  const [heart, setHeart] = useState(false);
 
-  const [ReplyText, setReplyText] = useState("");
-  const [Reply, setReply] = useState<string[]>([]);
-  const [Change, setChange] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputText(e.target.value);
-  };
-  const handleClick = () => {
-    setCommunity([...Community, inputText]);
-    setInputText("");
-  };
-
-  const heartClick = () => {
-    setHeart((prevChange) => !prevChange);
-  };
-
-  const ReplyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setReplyText(e.target.value);
-  };
-  const handleReplyClick = () => {
-    alert("대댓글을 작성하시겠습니까?");
-    setChange((prevChange) => !prevChange);
-  };
-  const ReplyClick = () => {
-    setReply([...Reply, ReplyText]);
-    setReplyText("");
-    setChange((prevChange) => !prevChange);
-  };
   const [commun, setCommun] = useState<c>({
     id: "",
     title: "",
