@@ -140,7 +140,6 @@
       "contents": "공차가 싫나요?",
       "hash": "홍"
     },
-
     {
       "id": "14",
       "title": "제목14",
@@ -447,9 +446,32 @@
   ],
   "Posts": [
     {
-      "id": "85ae",
-      "content": "ㅇㅇ",
-      "replies": []
+      "id": "9867",
+      "content": "dsa",
+      "replies": [
+        {
+          "id": 1715692354195,
+          "content": "dsadas"
+        }
+      ]
+    },
+    {
+      "id": "2462",
+      "content": "dsada",
+      "replies": [
+        {
+          "id": 1715692358293,
+          "content": "dsadsa"
+        }
+      ]
     }
+  ],
+  "login": [
+
+  ],
+  "signup": [
+
+  ],
+  "kakaologin": [
   ]
 }
