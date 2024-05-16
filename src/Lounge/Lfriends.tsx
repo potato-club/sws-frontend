@@ -24,12 +24,12 @@ interface Community {
   contents: string;
   hash: string;
 }
-const Lboard = () => {
+const LFriends = () => {
   const [pagecontent, setPageContent] = useState<Community[]>([]);
   const [currentpage, setCurrentPage] = useState(1);
   useEffect(() => {
     async function fetchPageContent() {
-      const result = await axios.get("http://localhost:3001/Lboard");
+      const result = await axios.get("http://localhost:3001/LFriends");
       setPageContent(result.data);
     }
     fetchPageContent();
@@ -41,14 +41,15 @@ const Lboard = () => {
         <LinkTop to="/Lounge">
           <ImArrowLeft />
         </LinkTop>
-        최신 게시판
+        친구 구해요
       </LoungeTop>
 
       <Loungemargin>
         <LoungeMain
-          linkPath="Lboard"
+          linkPath="LFriends"
           showCount={pagecontent.slice((currentpage - 1) * 8, currentpage * 8)}
         />
+
         <Loungebottom>
           <Pagenation
             eight={8}
@@ -63,7 +64,7 @@ const Lboard = () => {
   );
 };
 
-export default Lboard;
+export default LFriends;
 
 const Loungebottom = styled.div`
   margin-top: 100px;

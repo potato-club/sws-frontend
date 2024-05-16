@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { BiDotsVerticalRounded } from "react-icons/bi";
-import { AiOutlineEnter } from "react-icons/ai";
-import { CgHeart } from "react-icons/cg";
-import { BiSubdirectoryRight } from "react-icons/bi";
-import { FaHeart } from "react-icons/fa6";
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
 import { useParams } from "react-router-dom";
 import CommentBox from "../Components/CommentBox";
 
-interface c {
+interface CommunityData {
   id: string;
   title: string;
   name: string;
@@ -19,41 +14,13 @@ interface c {
   hash: string;
 }
 
-function Community() {
-  const [inputText, setInputText] = useState("");
-  const [Community, setCommunity] = useState<string[]>([]);
+interface CommunityProps {
+  endpoint: string;
+}
+
+const Community: React.FC<CommunityProps> = ({ endpoint }) => {
   const { id } = useParams<{ id: string }>();
-  const [heart, setHeart] = useState(false);
-
-  const [ReplyText, setReplyText] = useState("");
-  const [Reply, setReply] = useState<string[]>([]);
-  const [Change, setChange] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputText(e.target.value);
-  };
-  const handleClick = () => {
-    setCommunity([...Community, inputText]);
-    setInputText("");
-  };
-
-  const heartClick = () => {
-    setHeart((prevChange) => !prevChange);
-  };
-
-  const ReplyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setReplyText(e.target.value);
-  };
-  const handleReplyClick = () => {
-    alert("대댓글을 작성하시겠습니까?");
-    setChange((prevChange) => !prevChange);
-  };
-  const ReplyClick = () => {
-    setReply([...Reply, ReplyText]);
-    setReplyText("");
-    setChange((prevChange) => !prevChange);
-  };
-  const [commun, setCommun] = useState<c>({
+  const [commun, setCommun] = useState<CommunityData>({
     id: "",
     title: "",
     name: "",
@@ -64,15 +31,14 @@ function Community() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/Community/${id}`)
+      .get(`http://localhost:3001/${endpoint}/${id}`)
       .then((res) => {
         setCommun(res.data);
-        console.log(id);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
-  }, [id]); // id가 변경될 때만 useEffect 실행
+  }, [endpoint, id]);
 
   return (
     <CommunityComponent>
@@ -92,12 +58,11 @@ function Community() {
           </Detailtop>
           <Detailcomponent>{commun.contents}</Detailcomponent>
         </CommunityDetail>
-
         <CommentBox />
       </CommunityBox>
     </CommunityComponent>
   );
-}
+};
 
 export default Community;
 

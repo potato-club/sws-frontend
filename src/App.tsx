@@ -12,9 +12,11 @@ import { createGlobalStyle } from "styled-components";
 import Make from "./TeamMake/Make";
 import Map from "./TeamMake/Map";
 import MainBox from "./MainCafePage/MainBox";
-import Community from "./Lounge/LoungeDetail";
+import LoungeDetail from "./Lounge/LoungeDetail";
 import Lcreate from "./Lounge/Lcreate";
 import PostMainBox from "./MainCafePage/PostMainBox";
+import LPopular from "./Lounge/LPopular";
+import LFriends from "./Lounge/Lfriends";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -42,6 +44,8 @@ function App() {
             element={<Lounge isSidebarOpen={isSidebarOpen} />}
           />
           <Route path="/Lboard" element={<Lboard />} />
+          <Route path="/LFriends" element={<LFriends />} />
+          <Route path="/LPopular" element={<LPopular />} />
           <Route path="/SignInUpPage/SignInUpBox" element={<SignInUpBox />} />
           <Route path="MyPage" element={<MyPage />} />
           <Route path="/auth" element={<RedirectHandler />} />
@@ -50,7 +54,18 @@ function App() {
             element={<Make isSidebarOpen={isSidebarOpen} />}
           />
           <Route path="/MainBox" element={<MainBox />} />
-          <Route path="/Community/:id" element={<Community />} />
+          <Route
+            path="/Lboard/:id"
+            element={<LoungeDetail endpoint="Lboard" />}
+          />
+          <Route
+            path="/LPopular/:id"
+            element={<LoungeDetail endpoint="LPopular" />}
+          />
+          <Route
+            path="/LFriends/:id"
+            element={<LoungeDetail endpoint="LFriends" />}
+          />
           <Route path="/LoungeCreate" element={<Lcreate />} />
           <Route path="/PostMainBox" element={<PostMainBox />} />
           <Route path="/Map" element={<Map />} />
@@ -61,9 +76,3 @@ function App() {
 }
 
 export default App;
-{
-  /* <Route
-path="/Lounge"
-element={<Lounge isSidebarOpen={isSidebarOpen} />}
-/> */
-}

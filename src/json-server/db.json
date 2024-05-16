@@ -1,10 +1,6 @@
 {
   "MyPage": [
     {
-      "id": "2",
-      "name": "늙은 사람"
-    },
-    {
       "id": "3",
       "name": "강서쪽 사람"
     },
@@ -35,7 +31,7 @@
       "images": "https://yozm.wishket.com/media/news/985/image001.png"
     }
   ],
-  "Community": [
+  "Lboard": [
     {
       "id": "1",
       "title": "제목1",
@@ -203,29 +199,137 @@
       "like": 85,
       "contents": "공차가 싫나요?",
       "hash": "홍"
+    }
+  ],
+  "LPopular": [
+    {
+      "id": "1",
+      "title": "인기1",
+      "name": "테스트",
+      "like": 6,
+      "contents": "내용 안녕하세요 저는 어디살고 무슨 공부를 하는 사람입니다. 혹시 같이프로젝트 할사람있으면 같이 해용!",
+      "hash": "홍대"
     },
     {
-      "id": "22",
-      "title": "제목22",
-      "name": "공공",
-      "like": 85,
-      "contents": "공차가 싫나요?",
+      "id": "2",
+      "title": "인기2",
+      "name": "강서쪽 사람",
+      "like": 150,
+      "contents": "내용 안녕하세요 저는 어디살고 무슨 공부를 하는 사람입니다. 혹시 같이프로젝트 할사람있으면 같이 해용!",
+      "hash": "홍대"
+    },
+    {
+      "id": "3",
+      "title": "인기3",
+      "name": "스므디",
+      "like": 23,
+      "contents": "혹시 같이프로젝트 할사람있으면 같이 해용!",
       "hash": "홍"
     },
     {
-      "id": "23",
-      "title": "제목23",
-      "name": "공공",
-      "like": 85,
-      "contents": "공차가 싫나요?",
+      "id": "4",
+      "title": "인기4",
+      "name": "닭갈비",
+      "like": 160,
+      "contents": "1빠",
       "hash": "홍"
     },
     {
-      "id": "24",
-      "title": "제목24",
-      "name": "공공",
-      "like": 85,
-      "contents": "공차가 싫나요?",
+      "id": "5",
+      "title": "인기5",
+      "name": "12345",
+      "like": 28,
+      "contents": "여기가 최신인가요",
+      "hash": "홍"
+    },
+    {
+      "id": "6",
+      "title": "인기6",
+      "name": "버블티",
+      "like": 27,
+      "contents": "공차가 좋나요?",
+      "hash": "홍"
+    },
+    {
+      "id": "7",
+      "title": "인기7",
+      "name": "칠칠맞구",
+      "like": 27,
+      "contents": "공차가 좋나요?",
+      "hash": "홍"
+    },
+    {
+      "id": "8",
+      "title": "인기8",
+      "name": "배민",
+      "like": 27,
+      "contents": "공차가 좋나요?",
+      "hash": "홍"
+    }
+  ],
+  "LFriends": [
+    {
+      "id": "1",
+      "title": "친구1",
+      "name": "테스트",
+      "like": 6,
+      "contents": "내용 안녕하세요 저는 어디살고 무슨 공부를 하는 사람입니다. 혹시 같이프로젝트 할사람있으면 같이 해용!",
+      "hash": "홍대"
+    },
+    {
+      "id": "2",
+      "title": "친구2",
+      "name": "강서쪽 사람",
+      "like": 150,
+      "contents": "내용 안녕하세요 저는 어디살고 무슨 공부를 하는 사람입니다. 혹시 같이프로젝트 할사람있으면 같이 해용!",
+      "hash": "홍대"
+    },
+    {
+      "id": "3",
+      "title": "친구3",
+      "name": "스므디",
+      "like": 23,
+      "contents": "혹시 같이프로젝트 할사람있으면 같이 해용!",
+      "hash": "홍"
+    },
+    {
+      "id": "4",
+      "title": "친구4",
+      "name": "닭갈비",
+      "like": 160,
+      "contents": "1빠",
+      "hash": "홍"
+    },
+    {
+      "id": "5",
+      "title": "친구5",
+      "name": "12345",
+      "like": 28,
+      "contents": "여기가 최신인가요",
+      "hash": "홍"
+    },
+    {
+      "id": "6",
+      "title": "친구6",
+      "name": "버블티",
+      "like": 27,
+      "contents": "공차가 좋나요?",
+      "hash": "홍"
+    },
+    {
+      "id": "7",
+      "title": "친구7",
+      "name": "칠칠맞구",
+      "like": 27,
+      "contents": "공차가 좋나요?",
+      "hash": "홍"
+    },
+    {
+      "id": "8",
+      "title": "친구8",
+      "name": "배민",
+      "like": 27,
+      "contents": "공차가 좋나요?",
       "hash": "홍"
     }
   ],
@@ -446,32 +550,26 @@
   ],
   "Posts": [
     {
-      "id": "9867",
-      "content": "dsa",
-      "replies": [
-        {
-          "id": 1715692354195,
-          "content": "dsadas"
-        }
-      ]
+      "id": "11ee",
+      "content": "ㅏㅑㅓ",
+      "replies": []
     },
     {
-      "id": "2462",
-      "content": "dsada",
+      "id": "d0e7",
+      "content": "8",
       "replies": [
         {
-          "id": 1715692358293,
-          "content": "dsadsa"
+          "id": 1715858681133,
+          "content": "ㅈㅈㅈㅈㅈㅈㅈㅈㅈㅈㅈ"
+        },
+        {
+          "id": 1715858683845,
+          "content": "ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁ"
         }
       ]
     }
   ],
-  "login": [
-
-  ],
-  "signup": [
-
-  ],
-  "kakaologin": [
-  ]
+  "login": [],
+  "signup": [],
+  "kakaologin": []
 }

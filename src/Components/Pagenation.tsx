@@ -29,7 +29,11 @@ function Pagination({
             <BiChevronLeft size="40" />
           </BottomCheckButton>
           {Array.from({ length: numPages }).map((_, i) => (
-            <BottomCheckLink key={i} onClick={() => setPage(i + 1)}>
+            <BottomCheckLink
+              key={i}
+              onClick={() => setPage(i + 1)}
+              className={currentpage === i + 1 ? "active" : ""}
+            >
               {i + 1}
             </BottomCheckLink>
           ))}
@@ -43,7 +47,6 @@ function Pagination({
           </BottomCheckButton>
         </BottomCheckbox>
       </BottomCheckbox>
-      <div>{currentpage} 페이지</div>
     </BottomCheck>
   );
 }
@@ -77,6 +80,11 @@ const BottomCheckLink = styled.div`
   height: 35px;
 
   &:hover {
+    background-color: ${PRIMARY_COLOR_B};
+    color: white;
+  }
+
+  &.active {
     background-color: ${PRIMARY_COLOR_B};
     color: white;
   }
