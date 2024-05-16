@@ -3,6 +3,8 @@ import { useState } from "react";
 import styled from "styled-components";
 import { KakaoSignInBtn } from "./KakaoSignInBtn";
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
+import axios, { AxiosError } from "axios";
+
 interface LoginFormProps {
   onSubmit: (username: string, password: string) => void;
 }
@@ -10,9 +12,25 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit = () => {} }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(username, password);
+    try {
+      const response = await axios.post("http://localhost:3001/login", {
+        username,
+        password,
+      });
+      console.log(response.data); // 서버에서 받은 응답 처리
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          console.error("로그인 실패", error.response.data);
+        } else {
+          console.error("네트워크 오류", error.message);
+        }
+      } else {
+        console.error("기타 오류", error);
+      }
+    }
   };
 
   return (
