@@ -1,9 +1,11 @@
+//글 각 페이지
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
 import { useParams } from "react-router-dom";
 import CommentBox from "../Components/CommentBox";
+import Comment from "../Components/Comment";
 
 interface CommunityData {
   id: string;
@@ -58,7 +60,7 @@ const Community: React.FC<CommunityProps> = ({ endpoint }) => {
           </Detailtop>
           <Detailcomponent>{commun.contents}</Detailcomponent>
         </CommunityDetail>
-        <CommentBox />
+        <Comment />
       </CommunityBox>
     </CommunityComponent>
   );

@@ -15,8 +15,6 @@ import MainBox from "./MainCafePage/MainBox";
 import LoungeDetail from "./Lounge/LoungeDetail";
 import Lcreate from "./Lounge/Lcreate";
 import PostMainBox from "./MainCafePage/PostMainBox";
-import LPopular from "./Lounge/LPopular";
-import LFriends from "./Lounge/Lfriends";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -43,9 +41,19 @@ function App() {
             path="/Lounge"
             element={<Lounge isSidebarOpen={isSidebarOpen} />}
           />
-          <Route path="/Lboard" element={<Lboard />} />
-          <Route path="/LFriends" element={<LFriends />} />
-          <Route path="/LPopular" element={<LPopular />} />
+          <Route
+            path="/Lboard"
+            element={<Lboard pageTitle="최신 게시판" apiEndpoint="Lboard" />}
+          />
+          <Route
+            path="/LPopular"
+            element={<Lboard pageTitle="인기 게시판" apiEndpoint="LPopular" />}
+          />
+          <Route
+            path="/LFriends"
+            element={<Lboard pageTitle="친구 구해요" apiEndpoint="LFriends" />}
+          />
+
           <Route path="/SignInUpPage/SignInUpBox" element={<SignInUpBox />} />
           <Route path="MyPage" element={<MyPage />} />
           <Route path="/auth" element={<RedirectHandler />} />
