@@ -51,7 +51,7 @@ const MainBox = () => {
   return (
     <MainBoxContainer>
       <ContainerArea>
-        <CafeName>SWS 카페</CafeName>
+        <LName>ㅇㅇ 도서관</LName>
         <StarRatingContainer>
           {[1, 2, 3, 4, 5].map((index) => {
             return (
@@ -71,22 +71,12 @@ const MainBox = () => {
         <Slick settings={settings} slides={mainbox} />
 
         <CafeInfo>
-          저희 카페는 어쩌고 저쩌고....dsadsadasdasdas
-          <br />
-          저희 카페는 어쩌고 저쩌고....
-          <br />
-          저희 카페는 어쩌고 저쩌고....
-          <br />
-          저희 카페는 어쩌고 저쩌고....
-          <br />
-          저희 카페는 어쩌고 저쩌고....
-          <br />
-          저희 카페는 어쩌고 저쩌고....
-          <br />
-          저희 카페는 어쩌고 저쩌고....
-          <br />
-          저희 카페는 어쩌고 저쩌고....
-          <br />
+        위치:
+        <br/>
+        오픈 시간:
+        <br/>
+        등등 도서관에 대한 정보.
+
         </CafeInfo>
         <Board />
       </ContainerArea>
@@ -115,7 +105,7 @@ const ContainerArea = styled.div`
   align-items: center;
 `;
 
-const CafeName = styled.div`
+const LName = styled.div`
   padding-top: 30px;
   text-align: center;
   font-weight: bold;
@@ -127,10 +117,11 @@ const CafeInfo = styled.div`
   align-items: center;
   background-color: white;
   font-style: italic;
-  justify-content: center;
+  justify-content: left;
   margin-top: 30px;
   padding: 5px;
   border-radius: 5px;
+  text-align: left;
 `;
 
 const StarRatingContainer = styled.div`
