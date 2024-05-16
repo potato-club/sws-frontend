@@ -1,3 +1,4 @@
+//글 생성 페이지
 import React, { useState, ChangeEvent } from "react";
 import styled from "styled-components";
 

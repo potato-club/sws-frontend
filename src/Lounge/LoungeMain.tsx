@@ -1,3 +1,4 @@
+//글 개별 컴포넌트
 import React from "react";
 import { PRIMARY_COLOR_B } from "../Constants/constants";
 import styled from "styled-components";
