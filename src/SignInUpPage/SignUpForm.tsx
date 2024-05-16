@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
+import axios from "axios";
+
 
 interface SignUpFormProps {
   onSubmit: (
@@ -17,9 +19,27 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
   const [email, setEmail] = useState("");
   const [nickname, setNickname] = useState("");
 
-  const handleSignUp = (e: React.FormEvent) => {
+  const handleSignUp =async (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(username, password, email, nickname);
+    try {
+      const response = await axios.post("http://localhost:3001/signup", {
+        username,
+        password,
+        email,
+        nickname,
+      });
+      console.log(response.data); // 서버에서 받은 응답 처리
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          console.error("회원가입 실패", error.response.data);
+        } else {
+          console.error("네트워크 오류", error.message);
+        }
+      } else {
+        console.error("기타 오류", error);
+      }
+    }
   };
 
   return (
