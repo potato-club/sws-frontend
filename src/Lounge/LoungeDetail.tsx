@@ -42,6 +42,14 @@ const Community: React.FC<CommunityProps> = ({ endpoint }) => {
       });
   }, [endpoint, id]);
 
+  const commentEndpointMap: { [key: string]: string } = {
+    LFriends: "FriendComment",
+    LPopular: "PopularComment",
+    Lboard: "BoardComment",
+  };
+
+  const commentEndpoint = commentEndpointMap[endpoint] || "default";
+
   return (
     <CommunityComponent>
       <CommunityBox>
@@ -54,13 +62,16 @@ const Community: React.FC<CommunityProps> = ({ endpoint }) => {
               </div>
             </div>
             <div>
-              <Detailname>{commun.name}</Detailname>
+              <div>{commun.name}</div>
               <div>좋아요 {commun.like}</div>
             </div>
           </Detailtop>
-          <Detailcomponent>{commun.contents}</Detailcomponent>
+          <div>{commun.contents}</div>
         </CommunityDetail>
-        <Comment Comment="Comment" />
+        <Comment
+          postId={parseInt(commun.id)}
+          commentEndpoint={commentEndpoint}
+        />
       </CommunityBox>
     </CommunityComponent>
   );
@@ -80,7 +91,6 @@ const CommunityBox = styled.div`
   min-height: 100vh;
   padding-top: 30px;
   margin-top: 70px;
-  padding-bottom: 30px;
 
   background-color: ${PRIMARY_COLOR_BLUE};
   display: flex;
@@ -92,11 +102,12 @@ const CommunityBox = styled.div`
 
 const CommunityDetail = styled.div`
   width: 750px;
-  border-radius: 25px;
+  border-radius: 10px;
   padding: 50px;
   height: 500px;
   background-color: white;
 `;
+
 const Detailtop = styled.div`
   display: flex;
   height: 70px;
@@ -105,81 +116,4 @@ const Detailtop = styled.div`
 
 const Detailtitle = styled.div`
   font-size: 25px;
-`;
-
-const Detailname = styled.div``;
-const Detailcomponent = styled.div``;
-
-const Communityinput = styled.input`
-  height: 70px;
-  width: 70%;
-`;
-const Replyinput = styled.input`
-  margin-left: 200px;
-  height: 50px;
-  width: 50%;
-`;
-
-const CommunityButton = styled.button`
-  border-radius: 25px;
-  height: 70px;
-  width: 30%;
-`;
-const ReplyButton = styled.button`
-  border-radius: 25px;
-  height: 50px;
-  width: 15%;
-`;
-const CommunityMid = styled.div`
-  display: flex;
-  width: 46%;
-  height: 120px;
-  padding-left: 38px;
-  padding-right: 38px;
-  margin-top: 70px;
-  align-items: center;
-  background-color: ${PRIMARY_COLOR_BLUE};
-  top: 770px;
-  position: fixed;
-`;
-
-const CommunityBottom = styled.div`
-  width: 90%;
-  margin-top: 20px;
-`;
-
-const Communityanswer = styled.div`
-  margin-top: 20px;
-  width: 100%;
-  height: 80px;
-  border-radius: 15px;
-  background-color: white;
-`;
-
-const Answertop = styled.div`
-  display: flex;
-  padding: 10px;
-  height: 25px;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const Answersetting = styled.div`
-  display: flex;
-`;
-
-const Answername = styled.div``;
-const Answercomponent = styled.div``;
-const Cmanswer = styled.div`
-  background-color: white;
-  margin-top: 20px;
-  width: 80%;
-  height: 70px;
-  border-radius: 15px;
-`;
-
-const Ca = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
 `;
