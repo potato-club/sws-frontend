@@ -4,7 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
 import { useParams } from "react-router-dom";
-import CommentBox from "../Components/CommentBox";
+
 import Comment from "../Components/Comment";
 
 interface CommunityData {
@@ -60,7 +60,7 @@ const Community: React.FC<CommunityProps> = ({ endpoint }) => {
           </Detailtop>
           <Detailcomponent>{commun.contents}</Detailcomponent>
         </CommunityDetail>
-        <Comment />
+        <Comment Comment="Comment" />
       </CommunityBox>
     </CommunityComponent>
   );
@@ -81,7 +81,7 @@ const CommunityBox = styled.div`
   padding-top: 30px;
   margin-top: 70px;
   padding-bottom: 30px;
-  margin-bottom: 110px;
+
   background-color: ${PRIMARY_COLOR_BLUE};
   display: flex;
   flex-direction: column;
@@ -183,69 +183,3 @@ const Ca = styled.div`
   justify-content: space-around;
   align-items: center;
 `;
-
-{
-  /* <CommunityBottom>
-          {Community.map((text: string, index: number) => (
-            <Communityanswer key={index}>
-              <Answertop>
-                <Answername>이름</Answername>
-                <Answersetting>
-                  <div onClick={heartClick}>
-                    {heart ? <CgHeart /> : <FaHeart />}
-                  </div>
-                  /
-                  <div onClick={handleReplyClick}>
-                    <AiOutlineEnter />
-                  </div>
-                  /
-                  <div>
-                    <BiDotsVerticalRounded />
-                  </div>
-                </Answersetting>
-              </Answertop>
-              <Answercomponent>{text}</Answercomponent>
-            </Communityanswer>
-          ))}
-
-          {Reply.map((Text2: string, index: number) => (
-            <Ca key={index}>
-              <BiSubdirectoryRight size="40" />
-              <Cmanswer>
-                <Answertop>
-                  <Answername>이름</Answername>
-                  <Answersetting>
-                    <div onClick={heartClick}>
-                      {heart ? <CgHeart /> : <FaHeart />}
-                    </div>
-                    /<BiDotsVerticalRounded />
-                  </Answersetting>
-                </Answertop>
-                <Answercomponent>{Text2}</Answercomponent>
-              </Cmanswer>
-            </Ca>
-          ))}
-
-          {Change && (
-            <>
-              <Replyinput
-                value={ReplyText}
-                onChange={ReplyChange}
-                placeholder="내용을 입력하세요"
-              />
-              <ReplyButton onClick={ReplyClick}>대댓글 쓰기 </ReplyButton>
-            </>
-          )}
-        </CommunityBottom> */
-}
-
-{
-  /* <CommunityMid>
-          <Communityinput
-            value={inputText}
-            onChange={handleChange}
-            placeholder="내용을 입력하세요"
-          />
-          <CommunityButton onClick={handleClick}>답장하기</CommunityButton>
-        </CommunityMid> */
-}
