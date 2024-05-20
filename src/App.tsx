@@ -38,7 +38,9 @@ function App() {
         <Header toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
         <Routes>
           <Route path="/*" element={<Main isSidebarOpen={isSidebarOpen} />} />
-          <Route path="Write" element={<LWriting />} />
+          <Route path="Write" element={<LWriting apiEndpoint="Lboard" />} />
+          <Route path="Write" element={<LWriting apiEndpoint="LPopular" />} />
+          <Route path="Write" element={<LWriting apiEndpoint="LFriends" />} />
 
           <Route
             path="/Lounge"

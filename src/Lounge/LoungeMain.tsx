@@ -46,7 +46,7 @@ const Loungein2 = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 90px;
+  width: 150px;
   height: 60px;
 `;
 const InIcon = styled.div`
