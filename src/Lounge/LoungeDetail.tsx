@@ -4,7 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
 import { useParams } from "react-router-dom";
-
+import { FaHeart } from "react-icons/fa6";
 import Comment from "../Components/Comment";
 
 interface CommunityData {
@@ -61,7 +61,11 @@ const Community: React.FC<CommunityProps> = ({ endpoint }) => {
             </div>
             <div>
               <div>{commun.name}</div>
-              <div>좋아요 {commun.like}</div>
+              <Detailheart>
+                {" "}
+                <FaHeart />
+                {commun.like}
+              </Detailheart>
             </div>
           </Detailtop>
           <div>{commun.contents}</div>
@@ -76,7 +80,12 @@ const Community: React.FC<CommunityProps> = ({ endpoint }) => {
 };
 
 export default Community;
-
+const Detailheart = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 35px;
+`;
 const CommunityComponent = styled.div`
   width: 100%;
   display: flex;
@@ -108,7 +117,7 @@ const CommunityDetail = styled.div`
 
 const Detailtop = styled.div`
   display: flex;
-  height: 70px;
+  margin-bottom: 20px;
   justify-content: space-between;
 `;
 

@@ -60,7 +60,7 @@ const LoungePage: React.FC<Props> = ({ pageTitle, apiEndpoint }) => {
             total={pagecontent.length}
             setPage={setCurrentPage}
           />
-          <LoungeLink to="/LoungeCreate">글쓰기</LoungeLink>
+          <LoungeLink to="/write">글쓰기</LoungeLink>
         </Loungebottom>
       </Loungemargin>
     </MainContain>

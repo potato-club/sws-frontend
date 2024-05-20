@@ -1,34 +1,49 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-
-function LWriting() {
-  // 상태 변수 생성
+import { useNavigate } from "react-router-dom";
+import { ImArrowLeft } from "react-icons/im";
+interface LWritingProps {
+  apiEndpoint: string;
+}
+const LWriting: React.FC<LWritingProps> = ({ apiEndpoint }) => {
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [contents, setContents] = useState("");
+  const [hash, setHash] = useState("");
+  const navigate = useNavigate();
 
-  // 입력 핸들러
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
 
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
+    setContents(e.target.value);
+  };
+  const handlehashChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setHash(e.target.value);
   };
 
-  // 폼 제출 핸들러
+  const Change = () => {
+    navigate(-1);
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      await axios.post(`http://localhost:3001/Lboard`, {
+      await axios.post(`http://localhost:3001/${apiEndpoint}`, {
         title,
-        content,
+        contents,
+        hash,
+        name: "익명",
+        like: 0,
       });
       alert("글이 성공적으로 등록되었습니다.");
-      // 상태 초기화
+      navigate(`/${apiEndpoint}`);
+
       setTitle("");
-      setContent("");
+      setContents("");
+      setHash("");
     } catch (error) {
       console.error("글 등록에 실패했습니다.", error);
     }
@@ -37,20 +52,35 @@ function LWriting() {
   return (
     <Write>
       <Writein onSubmit={handleSubmit}>
-        <h1>작성 페이지</h1>
+        <Wr>
+          <ImArrowLeft onClick={Change} style={{ fontSize: "20px" }} />
+          <h1>작성 페이지</h1>
+        </Wr>
+
         <Writeindiv>
           <Dii>제목</Dii>
+
           <Writeinput
             placeholder="제목을 입력하세요"
             value={title}
             onChange={handleTitleChange}
           />
         </Writeindiv>
+
+        <Writemid>
+          <span>hash tag</span>
+
+          <Writeinput2
+            placeholder="해시태그을 입력하세요"
+            value={hash}
+            onChange={handlehashChange}
+          />
+        </Writemid>
         <Writeindiv>
           <Dii>내용</Dii>
           <Writetextarea
             placeholder="내용을 입력하세요"
-            value={content}
+            value={contents}
             onChange={handleContentChange}
           />
         </Writeindiv>
@@ -64,9 +94,19 @@ function LWriting() {
       </Writein>
     </Write>
   );
-}
+};
 
 export default LWriting;
+const Writemid = styled.div`
+  margin-left: 351px;
+`;
+const Wr = styled.div`
+  display: flex;
+
+  align-items: center;
+  width: 200px;
+  justify-content: space-between;
+`;
 const Writebtn = styled.button`
   background-color: orange;
   width: 60px;
@@ -87,15 +127,22 @@ const Dii = styled.div`
 `;
 const Writetextarea = styled.textarea`
   width: 100%;
-  height: 350px;
-  border-radius: 15px;
+  height: 300px;
+  border-radius: 7px;
   padding: 10px;
+`;
+const Writeinput2 = styled.input`
+  margin-left: 20px;
+  padding-left: 10px;
+  width: 200px;
+  height: 30px;
+  border-radius: 10px;
 `;
 const Writeinput = styled.input`
   padding-left: 10px;
   width: 100%;
   height: 30px;
-  border-radius: 15px;
+  border-radius: 10px;
 `;
 const Writeindiv = styled.div`
   display: flex;
