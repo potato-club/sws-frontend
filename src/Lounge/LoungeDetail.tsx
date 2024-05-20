@@ -57,9 +57,7 @@ const Community: React.FC<CommunityProps> = ({ endpoint }) => {
           <Detailtop>
             <div>
               <Detailtitle>{commun.title}</Detailtitle>
-              <div>
-                {commun.hash} {commun.id}
-              </div>
+              <div>#{commun.hash}</div>
             </div>
             <div>
               <div>{commun.name}</div>

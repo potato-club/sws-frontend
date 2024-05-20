@@ -15,6 +15,7 @@ import MainBox from "./MainCafePage/MainBox";
 import LoungeDetail from "./Lounge/LoungeDetail";
 import Lcreate from "./Lounge/Lcreate";
 import PostMainBox from "./MainCafePage/PostMainBox";
+import LWriting from "./Lounge/LWriting";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -37,6 +38,8 @@ function App() {
         <Header toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
         <Routes>
           <Route path="/*" element={<Main isSidebarOpen={isSidebarOpen} />} />
+          <Route path="Write" element={<LWriting />} />
+
           <Route
             path="/Lounge"
             element={<Lounge isSidebarOpen={isSidebarOpen} />}
