@@ -37,14 +37,23 @@ const Comment: React.FC<CommentProps> = ({ postId, commentEndpoint }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!newPost) return;
-    await axios.post(`http://localhost:3001/${commentEndpoint}`, {
-      content: newPost,
-      replies: [],
-      postId: postId,
-    });
-    setNewPost("");
-    fetchPosts();
+    if (postId === null || postId === undefined) {
+      alert("Post ID is required");
+      return;
+    }
+    try {
+      await axios.post(`http://localhost:3001/${commentEndpoint}`, {
+        content: newPost,
+        replies: [],
+        postId: postId,
+      });
+      setNewPost("");
+      fetchPosts();
+    } catch (error) {
+      console.error("Error submitting post:", error);
+    }
   };
+
   //댓글 삭제
   const handleDeletePost = async (id: number) => {
     await axios.delete(`http://localhost:3001/${commentEndpoint}/${id}`);

@@ -1,6 +1,10 @@
 //글 개별 컴포넌트
 import React from "react";
-import { PRIMARY_COLOR_B } from "../Constants/constants";
+import {
+  PRIMARY_COLOR_BLU,
+  PRIMARY_COLOR_BLUE,
+  PRIMARY_COLOR_W,
+} from "../Constants/constants";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa6";
@@ -64,11 +68,11 @@ const Loungein = styled(Link)`
   justify-content: space-around;
 
   display: Flex;
-
-  border-top: 1px solid white;
+  color: ${PRIMARY_COLOR_W};
+  border-top: 1px solid ${PRIMARY_COLOR_BLU};
   &:hover {
-    transition: all 2s;
-    background-color: ${PRIMARY_COLOR_B};
+    transition: all 0.5s;
+    background-color: ${PRIMARY_COLOR_BLU};
     color: white;
   }
 `;

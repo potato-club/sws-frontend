@@ -3,7 +3,11 @@ import styled from "styled-components";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { CgSearch } from "react-icons/cg";
-import { PRIMARY_COLOR_BLUE, PRIMARY_COLOR_SKY } from "../Constants/constants";
+import {
+  PRIMARY_COLOR_BLUE,
+  PRIMARY_COLOR_W,
+  PRIMARY_COLOR_BLU,
+} from "../Constants/constants";
 // @ts-ignore
 import logo from "./logo.png";
 
@@ -92,7 +96,7 @@ const SidebarLink = styled(Link)`
     color: white;
   }
   &:hover {
-    background-color: ${PRIMARY_COLOR_SKY};
+    background-color: ${PRIMARY_COLOR_BLU};
     color: white;
     transition: 1s;
   }
