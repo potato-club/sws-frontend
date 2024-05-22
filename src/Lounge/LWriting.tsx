@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { PRIMARY_COLOR_W, PRIMARY_COLOR_BLU } from "../Constants/constants";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { ImArrowLeft } from "react-icons/im";
@@ -166,14 +167,14 @@ const Wr = styled.div`
   justify-content: space-between;
 `;
 const Writebtn = styled.button`
-  background-color: orange;
+  background-color: ${PRIMARY_COLOR_BLU};
   width: 60px;
   height: 30px;
   color: white;
   border: none;
   border-radius: 5px;
   &:hover {
-    background-color: #ff5e00;
+    background-color: ${PRIMARY_COLOR_W};
   }
 `;
 const Writebottom = styled.div`

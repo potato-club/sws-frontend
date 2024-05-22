@@ -9,7 +9,7 @@ import {
   PRIMARY_COLOR_WHITE,
   PRIMARY_COLOR_SKY,
   PRIMARY_COLOR_BLUE,
-  PRIMARY_COLOR_B,
+  PRIMARY_COLOR_BLU,
 } from "../Constants/constants";
 import axios from "axios";
 
@@ -76,7 +76,7 @@ const Loungebottom = styled.div`
   display: Flex;
   align-items: center;
   justify-content: space-around;
-  background-color: ${PRIMARY_COLOR_BLUE};
+  background-color: ${PRIMARY_COLOR_BLU};
 `;
 
 const LinkTop = styled(Link)`
@@ -97,7 +97,7 @@ const LoungeLink = styled(Link)`
   align-items: center;
   justify-content: center;
   &:hover {
-    background-color: ${PRIMARY_COLOR_B};
+    background-color: ${PRIMARY_COLOR_BLU};
     color: white;
     transition: 1s;
   }
@@ -114,10 +114,10 @@ const Loungemargin = styled.div`
   display: flex;
   width: 900px;
   border-radius: 25px 25px 0px 0px;
-  padding: 40px 20px 0px 20px;
+
   align-items: center;
   flex-direction: column;
-  background-color: ${PRIMARY_COLOR_BLUE};
+  border: 20px solid ${PRIMARY_COLOR_BLU};
 `;
 
 const MainContain = styled.div`

@@ -3,7 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
-import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
+import { PRIMARY_COLOR_BLUE, PRIMARY_COLOR_BLU } from "../Constants/constants";
 
 interface Frined {
   id: number;
@@ -87,7 +87,8 @@ const MyPageContaine = styled.div`
 const MyPageContent = styled.div`
   box-sizing: border-box;
   margin-top: 260px;
-  background-color: ${PRIMARY_COLOR_BLUE};
+  border: 15px SOLID ${PRIMARY_COLOR_BLU};
+  /* background-color: ${PRIMARY_COLOR_BLU}; */
   width: 50%;
   height: 1000px;
   @media screen and (max-width: 1200px) {
@@ -111,6 +112,7 @@ const MyPageTop = styled.div`
 const MPTphoto = styled.div`
   width: 150px;
   height: 150px;
+  border: 1px solid ${PRIMARY_COLOR_BLU};
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -120,6 +122,7 @@ const MPTphoto = styled.div`
 const MPTname = styled.div`
   width: 210px;
   border-radius: 5px;
+  border: 1px solid ${PRIMARY_COLOR_BLU};
   height: 30px;
   color: ${PRIMARY_COLOR_BLUE};
   display: Flex;
@@ -232,7 +235,7 @@ const MPBTopBUTTON = styled.div`
 `;
 
 const MPTtag = styled.div`
-  color: white;
+  color: ${PRIMARY_COLOR_BLUE};
 `;
 const MPBbottomBUTTON = styled.div`
   display: flex;

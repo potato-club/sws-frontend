@@ -5,7 +5,11 @@ import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import { PRIMARY_COLOR_BLUE, PRIMARY_COLOR_SKY } from "../Constants/constants";
+import {
+  PRIMARY_COLOR_BLUE,
+  PRIMARY_COLOR_BLU,
+  PRIMARY_COLOR_W,
+} from "../Constants/constants";
 import LoungeMain from "./LoungeMain";
 
 interface MainProps {
@@ -80,19 +84,20 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
       <Lentire>
         <div>
           <Llefttoptitle>
-            <h1>최신 게시판</h1> <LoungeLink to="/Lboard">더보기</LoungeLink>
+            <Mtop>Shall We Study?</Mtop>{" "}
+            <LoungeLink to="/LFriends">더보기</LoungeLink>
           </Llefttoptitle>
           <LMtop>
-            <LoungeMain linkPath="Lboard" showCount={pagecontent.slice(0, 8)} />
+            <LoungeMain linkPath="LFriends" showCount={page.slice(0, 8)} />
           </LMtop>
         </div>
 
         <div>
           <Llefttoptitle>
-            <h1>친구 구해요</h1> <LoungeLink to="/LFriends">더보기</LoungeLink>
+            <Mtop>NEW</Mtop> <LoungeLink to="/Lboard">더보기</LoungeLink>
           </Llefttoptitle>
           <LMbottom>
-            <LoungeMain linkPath="LFriends" showCount={page.slice(0, 4)} />
+            <LoungeMain linkPath="Lboard" showCount={pagecontent.slice(0, 5)} />
           </LMbottom>
         </div>
       </Lentire>
@@ -102,7 +107,7 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
         </LoungeSlick>
         <div>
           <Llefttoptitle>
-            <h1>인기 게시판</h1> <LoungeLink to="/LPopular">더보기</LoungeLink>
+            <Mtop>HOT</Mtop> <LoungeLink to="/LPopular">더보기</LoungeLink>
           </Llefttoptitle>
           <LMtop>
             <LoungeMain linkPath="LPopular" showCount={content.slice(0, 8)} />
@@ -113,16 +118,19 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
   );
 };
 export default Lounge;
-
+const Mtop = styled.h1`
+  color: ${PRIMARY_COLOR_W};
+  font-size: 48px;
+`;
 const LMtop = styled.div`
-  background-color: ${PRIMARY_COLOR_BLUE};
-  width: 640px;
+  border: 15px solid ${PRIMARY_COLOR_BLU};
+
+  width: 620px;
   height: 750px;
   border-radius: 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px 20px 30px 20px;
 `;
 const LoungeLink = styled(Link)`
   background-color: ${PRIMARY_COLOR_BLUE};
@@ -135,7 +143,7 @@ const LoungeLink = styled(Link)`
   align-items: center;
   justify-content: center;
   &:hover {
-    background-color: ${PRIMARY_COLOR_SKY};
+    background-color: ${PRIMARY_COLOR_W};
     color: white;
     transition: 1s;
   }
@@ -155,8 +163,6 @@ const Lentire = styled.div`
   align-items: center;
 `;
 
-const Lcomponent = styled.div``;
-
 const Llefttoptitle = styled.div`
   height: 200px;
   display: flex;
@@ -165,14 +171,13 @@ const Llefttoptitle = styled.div`
 `;
 
 const LMbottom = styled.div`
-  background-color: ${PRIMARY_COLOR_BLUE};
-  width: 640px;
-  height: 350px;
+  border: 15px solid ${PRIMARY_COLOR_BLU};
+  width: 620px;
+  height: 450px;
   border-radius: 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px 20px 50px 20px;
 `;
 
 const MainContain = styled.div<{ paddingLeft: number }>`
