@@ -89,6 +89,7 @@ const PostMainBoxForm: React.FC<PostCafeProps> = () => {
         />
         <StyledDIv />
       </StyledLabel>
+
       <StyledLabel htmlFor="Images">
         <StyledInputFile
           id="Images"
