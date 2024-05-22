@@ -114,7 +114,6 @@ const Comment: React.FC<CommentProps> = ({ postId, commentEndpoint }) => {
               </DeleteButton>
             </ReplyItem>
           ))}
-
           <ReplyInput
             onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
               e.preventDefault();
@@ -132,6 +131,7 @@ const Comment: React.FC<CommentProps> = ({ postId, commentEndpoint }) => {
             />
             <SubmitButton type="submit">등록</SubmitButton>
           </ReplyInput>
+
           <DeleteButton onClick={() => handleDeletePost(post.id)}>
             X
           </DeleteButton>

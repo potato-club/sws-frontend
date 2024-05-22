@@ -65,7 +65,7 @@ const Loungein = styled(Link)`
 
   display: Flex;
 
-  border-top: 1px solid black;
+  border-top: 1px solid white;
   &:hover {
     transition: all 2s;
     background-color: ${PRIMARY_COLOR_B};

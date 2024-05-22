@@ -1,4 +1,5 @@
 //글 각 페이지
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
@@ -14,6 +15,7 @@ interface CommunityData {
   like: number;
   contents: string;
   hash: string;
+  imageSrcs: (string | ArrayBuffer)[];
 }
 
 interface CommunityProps {
@@ -29,6 +31,7 @@ const Community: React.FC<CommunityProps> = ({ endpoint }) => {
     like: 0,
     contents: "",
     hash: "",
+    imageSrcs: [],
   });
 
   useEffect(() => {
@@ -68,6 +71,18 @@ const Community: React.FC<CommunityProps> = ({ endpoint }) => {
               </Detailheart>
             </div>
           </Detailtop>
+          <Dimgs>
+            {commun.imageSrcs &&
+              commun.imageSrcs.length > 0 &&
+              commun.imageSrcs.map((src, index) => (
+                <Detailimg
+                  key={index}
+                  src={src as string}
+                  alt={`게시물 이미지 ${index + 1}`}
+                />
+              ))}
+          </Dimgs>
+
           <div>{commun.contents}</div>
         </CommunityDetail>
         <Comment
@@ -80,12 +95,25 @@ const Community: React.FC<CommunityProps> = ({ endpoint }) => {
 };
 
 export default Community;
+const Dimgs = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`;
+const Detailimg = styled.img`
+  object-fit: contain;
+  height: 200px;
+  width: 200px;
+  margin: 10px 0;
+`;
+
 const Detailheart = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 35px;
 `;
+
 const CommunityComponent = styled.div`
   width: 100%;
   display: flex;
@@ -111,7 +139,7 @@ const CommunityDetail = styled.div`
   width: 750px;
   border-radius: 10px;
   padding: 50px;
-  height: 500px;
+  height: auto;
   background-color: white;
 `;
 

@@ -10,6 +10,11 @@ const LWriting: React.FC<LWritingProps> = ({ apiEndpoint }) => {
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
   const [hash, setHash] = useState("");
+
+  const [imageSrcs, setImageSrcs] = useState<(string | ArrayBuffer | null)[]>(
+    []
+  );
+
   const navigate = useNavigate();
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,6 +31,33 @@ const LWriting: React.FC<LWritingProps> = ({ apiEndpoint }) => {
   const Change = () => {
     navigate(-1);
   };
+  const onUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    const fileReaders: FileReader[] = [];
+    const filePromises: Promise<void>[] = [];
+
+    if (files) {
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const reader = new FileReader();
+        fileReaders.push(reader);
+
+        const filePromise = new Promise<void>((resolve) => {
+          reader.onload = () => {
+            setImageSrcs((prevSrcs) => [...prevSrcs, reader.result]);
+            resolve();
+          };
+        });
+
+        filePromises.push(filePromise);
+        reader.readAsDataURL(file);
+      }
+
+      Promise.all(filePromises).then(() => {
+        console.log("All files read");
+      });
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,10 +69,11 @@ const LWriting: React.FC<LWritingProps> = ({ apiEndpoint }) => {
         hash,
         name: "익명",
         like: 0,
+        imageSrcs,
       });
       alert("글이 성공적으로 등록되었습니다.");
       navigate(`/${apiEndpoint}`);
-
+      setImageSrcs([]);
       setTitle("");
       setContents("");
       setHash("");
@@ -86,8 +119,21 @@ const LWriting: React.FC<LWritingProps> = ({ apiEndpoint }) => {
         </Writeindiv>
         <Writeindiv>
           <Writebottom>
-            <button type="button">파일선택</button>
-            선택된 파일이 없음
+            <input
+              accept="image/*"
+              multiple
+              type="file"
+              onChange={(e) => onUpload(e)}
+            />
+            <Wimgs>
+              {imageSrcs.map((src, index) => (
+                <Wrimg
+                  key={index}
+                  src={src as string}
+                  alt={`게시물 이미지 ${index + 1}`}
+                />
+              ))}
+            </Wimgs>
           </Writebottom>
           <Writebtn type="submit">등록</Writebtn>
         </Writeindiv>
@@ -97,6 +143,18 @@ const LWriting: React.FC<LWritingProps> = ({ apiEndpoint }) => {
 };
 
 export default LWriting;
+const Wimgs = styled.div`
+  display: flex;
+  justify-content: flex-start;
+
+  width: 300px;
+  height: 100px;
+`;
+const Wrimg = styled.img`
+  object-fit: contain;
+  height: 40%;
+  width: 20%;
+`;
 const Writemid = styled.div`
   margin-left: 351px;
 `;
@@ -120,6 +178,8 @@ const Writebtn = styled.button`
 `;
 const Writebottom = styled.div`
   margin-left: 40px;
+  display: flex;
+  flex-direction: column;
 `;
 const Dii = styled.div`
   width: 40px;
