@@ -1,78 +1,57 @@
+//글 각 페이지
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { BiDotsVerticalRounded } from "react-icons/bi";
-import { AiOutlineEnter } from "react-icons/ai";
-import { CgHeart } from "react-icons/cg";
-import { BiSubdirectoryRight } from "react-icons/bi";
-import { FaHeart } from "react-icons/fa6";
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
 import { useParams } from "react-router-dom";
-import CommentBox from "../Components/CommentBox";
+import { FaHeart } from "react-icons/fa6";
+import Comment from "../Components/Comment";
 
-interface c {
+interface CommunityData {
   id: string;
   title: string;
   name: string;
   like: number;
   contents: string;
   hash: string;
+  imageSrcs: (string | ArrayBuffer)[];
 }
 
-function Community() {
-  const [inputText, setInputText] = useState("");
-  const [Community, setCommunity] = useState<string[]>([]);
+interface CommunityProps {
+  endpoint: string;
+}
+
+const Community: React.FC<CommunityProps> = ({ endpoint }) => {
   const { id } = useParams<{ id: string }>();
-  const [heart, setHeart] = useState(false);
-
-  const [ReplyText, setReplyText] = useState("");
-  const [Reply, setReply] = useState<string[]>([]);
-  const [Change, setChange] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputText(e.target.value);
-  };
-  const handleClick = () => {
-    setCommunity([...Community, inputText]);
-    setInputText("");
-  };
-
-  const heartClick = () => {
-    setHeart((prevChange) => !prevChange);
-  };
-
-  const ReplyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setReplyText(e.target.value);
-  };
-  const handleReplyClick = () => {
-    alert("대댓글을 작성하시겠습니까?");
-    setChange((prevChange) => !prevChange);
-  };
-  const ReplyClick = () => {
-    setReply([...Reply, ReplyText]);
-    setReplyText("");
-    setChange((prevChange) => !prevChange);
-  };
-  const [commun, setCommun] = useState<c>({
+  const [commun, setCommun] = useState<CommunityData>({
     id: "",
     title: "",
     name: "",
     like: 0,
     contents: "",
     hash: "",
+    imageSrcs: [],
   });
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/Community/${id}`)
+      .get(`http://localhost:3001/${endpoint}/${id}`)
       .then((res) => {
         setCommun(res.data);
-        console.log(id);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
-  }, [id]); // id가 변경될 때만 useEffect 실행
+  }, [endpoint, id]);
+
+  const commentEndpointMap: { [key: string]: string } = {
+    LFriends: "FriendComment",
+    LPopular: "PopularComment",
+    Lboard: "BoardComment",
+  };
+
+  const commentEndpoint = commentEndpointMap[endpoint] || "default";
 
   return (
     <CommunityComponent>
@@ -81,25 +60,59 @@ function Community() {
           <Detailtop>
             <div>
               <Detailtitle>{commun.title}</Detailtitle>
-              <div>
-                {commun.hash} {commun.id}
-              </div>
+              <div>#{commun.hash}</div>
             </div>
             <div>
-              <Detailname>{commun.name}</Detailname>
-              <div>좋아요 {commun.like}</div>
+              <div>{commun.name}</div>
+              <Detailheart>
+                {" "}
+                <FaHeart />
+                {commun.like}
+              </Detailheart>
             </div>
           </Detailtop>
-          <Detailcomponent>{commun.contents}</Detailcomponent>
-        </CommunityDetail>
+          <Dimgs>
+            {commun.imageSrcs &&
+              commun.imageSrcs.length > 0 &&
+              commun.imageSrcs.map((src, index) => (
+                <Detailimg
+                  key={index}
+                  src={src as string}
+                  alt={`게시물 이미지 ${index + 1}`}
+                />
+              ))}
+          </Dimgs>
 
-        <CommentBox />
+          <div>{commun.contents}</div>
+        </CommunityDetail>
+        <Comment
+          postId={parseInt(commun.id)}
+          commentEndpoint={commentEndpoint}
+        />
       </CommunityBox>
     </CommunityComponent>
   );
-}
+};
 
 export default Community;
+const Dimgs = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`;
+const Detailimg = styled.img`
+  object-fit: contain;
+  height: 200px;
+  width: 200px;
+  margin: 10px 0;
+`;
+
+const Detailheart = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 35px;
+`;
 
 const CommunityComponent = styled.div`
   width: 100%;
@@ -113,8 +126,7 @@ const CommunityBox = styled.div`
   min-height: 100vh;
   padding-top: 30px;
   margin-top: 70px;
-  padding-bottom: 30px;
-  margin-bottom: 110px;
+
   background-color: ${PRIMARY_COLOR_BLUE};
   display: flex;
   flex-direction: column;
@@ -125,160 +137,18 @@ const CommunityBox = styled.div`
 
 const CommunityDetail = styled.div`
   width: 750px;
-  border-radius: 25px;
+  border-radius: 10px;
   padding: 50px;
-  height: 500px;
+  height: auto;
   background-color: white;
 `;
+
 const Detailtop = styled.div`
   display: flex;
-  height: 70px;
+  margin-bottom: 20px;
   justify-content: space-between;
 `;
 
 const Detailtitle = styled.div`
   font-size: 25px;
 `;
-
-const Detailname = styled.div``;
-const Detailcomponent = styled.div``;
-
-const Communityinput = styled.input`
-  height: 70px;
-  width: 70%;
-`;
-const Replyinput = styled.input`
-  margin-left: 200px;
-  height: 50px;
-  width: 50%;
-`;
-
-const CommunityButton = styled.button`
-  border-radius: 25px;
-  height: 70px;
-  width: 30%;
-`;
-const ReplyButton = styled.button`
-  border-radius: 25px;
-  height: 50px;
-  width: 15%;
-`;
-const CommunityMid = styled.div`
-  display: flex;
-  width: 46%;
-  height: 120px;
-  padding-left: 38px;
-  padding-right: 38px;
-  margin-top: 70px;
-  align-items: center;
-  background-color: ${PRIMARY_COLOR_BLUE};
-  top: 770px;
-  position: fixed;
-`;
-
-const CommunityBottom = styled.div`
-  width: 90%;
-  margin-top: 20px;
-`;
-
-const Communityanswer = styled.div`
-  margin-top: 20px;
-  width: 100%;
-  height: 80px;
-  border-radius: 15px;
-  background-color: white;
-`;
-
-const Answertop = styled.div`
-  display: flex;
-  padding: 10px;
-  height: 25px;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const Answersetting = styled.div`
-  display: flex;
-`;
-
-const Answername = styled.div``;
-const Answercomponent = styled.div``;
-const Cmanswer = styled.div`
-  background-color: white;
-  margin-top: 20px;
-  width: 80%;
-  height: 70px;
-  border-radius: 15px;
-`;
-
-const Ca = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`;
-
-{
-  /* <CommunityBottom>
-          {Community.map((text: string, index: number) => (
-            <Communityanswer key={index}>
-              <Answertop>
-                <Answername>이름</Answername>
-                <Answersetting>
-                  <div onClick={heartClick}>
-                    {heart ? <CgHeart /> : <FaHeart />}
-                  </div>
-                  /
-                  <div onClick={handleReplyClick}>
-                    <AiOutlineEnter />
-                  </div>
-                  /
-                  <div>
-                    <BiDotsVerticalRounded />
-                  </div>
-                </Answersetting>
-              </Answertop>
-              <Answercomponent>{text}</Answercomponent>
-            </Communityanswer>
-          ))}
-
-          {Reply.map((Text2: string, index: number) => (
-            <Ca key={index}>
-              <BiSubdirectoryRight size="40" />
-              <Cmanswer>
-                <Answertop>
-                  <Answername>이름</Answername>
-                  <Answersetting>
-                    <div onClick={heartClick}>
-                      {heart ? <CgHeart /> : <FaHeart />}
-                    </div>
-                    /<BiDotsVerticalRounded />
-                  </Answersetting>
-                </Answertop>
-                <Answercomponent>{Text2}</Answercomponent>
-              </Cmanswer>
-            </Ca>
-          ))}
-
-          {Change && (
-            <>
-              <Replyinput
-                value={ReplyText}
-                onChange={ReplyChange}
-                placeholder="내용을 입력하세요"
-              />
-              <ReplyButton onClick={ReplyClick}>대댓글 쓰기 </ReplyButton>
-            </>
-          )}
-        </CommunityBottom> */
-}
-
-{
-  /* <CommunityMid>
-          <Communityinput
-            value={inputText}
-            onChange={handleChange}
-            placeholder="내용을 입력하세요"
-          />
-          <CommunityButton onClick={handleClick}>답장하기</CommunityButton>
-        </CommunityMid> */
-}

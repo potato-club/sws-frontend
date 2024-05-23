@@ -1,10 +1,15 @@
+//글 개별 컴포넌트
 import React from "react";
-import { PRIMARY_COLOR_B } from "../Constants/constants";
+import {
+  PRIMARY_COLOR_BLU,
+  PRIMARY_COLOR_BLUE,
+  PRIMARY_COLOR_W,
+} from "../Constants/constants";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa6";
 
-interface community {
+interface Community {
   id: string;
   title: string;
   name: string;
@@ -12,15 +17,17 @@ interface community {
   contents: string;
   hash: string;
 }
-interface info {
-  showCount: any;
+
+interface LoungeMainProps {
+  showCount: Community[];
+  linkPath: string;
 }
 
-const LoungeMain: React.FC<info> = ({ showCount }) => {
+const LoungeMain: React.FC<LoungeMainProps> = ({ showCount, linkPath }) => {
   return (
     <>
-      {showCount.map((b: community) => (
-        <Loungein key={b.id} to={`/Community/${b.id}`}>
+      {showCount.map((b: Community) => (
+        <Loungein key={b.id} to={`/${linkPath}/${b.id}`}>
           <Loungein2>
             <div>{b.title}</div>
             <div>{b.name}</div>
@@ -43,7 +50,7 @@ const Loungein2 = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 90px;
+  width: 150px;
   height: 60px;
 `;
 const InIcon = styled.div`
@@ -61,11 +68,11 @@ const Loungein = styled(Link)`
   justify-content: space-around;
 
   display: Flex;
-
-  border-top: 1px solid black;
+  color: ${PRIMARY_COLOR_W};
+  border-top: 1px solid ${PRIMARY_COLOR_BLU};
   &:hover {
-    transition: all 2s;
-    background-color: ${PRIMARY_COLOR_B};
+    transition: all 0.5s;
+    background-color: ${PRIMARY_COLOR_BLU};
     color: white;
   }
 `;

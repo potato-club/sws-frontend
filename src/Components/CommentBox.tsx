@@ -46,24 +46,28 @@ const Board: React.FC = () => {
 
   const handleDeleteReply = async (postId: number, replyId: number) => {
     try {
-        const postResponse = await axios.get(`http://localhost:3001/Posts/${postId}`);
-        const post = postResponse.data;
-        const updatedReplies = post.replies.filter((reply:Reply) => reply.id !== replyId);
-        post.replies = updatedReplies;
+      const postResponse = await axios.get(
+        `http://localhost:3001/Posts/${postId}`
+      );
+      const post = postResponse.data;
+      const updatedReplies = post.replies.filter(
+        (reply: Reply) => reply.id !== replyId
+      );
+      post.replies = updatedReplies;
 
-        await axios.put(`http://localhost:3001/Posts/${postId}`, post);
-        fetchPosts();
+      await axios.put(`http://localhost:3001/Posts/${postId}`, post);
+      fetchPosts();
     } catch (error) {
-        console.error("error:", error);
+      console.error("error:", error);
     }
-};
+  };
 
   const handleShowMore = () => {
     setVisibleCount((prevCount) => prevCount + 5);
   };
 
   const handleReplySubmit = async (postId: number, content: string) => {
-    if(!content) return;
+    if (!content) return;
     try {
       const postResponse = await axios.get(
         `http://localhost:3001/Posts/${postId}`
@@ -71,7 +75,7 @@ const Board: React.FC = () => {
       const post = postResponse.data;
       const newReply = {
         id: Date.now(),
-        content: content
+        content: content,
       };
       const updatedReplies = [...post.replies, newReply];
       post.replies = updatedReplies;
@@ -102,6 +106,7 @@ const Board: React.FC = () => {
                 </ReplyItem>
               ))}
             </PostContentContainer>
+
             <ReplyInput
               onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
                 e.preventDefault();
@@ -109,7 +114,7 @@ const Board: React.FC = () => {
                   reply: { value: string };
                 };
                 handleReplySubmit(post.id, target.reply.value);
-                target.reply.value="";
+                target.reply.value = "";
               }}
             >
               <StyledInput
@@ -119,6 +124,7 @@ const Board: React.FC = () => {
               />
               <SubmitButton type="submit">등록</SubmitButton>
             </ReplyInput>
+
             <DeleteButton onClick={() => handleDeletePost(post.id)}>
               X
             </DeleteButton>

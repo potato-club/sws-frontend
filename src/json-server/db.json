@@ -1,14 +1,6 @@
 {
   "MyPage": [
     {
-      "id": "2",
-      "name": "늙은 사람"
-    },
-    {
-      "id": "3",
-      "name": "강서쪽 사람"
-    },
-    {
       "id": "5",
       "name": "강서쪽 사람"
     },
@@ -35,7 +27,7 @@
       "images": "https://yozm.wishket.com/media/news/985/image001.png"
     }
   ],
-  "Community": [
+  "Lboard": [
     {
       "id": "1",
       "title": "제목1",
@@ -50,7 +42,7 @@
       "name": "강서쪽 사람",
       "like": 150,
       "contents": "내용 안녕하세요 저는 어디살고 무슨 공부를 하는 사람입니다. 혹시 같이프로젝트 할사람있으면 같이 해용!",
-      "hash": "홍대"
+      "hash": "마법"
     },
     {
       "id": "3",
@@ -58,7 +50,7 @@
       "name": "스므디",
       "like": 23,
       "contents": "혹시 같이프로젝트 할사람있으면 같이 해용!",
-      "hash": "홍"
+      "hash": "디즈니"
     },
     {
       "id": "4",
@@ -66,15 +58,15 @@
       "name": "닭갈비",
       "like": 160,
       "contents": "1빠",
-      "hash": "홍"
+      "hash": "코리아"
     },
     {
       "id": "5",
       "title": "제목5",
-      "name": "12345",
+      "name": "그아드",
       "like": 28,
       "contents": "여기가 최신인가요",
-      "hash": "홍"
+      "hash": "만화"
     },
     {
       "id": "6",
@@ -82,151 +74,315 @@
       "name": "버블티",
       "like": 27,
       "contents": "공차가 좋나요?",
-      "hash": "홍"
+      "hash": "디스이즈"
     },
     {
       "id": "7",
       "title": "제목7",
       "name": "칠칠맞구",
-      "like": 27,
-      "contents": "공차가 좋나요?",
-      "hash": "홍"
+      "like": 45,
+      "contents": "가나다라마바사",
+      "hash": "브이"
     },
     {
       "id": "8",
       "title": "제목8",
       "name": "배민",
       "like": 27,
-      "contents": "공차가 좋나요?",
-      "hash": "홍"
+      "contents": "뭐라는지 모르곘습니다.",
+      "hash": "뭐라는거니"
     },
     {
       "id": "9",
       "title": "제목9",
       "name": "홍게",
-      "like": 27,
-      "contents": "공차가 좋나요?",
-      "hash": "홍"
+      "like": 0,
+      "contents": "완전 헬 난이도네",
+      "hash": "헬"
     },
     {
       "id": "10",
       "title": "제목10",
       "name": "공공",
-      "like": 85,
-      "contents": "공차가 싫나요?",
-      "hash": "홍"
+      "like": 11,
+      "contents": "진짜 이건아니징",
+      "hash": "왓더"
     },
     {
       "id": "11",
       "title": "제목11",
-      "name": "공공",
-      "like": 85,
-      "contents": "공차가 싫나요?",
-      "hash": "홍"
+      "name": "마나",
+      "like": 32,
+      "contents": "신촌 사는 분 괌",
+      "hash": "신촌"
     },
     {
       "id": "12",
       "title": "제목12",
-      "name": "공공",
-      "like": 85,
-      "contents": "공차가 싫나요?",
-      "hash": "홍"
+      "name": "토토",
+      "like": 72,
+      "contents": "그 뭐였지 어디간다했는데 기억이 안나네",
+      "hash": "뭐냐"
     },
     {
       "id": "13",
       "title": "제목13",
-      "name": "공공",
-      "like": 85,
-      "contents": "공차가 싫나요?",
-      "hash": "홍"
+      "name": "사나",
+      "like": 96,
+      "contents": "해쉬 스완 뺌",
+      "hash": "해쉬"
     },
     {
       "id": "14",
       "title": "제목14",
-      "name": "공공",
-      "like": 85,
-      "contents": "공차가 싫나요?",
-      "hash": "홍"
+      "name": "지효",
+      "like": 82,
+      "contents": "ak47맞고 사망한 외할머니 그말대로 악소리 47번 외치셨지 케이셉라마",
+      "hash": "래퍼"
     },
     {
       "id": "15",
       "title": "제목15",
-      "name": "공공",
-      "like": 85,
-      "contents": "공차가 싫나요?",
-      "hash": "홍"
+      "name": "리본",
+      "like": 451,
+      "contents": "레벨 언제 올리나ㅑㅠ",
+      "hash": "레벨"
     },
     {
       "id": "16",
       "title": "제목16",
-      "name": "공공",
-      "like": 85,
-      "contents": "공차가 싫나요?",
-      "hash": "홍"
+      "name": "돼지",
+      "like": 63,
+      "contents": "한국 처음인데 아시는 분 소개좀용",
+      "hash": "한국"
     },
     {
       "id": "17",
       "title": "제목17",
-      "name": "공공",
-      "like": 85,
-      "contents": "공차가 싫나요?",
-      "hash": "홍"
+      "name": "알1588",
+      "like": 12,
+      "contents": "여기 재밌는데 추천좀 해주세용",
+      "hash": "일본"
     },
     {
       "id": "18",
       "title": "제목18",
-      "name": "공공",
+      "name": "수디드",
       "like": 85,
-      "contents": "공차가 싫나요?",
-      "hash": "홍"
+      "contents": "삼각형의 넓이를 구하는 방법을 알려주세용",
+      "hash": "삼각"
     },
     {
       "id": "19",
       "title": "제목19",
-      "name": "공공",
-      "like": 85,
-      "contents": "공차가 싫나요?",
-      "hash": "홍"
+      "name": "시라만",
+      "like": 90,
+      "contents": "검은사막 하시는 분",
+      "hash": "뭐사어"
     },
     {
-      "id": "20",
-      "title": "제목20",
-      "name": "공공",
-      "like": 85,
-      "contents": "공차가 싫나요?",
-      "hash": "홍"
+      "id": "3f0a",
+      "title": "포스트 테스트",
+      "contents": "내용 테스트입니다.",
+      "hash": "해시태그테스트",
+      "name": "익명",
+      "like": 0
+    }
+  ],
+  "LPopular": [
+    {
+      "id": "1",
+      "title": "인기글1",
+      "name": "리본",
+      "like": 451,
+      "contents": "레벨 언제 올리나ㅑㅠ",
+      "hash": "레벨"
     },
     {
-      "id": "21",
-      "title": "제목21",
-      "name": "공공",
-      "like": 85,
-      "contents": "공차가 싫나요?",
-      "hash": "홍"
+      "id": "2",
+      "title": "인기글2",
+      "name": "돼지",
+      "like": 63,
+      "contents": "한국 처음인데 아시는 분 소개좀용",
+      "hash": "한국"
     },
     {
-      "id": "22",
-      "title": "제목22",
-      "name": "공공",
-      "like": 85,
-      "contents": "공차가 싫나요?",
-      "hash": "홍"
+      "id": "3",
+      "title": "인기글3",
+      "name": "알수없음1588",
+      "like": 12,
+      "contents": "여기 재밌는데 추천좀 해주세용",
+      "hash": "일본"
     },
     {
-      "id": "23",
-      "title": "제목23",
-      "name": "공공",
+      "id": "4",
+      "title": "인기글4",
+      "name": "수디드",
       "like": 85,
-      "contents": "공차가 싫나요?",
-      "hash": "홍"
+      "contents": "삼각형의 넓이를 구하는 방법을 알려주세용",
+      "hash": "삼각"
     },
     {
-      "id": "24",
-      "title": "제목24",
-      "name": "공공",
+      "id": "5",
+      "title": "인기글5",
+      "name": "시라만",
+      "like": 90,
+      "contents": "검은사막 하시는 분",
+      "hash": "뭐사어"
+    },
+    {
+      "id": "6",
+      "title": "인기글6",
+      "name": "자으수비",
+      "like": 88,
+      "contents": "와 아이유 콘서트 지렸다 ㄷㄷㄷㄷ",
+      "hash": "라이브"
+    },
+    {
+      "id": "7",
+      "title": "인기글7",
+      "name": "아드",
       "like": 85,
-      "contents": "공차가 싫나요?",
-      "hash": "홍"
+      "contents": "띠드버거 먹고싶어용",
+      "hash": "디드"
+    },
+    {
+      "id": "8",
+      "title": "인기글8",
+      "name": "토토",
+      "like": 72,
+      "contents": "그 뭐였지 어디간다했는데 기억이 안나네",
+      "hash": "뭐냐"
+    }
+  ],
+  "LFriends": [
+    {
+      "id": "1",
+      "title": "친구구해요",
+      "name": "버블티",
+      "like": 27,
+      "contents": "공차가 좋나요?",
+      "hash": "디스이즈"
+    },
+    {
+      "id": "2",
+      "title": "친구구해요",
+      "name": "칠칠맞구",
+      "like": 45,
+      "contents": "가나다라마바사",
+      "hash": "브이"
+    },
+    {
+      "id": "3",
+      "title": "친구구해요",
+      "name": "배민",
+      "like": 27,
+      "contents": "뭐라는지 모르곘습니다.",
+      "hash": "뭐라는거니"
+    },
+    {
+      "id": "4",
+      "title": "친구구해요",
+      "name": "홍게",
+      "like": 0,
+      "contents": "완전 헬 난이도네",
+      "hash": "헬"
+    },
+    {
+      "id": "5",
+      "title": "친구구해요",
+      "name": "공공",
+      "like": 11,
+      "contents": "진짜 이건아니징",
+      "hash": "왓더"
+    },
+    {
+      "id": "6",
+      "title": "친구구해요",
+      "name": "마나",
+      "like": 32,
+      "contents": "신촌 사는 분 괌",
+      "hash": "신촌"
+    },
+    {
+      "id": "7",
+      "title": "친구구해요",
+      "name": "토토",
+      "like": 72,
+      "contents": "그 뭐였지 어디간다했는데 기억이 안나네",
+      "hash": "뭐냐"
+    },
+    {
+      "id": "8",
+      "title": "친구구해요",
+      "name": "사나",
+      "like": 96,
+      "contents": "해쉬 스완 뺌",
+      "hash": "해쉬"
+    },
+    {
+      "id": "9",
+      "title": "친구구해요",
+      "name": "지효",
+      "like": 82,
+      "contents": "ak47맞고 사망한 외할머니 그말대로 악소리 47번 외치셨지 케이셉라마",
+      "hash": "래퍼"
+    },
+    {
+      "id": "10",
+      "title": "친구구해요",
+      "name": "리본",
+      "like": 451,
+      "contents": "레벨 언제 올리나ㅑㅠ",
+      "hash": "레벨"
+    },
+    {
+      "id": "11",
+      "title": "친구구해요",
+      "name": "돼지",
+      "like": 63,
+      "contents": "한국 처음인데 아시는 분 소개좀용",
+      "hash": "한국"
+    },
+    {
+      "id": "12",
+      "title": "친구구해요",
+      "name": "알수없음1588",
+      "like": 12,
+      "contents": "여기 재밌는데 추천좀 해주세용",
+      "hash": "일본"
+    },
+    {
+      "id": "13",
+      "title": "친구구해요",
+      "name": "수디드",
+      "like": 85,
+      "contents": "삼각형의 넓이를 구하는 방법을 알려주세용",
+      "hash": "삼각"
+    },
+    {
+      "id": "14",
+      "title": "친구구해요",
+      "name": "시라만",
+      "like": 90,
+      "contents": "검은사막 하시는 분",
+      "hash": "뭐사어"
+    },
+    {
+      "id": "15",
+      "title": "친구구해요",
+      "name": "자으수비",
+      "like": 88,
+      "contents": "와 아이유 콘서트 지렸다 ㄷㄷㄷㄷ",
+      "hash": "라이브"
+    },
+    {
+      "id": "16",
+      "title": "친구구해요",
+      "name": "아드",
+      "like": 85,
+      "contents": "띠드버거 먹고싶어용",
+      "hash": "디드"
     }
   ],
   "MainCt": [
@@ -444,34 +600,23 @@
       "images": "https://gyeongju.go.kr/upload/content/thumb/20200429/AF0FBCACF6E141DEBAD30FDB6082D979.jpg"
     }
   ],
-  "Posts": [
+  "FriendComment": [
     {
-      "id": "9867",
-      "content": "dsa",
-      "replies": [
-        {
-          "id": 1715692354195,
-          "content": "dsadas"
-        }
-      ]
+      "id": "d27d",
+      "content": "ㄴㄴㄴㄴㄴㄴㄴㄴㄴ",
+      "replies": [],
+      "postId": 1
     },
     {
-      "id": "2462",
-      "content": "dsada",
-      "replies": [
-        {
-          "id": 1715692358293,
-          "content": "dsadsa"
-        }
-      ]
+      "id": "48f7",
+      "content": "ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ",
+      "replies": [],
+      "postId": 1
     }
   ],
-  "login": [
-
-  ],
-  "signup": [
-
-  ],
-  "kakaologin": [
-  ]
+  "PopularComment": [],
+  "Posts": [],
+  "login": [],
+  "signup": [],
+  "kakaologin": []
 }

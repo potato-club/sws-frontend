@@ -1,5 +1,10 @@
 import React from "react";
-import { PRIMARY_COLOR_BLUE, PRIMARY_COLOR_B } from "../Constants/constants";
+import {
+  PRIMARY_COLOR_BLUE,
+  PRIMARY_COLOR_BLU,
+  PRIMARY_COLOR_B,
+  PRIMARY_COLOR_W,
+} from "../Constants/constants";
 import styled from "styled-components";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
@@ -29,7 +34,11 @@ function Pagination({
             <BiChevronLeft size="40" />
           </BottomCheckButton>
           {Array.from({ length: numPages }).map((_, i) => (
-            <BottomCheckLink key={i} onClick={() => setPage(i + 1)}>
+            <BottomCheckLink
+              key={i}
+              onClick={() => setPage(i + 1)}
+              className={currentpage === i + 1 ? "active" : ""}
+            >
               {i + 1}
             </BottomCheckLink>
           ))}
@@ -43,7 +52,6 @@ function Pagination({
           </BottomCheckButton>
         </BottomCheckbox>
       </BottomCheckbox>
-      <div>{currentpage} 페이지</div>
     </BottomCheck>
   );
 }
@@ -72,19 +80,24 @@ const BottomCheckLink = styled.div`
   justify-content: center;
   text-decoration: none;
   background-color: white;
-  border: 1px solid ${PRIMARY_COLOR_BLUE};
-  color: ${PRIMARY_COLOR_BLUE};
+  border: 1px solid ${PRIMARY_COLOR_BLU};
+  color: ${PRIMARY_COLOR_BLU};
   height: 35px;
 
   &:hover {
-    background-color: ${PRIMARY_COLOR_B};
+    background-color: ${PRIMARY_COLOR_BLU};
+    color: white;
+  }
+
+  &.active {
+    background-color: ${PRIMARY_COLOR_BLUE};
     color: white;
   }
 `;
 
 const BottomCheckButton = styled.button`
-  background-color: ${PRIMARY_COLOR_B};
-  border: 1px solid ${PRIMARY_COLOR_BLUE};
+  background-color: ${PRIMARY_COLOR_BLUE};
+  border: 1px solid ${PRIMARY_COLOR_BLU};
   display: flex;
   align-items: center;
   justify-content: center;

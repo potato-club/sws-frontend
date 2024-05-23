@@ -12,9 +12,10 @@ import { createGlobalStyle } from "styled-components";
 import Make from "./TeamMake/Make";
 import Map from "./TeamMake/Map";
 import MainBox from "./MainCafePage/MainBox";
-import Community from "./Lounge/LoungeDetail";
+import LoungeDetail from "./Lounge/LoungeDetail";
 import Lcreate from "./Lounge/Lcreate";
 import PostMainBox from "./MainCafePage/PostMainBox";
+import LWriting from "./Lounge/LWriting";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -38,10 +39,35 @@ function App() {
         <Routes>
           <Route path="/*" element={<Main isSidebarOpen={isSidebarOpen} />} />
           <Route
+            path="/Lboard/Write"
+            element={<LWriting apiEndpoint="Lboard" />}
+          />
+          <Route
+            path="/LPopular/Write"
+            element={<LWriting apiEndpoint="LPopular" />}
+          />
+          <Route
+            path="/LFriends/Write"
+            element={<LWriting apiEndpoint="LFriends" />}
+          />
+
+          <Route
             path="/Lounge"
             element={<Lounge isSidebarOpen={isSidebarOpen} />}
           />
-          <Route path="/Lboard" element={<Lboard />} />
+          <Route
+            path="/Lboard"
+            element={<Lboard pageTitle="최신 게시판" apiEndpoint="Lboard" />}
+          />
+          <Route
+            path="/LPopular"
+            element={<Lboard pageTitle="인기 게시판" apiEndpoint="LPopular" />}
+          />
+          <Route
+            path="/LFriends"
+            element={<Lboard pageTitle="친구 구해요" apiEndpoint="LFriends" />}
+          />
+
           <Route path="/SignInUpPage/SignInUpBox" element={<SignInUpBox />} />
           <Route path="MyPage" element={<MyPage />} />
           <Route path="/auth" element={<RedirectHandler />} />
@@ -50,7 +76,18 @@ function App() {
             element={<Make isSidebarOpen={isSidebarOpen} />}
           />
           <Route path="/MainBox" element={<MainBox />} />
-          <Route path="/Community/:id" element={<Community />} />
+          <Route
+            path="/Lboard/:id"
+            element={<LoungeDetail endpoint="Lboard" />}
+          />
+          <Route
+            path="/LPopular/:id"
+            element={<LoungeDetail endpoint="LPopular" />}
+          />
+          <Route
+            path="/LFriends/:id"
+            element={<LoungeDetail endpoint="LFriends" />}
+          />
           <Route path="/LoungeCreate" element={<Lcreate />} />
           <Route path="/PostMainBox" element={<PostMainBox />} />
           <Route path="/Map" element={<Map />} />
@@ -61,9 +98,3 @@ function App() {
 }
 
 export default App;
-{
-  /* <Route
-path="/Lounge"
-element={<Lounge isSidebarOpen={isSidebarOpen} />}
-/> */
-}
