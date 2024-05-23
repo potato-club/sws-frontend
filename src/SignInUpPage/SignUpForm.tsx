@@ -13,20 +13,24 @@ interface SignUpFormProps {
     nickname: string
   ) => void;
 }
-const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
-  const [username, setUsername] = useState("");
+const SignUpForm: React.FC<SignUpFormProps> = () => {
+  const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [nickname, setNickname] = useState("");
 
-  const handleSignUp =async (e: React.FormEvent) => {
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/signup", {
-        username,
+      const response = await axios.post("https://shallwestudy.store/client/signup", {
+        userName,
         password,
         email,
         nickname,
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       });
       console.log(response.data); // 서버에서 받은 응답 처리
     } catch (error) {
@@ -71,7 +75,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
           id="Username"
           type="text"
           placeholder="이름"
-          value={username}
+          value={userName}
           onChange={(e) => setUsername(e.target.value)}
           required
         />

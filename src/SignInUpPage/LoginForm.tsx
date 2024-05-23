@@ -1,50 +1,33 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { KakaoSignInBtn } from "./KakaoSignInBtn";
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
-import axios, { AxiosError } from "axios";
 
 interface LoginFormProps {
-  onSubmit: (username: string, password: string) => void;
+  onSubmit: (email: string, password: string) => void;
 }
-const LoginForm: React.FC<LoginFormProps> = ({ onSubmit = () => {} }) => {
-  const [username, setUsername] = useState("");
+
+const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:3001/login", {
-        username,
-        password,
-      });
-      console.log(response.data); // 서버에서 받은 응답 처리
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        if (error.response) {
-          console.error("로그인 실패", error.response.data);
-        } else {
-          console.error("네트워크 오류", error.message);
-        }
-      } else {
-        console.error("기타 오류", error);
-      }
-    }
+    onSubmit(email, password); // onSubmit prop을 호출하여 로그인 정보 전달
   };
 
   return (
     <StyledForm onSubmit={handleLogin}>
-      <StyledLabel htmlFor="Id">
+      <StyledLabel htmlFor="Email">
         <StyledInput
-          id="Id"
+          id="Email"
           type="text"
-          placeholder="아이디"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          placeholder="이메일"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <StyledDIv />
+        <StyledDiv />
       </StyledLabel>
       <StyledLabel htmlFor="Password">
         <StyledInput
@@ -55,13 +38,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit = () => {} }) => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <StyledDIv />
+        <StyledDiv />
       </StyledLabel>
       <KakaoSignInBtn />
       <StyledButton type="submit">로그인</StyledButton>
     </StyledForm>
   );
 };
+
 export default LoginForm;
 
 const StyledLabel = styled.label`
@@ -114,7 +98,7 @@ const StyledInput = styled.input`
   }
 `;
 
-const StyledDIv = styled.div`
+const StyledDiv = styled.div`
   background-color: black;
   height: 1.5px;
 `;

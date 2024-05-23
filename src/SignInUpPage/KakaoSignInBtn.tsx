@@ -4,13 +4,12 @@ import kakaoBTNIMG from "./kakaoBTNIMG.png";
 
 export const KakaoSignInBtn = () => {
     const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
-    const REDIRECT_URI = 'http://localhost:3000/auth';
+    const REDIRECT_URI = 'https://shallwestudy.store/login/oauth2/code/kakao';
     const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
     
     const loginHandler = () => {
       window.location.href = link;
     };
-    console.log(REST_API_KEY)
   
     return (
     
