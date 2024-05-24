@@ -121,6 +121,9 @@ export default Lounge;
 const Mtop = styled.h1`
   color: ${PRIMARY_COLOR_W};
   font-size: 48px;
+  font-family: "Noto Sans KR", sans-serif;
+
+  font-weight: 600;
 `;
 const LMtop = styled.div`
   border: 15px solid ${PRIMARY_COLOR_BLU};

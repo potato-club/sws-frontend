@@ -37,8 +37,8 @@ const MainContents: React.FC<info> = ({ Pagenation }) => {
                   ></BottomComponent1CaffeeImg>
 
                   <BottomComponent1CaffeeText>
-                    <div>{`카페이름: ${ct.id}`}</div>
-                    <div>{`지역: ${ct.title}`}</div>
+                    <DDDDD>{`CAFE: ${ct.id}`}</DDDDD>
+                    <DDDDD>{`LOCAL: ${ct.title}`}</DDDDD>
                   </BottomComponent1CaffeeText>
                 </BottomComponent1Caffee>
               </BottomComponent1>
@@ -53,7 +53,11 @@ const MainContents: React.FC<info> = ({ Pagenation }) => {
 };
 
 export default MainContents;
+const DDDDD = styled.div`
+  font-family: "Noto Sans KR", sans-serif;
 
+  font-weight: 400;
+`;
 const BottomComponent = styled.div`
   box-sizing: border-box;
   max-width: 100%;
@@ -111,6 +115,7 @@ const BottomComponent1CaffeeImg = styled.div`
 
 const BottomComponent1CaffeeText = styled.div`
   height: 15%;
+
   display: flex;
   justify-content: space-around;
   border: 0;
