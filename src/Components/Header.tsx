@@ -86,7 +86,7 @@ const SidebarLink = styled(Link)`
   font-size: 22px;
   font-family: "Noto Sans KR", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 600;
+  font-weight: 500;
   font-style: normal;
   display: flex;
   align-items: center;
@@ -112,6 +112,9 @@ const SidebarMe = styled.div`
   padding-left: 15px;
   display: flex;
   align-items: center;
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
 `;
 const Sidebardiv = styled.div`
   height: 55px;

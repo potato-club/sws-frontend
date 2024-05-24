@@ -105,16 +105,37 @@ const Comment: React.FC<CommentProps> = ({ postId, commentEndpoint }) => {
       console.error("error:", error);
     }
   };
+  const [nickname, setNickname] = useState("");
 
+  const accessToken = localStorage.getItem("jwtToken");
+
+  useEffect(() => {
+    // 백엔드에서 닉네임 데이터를 가져옵니다
+    axios
+      .get("https://shallwestudy.store/client/myPage", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: accessToken,
+        },
+      })
+      .then((response) => {
+        setNickname(String(response.data.nickname));
+
+        console.log("데이터 가져오기 성공:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [accessToken]);
   return (
     <BoardContainer>
       {posts.map((post) => (
         <PostItem key={post.id}>
-          <PostId>ID: {post.id}</PostId>
+          <PostId>ID: {nickname}</PostId>
           <PostContent>{post.content}</PostContent>
           {post.replies.map((reply) => (
             <ReplyItem key={reply.id}>
-              <ReplyId>ID: {reply.id}</ReplyId>
+              <ReplyId>ID: {nickname}</ReplyId>
               <ReplyContent>- {reply.content}</ReplyContent>
               <DeleteButton
                 onClick={() => handleDeleteReply(post.id, reply.id)}
