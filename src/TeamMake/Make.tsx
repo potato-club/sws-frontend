@@ -76,6 +76,9 @@ const MakeRightTitle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
 `;
 
 const MakeRightfriend = styled.div`
@@ -92,6 +95,9 @@ const MakeRightinput = styled.input`
   border-right: 0px;
   display: flex;
   align-items: center;
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
 `;
 const MakeRightbutton = styled.button`
   display: flex;
@@ -135,9 +141,11 @@ const MakeBottomButton = styled(Link)`
   border-radius: 25px;
   background-color: ${PRIMARY_COLOR_BLUE};
   text-decoration: none;
-  &:active {
-    height: 110px;
-    width: 350px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  &:hover {
+    background-color: green;
     transition: 0.5s;
   }
 `;

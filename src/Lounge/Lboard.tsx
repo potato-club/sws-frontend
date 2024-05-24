@@ -106,6 +106,9 @@ const LoungeLink = styled(Link)`
 const LoungeTop = styled.h1`
   width: 300px;
   display: flex;
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
   justify-content: space-around;
   margin-right: 650px;
 `;

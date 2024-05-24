@@ -1,22 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { PRIMARY_COLOR_W, PRIMARY_COLOR_BLU } from "../Constants/constants";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { ImArrowLeft } from "react-icons/im";
+
 interface LWritingProps {
   apiEndpoint: string;
 }
+
 const LWriting: React.FC<LWritingProps> = ({ apiEndpoint }) => {
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
   const [hash, setHash] = useState("");
-
   const [imageSrcs, setImageSrcs] = useState<(string | ArrayBuffer | null)[]>(
     []
   );
+  const [nickname, setNickname] = useState("");
 
   const navigate = useNavigate();
+  const accessToken = localStorage.getItem("jwtToken");
+
+  useEffect(() => {
+    // 백엔드에서 닉네임 데이터를 가져옵니다
+    axios
+      .get("https://shallwestudy.store/client/myPage", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: accessToken,
+        },
+      })
+      .then((response) => {
+        setNickname(String(response.data.nickname));
+        console.log("데이터 가져오기 성공:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [accessToken]);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -25,6 +46,7 @@ const LWriting: React.FC<LWritingProps> = ({ apiEndpoint }) => {
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContents(e.target.value);
   };
+
   const handlehashChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHash(e.target.value);
   };
@@ -32,6 +54,7 @@ const LWriting: React.FC<LWritingProps> = ({ apiEndpoint }) => {
   const Change = () => {
     navigate(-1);
   };
+
   const onUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     const fileReaders: FileReader[] = [];
@@ -68,7 +91,7 @@ const LWriting: React.FC<LWritingProps> = ({ apiEndpoint }) => {
         title,
         contents,
         hash,
-        name: "익명",
+        name: nickname || "익명",
         like: 0,
         imageSrcs,
       });
@@ -93,7 +116,6 @@ const LWriting: React.FC<LWritingProps> = ({ apiEndpoint }) => {
 
         <Writeindiv>
           <Dii>제목</Dii>
-
           <Writeinput
             placeholder="제목을 입력하세요"
             value={title}
@@ -103,7 +125,6 @@ const LWriting: React.FC<LWritingProps> = ({ apiEndpoint }) => {
 
         <Writemid>
           <span>hash tag</span>
-
           <Writeinput2
             placeholder="해시태그을 입력하세요"
             value={hash}
@@ -120,12 +141,7 @@ const LWriting: React.FC<LWritingProps> = ({ apiEndpoint }) => {
         </Writeindiv>
         <Writeindiv>
           <Writebottom>
-            <input
-              accept="image/*"
-              multiple
-              type="file"
-              onChange={(e) => onUpload(e)}
-            />
+            <input accept="image/*" multiple type="file" onChange={onUpload} />
             <Wimgs>
               {imageSrcs.map((src, index) => (
                 <Wrimg
@@ -144,10 +160,10 @@ const LWriting: React.FC<LWritingProps> = ({ apiEndpoint }) => {
 };
 
 export default LWriting;
+
 const Wimgs = styled.div`
   display: flex;
   justify-content: flex-start;
-
   width: 300px;
   height: 100px;
 `;
@@ -161,7 +177,9 @@ const Writemid = styled.div`
 `;
 const Wr = styled.div`
   display: flex;
-
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
   align-items: center;
   width: 200px;
   justify-content: space-between;

@@ -304,12 +304,11 @@ const MyPage = () => {
   }, [accessToken]);
 
   const friendDelete = async (id: number) => {
-    await axios.delete(
-      `https://shallwestudy.store/client/friends/received/${id}`
-    );
+    await axios.delete(`http://localhost:3001/MyPage/${id}`);
     alert("삭제되었습니다.");
+    // 삭제 후 친구 목록을 다시 불러와서 상태를 업데이트합니다.
     axios
-      .get("https://shallwestudy.store/client/friends/received")
+      .get("http://localhost:3001/MyPage")
       .then((response) => {
         setFriend(response.data);
       })
@@ -317,6 +316,17 @@ const MyPage = () => {
         console.log(error);
       });
   };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/MyPage")
+      .then((response) => {
+        setFriend(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <MyPageContaine>
@@ -502,6 +512,7 @@ const MPBfriend = styled.div`
   overflow-y: auto;
   width: 100%;
   height: 420px;
+
   @media screen and (max-width: 1200px) {
     width: 90%;
   }
