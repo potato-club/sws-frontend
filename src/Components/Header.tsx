@@ -84,12 +84,17 @@ const Sidebar = styled.div`
 const SidebarLink = styled(Link)`
   text-decoration: none;
   font-size: 22px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
   display: flex;
   align-items: center;
   height: 100%;
   border-radius: 15px;
   padding-left: 15px;
   color: black;
+
   background-color: white;
   &.active {
     background-color: ${PRIMARY_COLOR_BLUE};
@@ -171,7 +176,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isSidebarOpen }) => {
                   className={`SidebarLink ${activeLink === 0 ? "active" : ""}`}
                   onClick={() => handleClick(0)}
                 >
-                  라운지
+                  LOUNGE
                 </SidebarLink>
               </Sidebardiv>
 
@@ -184,7 +189,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isSidebarOpen }) => {
                   className={`SidebarLink ${activeLink === 1 ? "active" : ""}`}
                   onClick={() => handleClick(1)}
                 >
-                  설정
+                  SETTING
                 </SidebarLink>
               </Sidebardiv>
 
@@ -197,7 +202,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isSidebarOpen }) => {
                   className={`SidebarLink ${activeLink === 2 ? "active" : ""}`}
                   onClick={() => handleClick(2)}
                 >
-                  팀 만들기
+                  Make Team
                 </SidebarLink>
               </Sidebardiv>
               <hr />
@@ -205,7 +210,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isSidebarOpen }) => {
                 className={`SidebarLink ${activeLink === 3 ? "active" : ""}`}
                 onClick={() => handleClick(3)}
               >
-                <SidebarMe>나</SidebarMe>
+                <SidebarMe>MY</SidebarMe>
               </Sidebardiv>
               <hr />
               <Sidebardiv
@@ -217,7 +222,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isSidebarOpen }) => {
                   className={`SidebarLink ${activeLink === 4 ? "active" : ""}`}
                   onClick={() => handleClick(4)}
                 >
-                  친구창
+                  FRIEND
                 </SidebarLink>
               </Sidebardiv>
 
@@ -230,7 +235,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isSidebarOpen }) => {
                   className={`SidebarLink ${activeLink === 5 ? "active" : ""}`}
                   onClick={() => handleClick(5)}
                 >
-                  마이 페이지
+                  MY PAGE
                 </SidebarLink>
               </Sidebardiv>
               <Sidebardiv
@@ -242,7 +247,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isSidebarOpen }) => {
                   className={`SidebarLink ${activeLink === 6 ? "active" : ""}`}
                   onClick={() => handleClick(6)}
                 >
-                  사이드바 내용
+                  COTENTS
                 </SidebarLink>
               </Sidebardiv>
             </Sidebar>
