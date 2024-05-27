@@ -84,7 +84,7 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
       <Lentire>
         <div>
           <Llefttoptitle>
-            <Mtop>Shall We Study?</Mtop>{" "}
+            <Mtop>Shall We Study?</Mtop>
             <LoungeLink to="/LFriends">더보기</LoungeLink>
           </Llefttoptitle>
           <LMtop>
