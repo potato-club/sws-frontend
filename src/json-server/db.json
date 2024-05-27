@@ -615,8 +615,29 @@
       "images": "https://gyeongju.go.kr/upload/content/thumb/20200429/AF0FBCACF6E141DEBAD30FDB6082D979.jpg"
     }
   ],
-  "FriendComment": [],
+  "FriendComment": [
+    {
+      "id": "a36d",
+      "content": "ㄴㄴㄴ",
+      "replies": [],
+      "postId": 1
+    },
+    {
+      "id": "6a59",
+      "content": "ㅇㄴㅇㄴ",
+      "replies": [],
+      "postId": 7
+    }
+  ],
   "PopularComment": [],
+  "BoardComment": [
+    {
+      "id": "87ee",
+      "content": "ㅇㄴㄹㅇㄴㄴㅇㄹㄴㅇㄹ",
+      "replies": [],
+      "postId": 1
+    }
+  ],
   "Posts": [],
   "login": [],
   "signup": [],
