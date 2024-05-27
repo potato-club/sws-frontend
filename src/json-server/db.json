@@ -191,23 +191,6 @@
       "like": 90,
       "contents": "검은사막 하시는 분",
       "hash": "뭐사어"
-    },
-    {
-      "id": "3f0a",
-      "title": "포스트 테스트",
-      "contents": "내용 테스트입니다.",
-      "hash": "해시태그테스트",
-      "name": "익명",
-      "like": 0
-    },
-    {
-      "id": "bcd1",
-      "title": "ㅂㅇㅂㅂ",
-      "contents": "ㅁㅇㅁㅇㅁㅇㅁㅇ",
-      "hash": "ㅁㅇㅁㅇㅁㅇ",
-      "name": "되나",
-      "like": 0,
-      "imageSrcs": []
     }
   ],
   "LPopular": [
@@ -632,33 +615,7 @@
       "images": "https://gyeongju.go.kr/upload/content/thumb/20200429/AF0FBCACF6E141DEBAD30FDB6082D979.jpg"
     }
   ],
-  "FriendComment": [
-    {
-      "id": "5154",
-      "content": "sdwefDF",
-      "replies": [],
-      "postId": 1
-    },
-    {
-      "id": "448f",
-      "content": "ASDASDAS",
-      "replies": [
-        {
-          "id": 1716560796121,
-          "content": "SKSMS"
-        },
-        {
-          "id": 1716560817490,
-          "content": "ASDSADSD"
-        },
-        {
-          "id": 1716560819139,
-          "content": "ASDASDSA"
-        }
-      ],
-      "postId": 1
-    }
-  ],
+  "FriendComment": [],
   "PopularComment": [],
   "Posts": [],
   "login": [],
