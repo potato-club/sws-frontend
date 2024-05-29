@@ -40,6 +40,7 @@ const Comment: React.FC<CommentProps> = ({ postId, commentEndpoint }) => {
       console.error("Invalid postId:", postId);
     }
   }, [postId, commentEndpoint]);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!newPost) return;

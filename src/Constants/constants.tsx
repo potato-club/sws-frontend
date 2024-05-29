@@ -5,3 +5,6 @@ export const PRIMARY_COLOR_B = "#F4CE14";
 export const PRIMARY_COLOR_W = "#2B7A0B";
 export const PRIMARY_COLOR_BLUE = "#5BB318";
 export const PRIMARY_COLOR_BLU = "#7DCE13";
+
+export const PRI = "#5AB2FF";
+export const PR = "#FAA300";

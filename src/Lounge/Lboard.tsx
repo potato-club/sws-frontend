@@ -121,6 +121,7 @@ const Loungemargin = styled.div`
   align-items: center;
   flex-direction: column;
   border: 20px solid ${PRIMARY_COLOR_BLU};
+  border-width: 20px 3px;
 `;
 
 const MainContain = styled.div`
