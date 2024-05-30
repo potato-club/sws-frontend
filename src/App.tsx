@@ -91,6 +91,7 @@ function App() {
           <Route path="/LoungeCreate" element={<Lcreate />} />
           <Route path="/PostMainBox" element={<PostMainBox />} />
           <Route path="/Map" element={<Map />} />
+          <Route path="/redirecthandler" element={<RedirectHandler />} />
         </Routes>
       </Router>
     </>
