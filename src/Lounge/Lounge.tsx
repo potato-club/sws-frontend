@@ -81,6 +81,25 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
     }
     fetchPageContent();
   }, []);
+
+  // const [content, setcontent] = useState<Community[]>([]);
+  // const accessToken = localStorage.getItem("jwtToken");
+  // useEffect(() => {
+  //   async function fetchPageContent() {
+  //     try {
+  //       const result = await axios.get("https://shallwestudy.store/post", {
+  //         headers: {
+  //           Authorization: accessToken,
+  //         },
+  //       });
+  //       setcontent(result.data);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   }
+  //   fetchPageContent();
+  // }, []);
+
   return (
     <MainContain paddingLeft={pL}>
       <Lentire>
