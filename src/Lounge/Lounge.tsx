@@ -6,6 +6,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import {
+  PR,
+  PRI,
   PRIMARY_COLOR_BLUE,
   PRIMARY_COLOR_BLU,
   PRIMARY_COLOR_W,
@@ -84,7 +86,7 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
       <Lentire>
         <div>
           <Llefttoptitle>
-            <Mtop>Shall We Study?</Mtop>{" "}
+            <Mtopone>Shall We Study?</Mtopone>
             <LoungeLink to="/LFriends">더보기</LoungeLink>
           </Llefttoptitle>
           <LMtop>
@@ -94,7 +96,7 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
 
         <div>
           <Llefttoptitle>
-            <Mtop>NEW</Mtop> <LoungeLink to="/Lboard">더보기</LoungeLink>
+            <Mtopone>NEW</Mtopone> <LoungeLink to="/Lboard">더보기</LoungeLink>
           </Llefttoptitle>
           <LMbottom>
             <LoungeMain linkPath="Lboard" showCount={pagecontent.slice(0, 5)} />
@@ -107,27 +109,27 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
         </LoungeSlick>
         <div>
           <Llefttoptitle>
-            <Mtop>HOT</Mtop> <LoungeLink to="/LPopular">더보기</LoungeLink>
+            <Mtopone>HOT</Mtopone>{" "}
+            <LoungeLink to="/LPopular">더보기</LoungeLink>
           </Llefttoptitle>
-          <LMtop>
+          <LMid>
             <LoungeMain linkPath="LPopular" showCount={content.slice(0, 8)} />
-          </LMtop>
+          </LMid>
         </div>
       </Lentire>
     </MainContain>
   );
 };
 export default Lounge;
-const Mtop = styled.h1`
+
+const Mtopone = styled.h1`
   color: ${PRIMARY_COLOR_W};
   font-size: 48px;
   font-family: "Noto Sans KR", sans-serif;
-
   font-weight: 600;
 `;
-const LMtop = styled.div`
-  border: 15px solid ${PRIMARY_COLOR_BLU};
 
+const LMcon = styled.div`
   width: 620px;
   height: 750px;
   border-radius: 25px;
@@ -135,8 +137,23 @@ const LMtop = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+const LMtop = styled(LMcon)`
+  border: 15px solid ${PRIMARY_COLOR_BLU};
+  border-width: 15px 3px;
+  height: 750px;
+`;
+const LMbottom = styled(LMcon)`
+  border: 15px solid ${PRIMARY_COLOR_BLU};
+  border-width: 15px 3px;
+  height: 450px;
+`;
+const LMid = styled(LMcon)`
+  border: 15px solid ${PRIMARY_COLOR_BLU};
+  border-width: 15px 3px;
+  height: 750px;
+`;
 const LoungeLink = styled(Link)`
-  background-color: ${PRIMARY_COLOR_BLUE};
+  background-color: ${PRIMARY_COLOR_W};
   color: white;
   width: 60px;
   height: 30px;
@@ -146,7 +163,7 @@ const LoungeLink = styled(Link)`
   align-items: center;
   justify-content: center;
   &:hover {
-    background-color: ${PRIMARY_COLOR_W};
+    background-color: ${PRIMARY_COLOR_BLU};
     color: white;
     transition: 1s;
   }
@@ -171,16 +188,6 @@ const Llefttoptitle = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`;
-
-const LMbottom = styled.div`
-  border: 15px solid ${PRIMARY_COLOR_BLU};
-  width: 620px;
-  height: 450px;
-  border-radius: 25px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 const MainContain = styled.div<{ paddingLeft: number }>`

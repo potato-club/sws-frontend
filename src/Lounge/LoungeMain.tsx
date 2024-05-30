@@ -68,7 +68,8 @@ const Loungein = styled(Link)`
   justify-content: space-around;
 
   display: Flex;
-  color: ${PRIMARY_COLOR_W};
+  /* color: ${PRIMARY_COLOR_W}; */
+  color: black;
   border-top: 1px solid ${PRIMARY_COLOR_BLU};
   &:hover {
     transition: all 0.5s;

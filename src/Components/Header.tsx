@@ -3,14 +3,12 @@ import styled from "styled-components";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { CgSearch } from "react-icons/cg";
-import {
-  PRIMARY_COLOR_BLUE,
-  PRIMARY_COLOR_W,
-  PRIMARY_COLOR_BLU,
-} from "../Constants/constants";
+import { PRIMARY_COLOR_BLUE, PRIMARY_COLOR_BLU } from "../Constants/constants";
 // @ts-ignore
-import logo from "./logo.png";
-
+// import logo from "./logo.png";
+//import logo from "./logo1.jpg";
+import logo from "./file.png";
+//import logo from "./LOGO1.png";
 interface HeaderProps {
   toggleSidebar: () => void;
   isSidebarOpen: boolean;
@@ -128,7 +126,7 @@ const Logo = styled.div`
   background: url(${logo});
   background-repeat: no-repeat;
   width: 120px;
-  height: 50px;
+  height: 70px;
   background-position: center;
   background-size: cover;
 `;

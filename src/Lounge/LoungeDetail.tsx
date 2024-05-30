@@ -1,4 +1,4 @@
-//글 각 페이지
+// //글 각 페이지
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -35,14 +35,18 @@ const Community: React.FC<CommunityProps> = ({ endpoint }) => {
   });
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3001/${endpoint}/${id}`)
-      .then((res) => {
-        setCommun(res.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    if (id) {
+      axios
+        .get(`http://localhost:3001/${endpoint}/${id}`)
+        .then((res) => {
+          setCommun(res.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      console.error("ID가 없습니다.");
+    }
   }, [endpoint, id]);
 
   const commentEndpointMap: { [key: string]: string } = {
@@ -65,7 +69,6 @@ const Community: React.FC<CommunityProps> = ({ endpoint }) => {
             <div>
               <div>{commun.name}</div>
               <Detailheart>
-                {" "}
                 <FaHeart />
                 {commun.like}
               </Detailheart>
@@ -82,24 +85,29 @@ const Community: React.FC<CommunityProps> = ({ endpoint }) => {
                 />
               ))}
           </Dimgs>
-
           <div>{commun.contents}</div>
         </CommunityDetail>
-        <Comment
-          postId={parseInt(commun.id)}
-          commentEndpoint={commentEndpoint}
-        />
+        {commun.id ? (
+          <Comment
+            postId={parseInt(commun.id)}
+            commentEndpoint={commentEndpoint}
+          />
+        ) : (
+          <div>댓글을 로드할 수 없습니다. 게시물 ID가 없습니다.</div>
+        )}
       </CommunityBox>
     </CommunityComponent>
   );
 };
 
 export default Community;
+
 const Dimgs = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 `;
+
 const Detailimg = styled.img`
   object-fit: contain;
   height: 200px;
@@ -126,7 +134,6 @@ const CommunityBox = styled.div`
   min-height: 100vh;
   padding-top: 30px;
   margin-top: 70px;
-
   background-color: ${PRIMARY_COLOR_BLUE};
   display: flex;
   flex-direction: column;
