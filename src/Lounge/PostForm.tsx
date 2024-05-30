@@ -1,25 +1,39 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
-
-interface PostFormInputs {
-  title: string;
-  content: string;
-  category: string;
-  tag: string[];
-}
+import { useNavigate } from "react-router-dom";
 
 const PostForm: React.FC = () => {
-  const { register, handleSubmit, reset } = useForm<PostFormInputs>();
-  const history = useHistory();
+  const [formData, setFormData] = useState({
+    title: "",
+    content: "",
+    category: "",
+    tag: "",
+  });
+  const [errors, setErrors] = useState({
+    title: "",
+    content: "",
+    category: "",
+    tag: "",
+  });
+  const navigate = useNavigate();
   const accessToken = localStorage.getItem("jwtToken");
 
-  const onSubmit = async (data: PostFormInputs) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     try {
       const response = await axios.post(
         "https://shallwestudy.store/post",
-        data,
+        formData,
         {
           headers: {
             "Content-Type": "application/json",
@@ -28,32 +42,52 @@ const PostForm: React.FC = () => {
         }
       );
       console.log("Post created successfully:", response.data);
-      alert("게시글이 성공적으로 생성되었습니다.");
-      reset();
-      history.push("/"); // 홈 페이지 또는 원하는 페이지로 이동
+      navigate("/posts"); // 게시글 목록 페이지로 이동
     } catch (error) {
       console.error("Error creating post:", error);
-      alert("게시글 생성 중 오류가 발생했습니다.");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={onSubmit}>
       <div>
         <label>Title</label>
-        <input {...register("title", { required: true })} />
+        <input
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleInputChange}
+        />
+        {errors.title && <span>This field is required</span>}
       </div>
       <div>
         <label>Content</label>
-        <textarea {...register("content", { required: true })} />
+        <textarea
+          name="content"
+          value={formData.content}
+          onChange={handleInputChange}
+        />
+        {errors.content && <span>This field is required</span>}
       </div>
       <div>
         <label>Category</label>
-        <input {...register("category", { required: true })} />
+        <input
+          type="text"
+          name="category"
+          value={formData.category}
+          onChange={handleInputChange}
+        />
+        {errors.category && <span>This field is required</span>}
       </div>
       <div>
         <label>Tag</label>
-        <input {...register("tag", { required: true })} />
+        <input
+          type="text"
+          name="tag"
+          value={formData.tag}
+          onChange={handleInputChange}
+        />
+        {errors.tag && <span>This field is required</span>}
       </div>
       <button type="submit">Submit</button>
     </form>

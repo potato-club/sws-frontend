@@ -68,8 +68,8 @@ function App() {
             path="/LFriends"
             element={<Lboard pageTitle="친구 구해요" category="LFriends" />}
           />
-          <Route path="/posts" component={PostList} />
-          <Route path="/post/new" component={PostForm} />
+          <Route path="/posts" element={<PostList />} />
+          <Route path="/post/new" element={<PostForm />} />
           <Route path="/SignInUpPage/SignInUpBox" element={<SignInUpBox />} />
           <Route path="MyPage" element={<MyPage />} />
           <Route path="/auth" element={<RedirectHandler />} />
