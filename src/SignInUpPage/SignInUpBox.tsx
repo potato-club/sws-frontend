@@ -6,10 +6,14 @@ import styled from "styled-components";
 import axios from "axios";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
+import { useRecoilState } from "recoil";
+import { jwtTokenState,refreshTokenState } from "../recoil/atom";
 
 const SignInUpBox = () => {
   const [isLoginTab, setIsLoginTab] = useState(true);
   const [username, setUsername] = useState<string | null>(null);
+  const [jwtToken, setJwtToken] = useRecoilState(jwtTokenState);
+  const [refreshToken, setRefreshToken] = useRecoilState(refreshTokenState);
 
   const handleLoginSubmit = async (email: string, password: string) => {
     try {
@@ -18,12 +22,16 @@ const SignInUpBox = () => {
         password,
       });
     //  console.log(response.headers);
-      const token = response.headers['authorization'];
-      const refreshtoken = response.headers['refreshtoken']
-      localStorage.setItem('jwtToken', token); // JWT 토큰 localStorage에 저장
-      localStorage.setItem('refreshtoken', refreshtoken); // 리프레시 토큰 localStorage에 저장
+      const jwtToken = response.headers['authorization'];
+      const refreshToken = response.headers['refreshtoken']
+
+      setJwtToken(jwtToken);
+      setRefreshToken(refreshToken);
+      localStorage.setItem('jwtToken', jwtToken);
+      localStorage.setItem('refreshToken', refreshToken);
+
       console.log("로그인 성공", response.data);
-      await fetchUsername(token); 
+      await fetchUsername(jwtToken); 
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
@@ -39,7 +47,6 @@ const SignInUpBox = () => {
 
   const fetchUsername = async (accessToken: string) => {
     try {
-      const accessToken = localStorage.getItem("jwtToken");
       const response = await axios.get("https://shallwestudy.store/client/myPage", {
         headers: {
           Authorization: `${accessToken}`,
@@ -54,24 +61,23 @@ const SignInUpBox = () => {
 
   const handleLogout = async () => {
     try {
-      const accessToken = localStorage.getItem("jwtToken");
-      const refreshtoken = localStorage.getItem("refreshtoken");
-      if (accessToken) {
+      if (jwtToken && refreshToken) {
         // 서버에 로그아웃 요청 보내기
         await axios.get("https://shallwestudy.store/client/logout", {
           headers: {
-            Authorization: `${accessToken}`,
-            refreshToken: `${refreshtoken}` // 리프레시 토큰을 별도의 헤더에 추가
+            Authorization: `${jwtToken}`,
+            refreshToken: `${refreshToken}` // 리프레시 토큰을 별도의 헤더에 추가
           },
         });
         console.log("로그아웃 요청 성공");
       }
+      setJwtToken(null);
+      setRefreshToken(null);
       // 로컬 스토리지에서 토큰 제거
       localStorage.removeItem("jwtToken");
-      localStorage.removeItem("refreshtoken");
+      localStorage.removeItem("refreshToken");
       // 사용자 이름 상태 초기화
       setUsername(null);
-      // 로그인 탭으로 전환
       setIsLoginTab(true);
     } catch (error) {
       console.error("로그아웃 요청 중 오류 발생:", error);
