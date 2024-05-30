@@ -146,7 +146,7 @@ import {
   PRIMARY_COLOR_BLUE,
   PRIMARY_COLOR_BLU,
 } from "../Constants/constants";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 interface Community {
   id: string;
