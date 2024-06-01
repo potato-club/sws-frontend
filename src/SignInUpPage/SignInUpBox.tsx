@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
 // @ts-ignore
 import logo from "./logo.png";
@@ -7,7 +7,7 @@ import axios from "axios";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import { useRecoilState } from "recoil";
-import { jwtTokenState,refreshTokenState } from "../recoil/atom";
+import { jwtTokenState, refreshTokenState } from "../recoil/atom";
 
 const SignInUpBox = () => {
   const [isLoginTab, setIsLoginTab] = useState(true);
@@ -17,21 +17,24 @@ const SignInUpBox = () => {
 
   const handleLoginSubmit = async (email: string, password: string) => {
     try {
-      const response = await axios.post("https://shallwestudy.store/client/login", {
-        email,
-        password,
-      });
-    //  console.log(response.headers);
-      const jwtToken = response.headers['authorization'];
-      const refreshToken = response.headers['refreshtoken']
+      const response = await axios.post(
+        "https://shallwestudy.store/client/login",
+        {
+          email,
+          password,
+        }
+      );
+      //  console.log(response.headers);
+      const jwtToken = response.headers["authorization"];
+      const refreshToken = response.headers["refreshtoken"];
 
       setJwtToken(jwtToken);
       setRefreshToken(refreshToken);
-      localStorage.setItem('jwtToken', jwtToken);
-      localStorage.setItem('refreshToken', refreshToken);
+      localStorage.setItem("jwtToken", jwtToken);
+      localStorage.setItem("refreshToken", refreshToken);
 
       console.log("로그인 성공", response.data);
-      await fetchUsername(jwtToken); 
+      await fetchUsername(jwtToken);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
@@ -47,11 +50,14 @@ const SignInUpBox = () => {
 
   const fetchUsername = async (accessToken: string) => {
     try {
-      const response = await axios.get("https://shallwestudy.store/client/myPage", {
-        headers: {
-          Authorization: `${accessToken}`,
-        },
-      });
+      const response = await axios.get(
+        "https://shallwestudy.store/client/myPage",
+        {
+          headers: {
+            Authorization: `${accessToken}`,
+          },
+        }
+      );
       setUsername(response.data.userName); // 서버로부터 받아온 사용자 이름
       console.log("사용자 이름 가져오기 성공", response.data);
     } catch (error) {
@@ -66,7 +72,7 @@ const SignInUpBox = () => {
         await axios.get("https://shallwestudy.store/client/logout", {
           headers: {
             Authorization: `${jwtToken}`,
-            refreshToken: `${refreshToken}` // 리프레시 토큰을 별도의 헤더에 추가
+            refreshToken: `${refreshToken}`, // 리프레시 토큰을 별도의 헤더에 추가
           },
         });
         console.log("로그아웃 요청 성공");
@@ -83,9 +89,6 @@ const SignInUpBox = () => {
       console.error("로그아웃 요청 중 오류 발생:", error);
     }
   };
-  
-  
-
 
   const handleSignUpSubmit = (
     username: string,
@@ -111,20 +114,20 @@ const SignInUpBox = () => {
           </Tabs>
         </TabsContainer>
         <LogInBox>
-        {username ? (
+          {username ? (
             <UserContainer>
               <UserGreeting>안녕하세요, {username}님!</UserGreeting>
               <LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
             </UserContainer>
           ) : (
             <>
-          <Contents visible={isLoginTab}>
-            <LoginForm onSubmit={handleLoginSubmit} />
-          </Contents>
-          <Contents visible={!isLoginTab}>
-            <SignUpForm onSubmit={handleSignUpSubmit} />
-          </Contents>
-          </>
+              <Contents visible={isLoginTab}>
+                <LoginForm onSubmit={handleLoginSubmit} />
+              </Contents>
+              <Contents visible={!isLoginTab}>
+                <SignUpForm onSubmit={handleSignUpSubmit} />
+              </Contents>
+            </>
           )}
         </LogInBox>
       </ContainerWithLogo>
