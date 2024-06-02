@@ -16,7 +16,8 @@ import LoungeDetail from "./Lounge/LoungeDetail";
 import Lcreate from "./Lounge/Lcreate";
 import PostMainBox from "./MainCafePage/PostMainBox";
 import LWriting from "./Lounge/LWriting";
-
+import PostList from "./Lounge/PostList";
+import PostForm from "./Lounge/PostForm";
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -40,15 +41,15 @@ function App() {
           <Route path="/*" element={<Main isSidebarOpen={isSidebarOpen} />} />
           <Route
             path="/Lboard/Write"
-            element={<LWriting apiEndpoint="Lboard" />}
+            element={<LWriting category="Lboard" />}
           />
           <Route
             path="/LPopular/Write"
-            element={<LWriting apiEndpoint="LPopular" />}
+            element={<LWriting category="LPopular" />}
           />
           <Route
             path="/LFriends/Write"
-            element={<LWriting apiEndpoint="LFriends" />}
+            element={<LWriting category="LFriends" />}
           />
 
           <Route
@@ -57,17 +58,18 @@ function App() {
           />
           <Route
             path="/Lboard"
-            element={<Lboard pageTitle="최신 게시판" apiEndpoint="Lboard" />}
+            element={<Lboard pageTitle="최신 게시판" category="Lboard" />}
           />
           <Route
             path="/LPopular"
-            element={<Lboard pageTitle="인기 게시판" apiEndpoint="LPopular" />}
+            element={<Lboard pageTitle="인기 게시판" category="LPopular" />}
           />
           <Route
             path="/LFriends"
-            element={<Lboard pageTitle="친구 구해요" apiEndpoint="LFriends" />}
+            element={<Lboard pageTitle="친구 구해요" category="LFriends" />}
           />
-
+          <Route path="/posts" element={<PostList />} />
+          <Route path="/post/new" element={<PostForm />} />
           <Route path="/SignInUpPage/SignInUpBox" element={<SignInUpBox />} />
           <Route path="MyPage" element={<MyPage />} />
           <Route path="/auth" element={<RedirectHandler />} />

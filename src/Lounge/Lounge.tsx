@@ -81,6 +81,7 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
     }
     fetchPageContent();
   }, []);
+
   return (
     <MainContain paddingLeft={pL}>
       <Lentire>

@@ -1,4 +1,5 @@
 //라운지 두번째 페이지
+
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -8,7 +9,6 @@ import { ImArrowLeft } from "react-icons/im";
 import {
   PRIMARY_COLOR_WHITE,
   PRIMARY_COLOR_SKY,
-  PRIMARY_COLOR_BLUE,
   PRIMARY_COLOR_BLU,
 } from "../Constants/constants";
 import axios from "axios";
@@ -24,20 +24,33 @@ interface Community {
 
 interface Props {
   pageTitle: string;
-  apiEndpoint: string;
+  category: string;
 }
 
-const LoungePage: React.FC<Props> = ({ pageTitle, apiEndpoint }) => {
-  const [pagecontent, setPageContent] = useState<Community[]>([]);
-  const [currentpage, setCurrentPage] = useState(1);
+const LoungePage: React.FC<Props> = ({ pageTitle, category }) => {
+  const [pageContent, setPageContent] = useState<Community[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     async function fetchPageContent() {
-      const result = await axios.get(`http://localhost:3001/${apiEndpoint}`);
-      setPageContent(result.data);
+      try {
+        const result = await axios.get(
+          `https://shallwestudy.store/post/${category}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        setPageContent(result.data);
+        console.log("데이터 가져오기 성공:", result.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     }
+
     fetchPageContent();
-  }, [apiEndpoint]);
+  }, [category]);
 
   return (
     <MainContain>
@@ -48,32 +61,34 @@ const LoungePage: React.FC<Props> = ({ pageTitle, apiEndpoint }) => {
         {pageTitle}
       </LoungeTop>
 
-      <Loungemargin>
+      <LoungeMargin>
         <LoungeMain
-          linkPath={apiEndpoint}
-          showCount={pagecontent.slice((currentpage - 1) * 8, currentpage * 8)}
+          linkPath={category}
+          showCount={pageContent.slice((currentPage - 1) * 8, currentPage * 8)}
         />
-        <Loungebottom>
+        <LoungeBottom>
           <Pagenation
             eight={8}
-            currentpage={currentpage}
-            total={pagecontent.length}
+            currentpage={currentPage}
+            total={pageContent.length}
             setPage={setCurrentPage}
           />
-          <LoungeLink to={`/${apiEndpoint}/write`}>글쓰기</LoungeLink>
-        </Loungebottom>
-      </Loungemargin>
+          <LoungeLink to={`/${category}/write`}>글쓰기</LoungeLink>
+        </LoungeBottom>
+      </LoungeMargin>
     </MainContain>
   );
 };
 
 export default LoungePage;
 
-const Loungebottom = styled.div`
+// Styled components
+
+const LoungeBottom = styled.div`
   margin-top: 100px;
   height: 100px;
   width: 100%;
-  display: Flex;
+  display: flex;
   align-items: center;
   justify-content: space-around;
   background-color: ${PRIMARY_COLOR_BLU};
@@ -113,11 +128,10 @@ const LoungeTop = styled.h1`
   margin-right: 650px;
 `;
 
-const Loungemargin = styled.div`
+const LoungeMargin = styled.div`
   display: flex;
   width: 900px;
   border-radius: 25px 25px 0px 0px;
-
   align-items: center;
   flex-direction: column;
   border: 20px solid ${PRIMARY_COLOR_BLU};
