@@ -9,23 +9,21 @@ const RedirectHandler: React.FC = () => {
   useEffect(() => {
     const code = new URL(window.location.href).searchParams.get("code");
     //const code = window.location.search;
-    console.log(code);
     if (code) {
       const fetchData = async () => {
         try {
           const response = await axios.get(`https://shallwestudy.store/client/login/kakao?code=${code}`);
-          console.log(response);
-          if (response.data.responseCode === '200') {
+          console.log("성공!",response);
+          if (response.status === 200) {
             localStorage.setItem('Authorization', response.headers['authorization']);
             navigate('/');
           } else {
             window.alert('소셜 로그인 실패!');
-            //navigate('/'); 
+           
           }
         } catch (error) {
           console.error(error);
           window.alert('소셜 로그인 실패!');
-         // navigate('/');
         }
       };
 
