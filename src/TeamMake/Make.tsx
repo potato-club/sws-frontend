@@ -157,6 +157,10 @@ interface MainProps {
 const Make: React.FC<MainProps> = ({ isSidebarOpen }) => {
   const [pL, setPL] = useState(0);
   const [number, setNumber] = useState(0);
+  
+  if(number <= -1){
+    setNumber(0);
+  }
 
   const Click = () => {
     alert("선택 완료");
