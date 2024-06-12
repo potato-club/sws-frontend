@@ -28,7 +28,7 @@ const MyPage = () => {
   useEffect(() => {
     // 백엔드에서 닉네임 데이터를 가져옵니다
     axios
-      .get("https://shallwestudy.store/client/myPage", {
+      .get("https://sws-back.shop/client/myPage", {
         headers: {
           "Content-Type": "application/json",
           Authorization: accessToken,

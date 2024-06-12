@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { PRIMARY_COLOR_W, PRIMARY_COLOR_BLU } from "../Constants/constants";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { ImArrowLeft } from "react-icons/im";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { jwtTokenState, refreshTokenState } from "../recoil/atom";
+
 interface LWritingProps {
   category: string;
 }
@@ -21,6 +22,7 @@ const LWriting: React.FC<LWritingProps> = ({ category }) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const accessToken = useRecoilValue(jwtTokenState);
+  const refreshToken = useRecoilValue(refreshTokenState);
   const setJwtToken = useSetRecoilState(jwtTokenState);
   const setRefreshToken = useSetRecoilState(refreshTokenState);
 
@@ -39,7 +41,7 @@ const LWriting: React.FC<LWritingProps> = ({ category }) => {
   useEffect(() => {
     if (accessToken) {
       axios
-        .get("https://shallwestudy.store/client/myPage", {
+        .get("https://sws-back.shop/client/myPage", {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`,
@@ -110,23 +112,39 @@ const LWriting: React.FC<LWritingProps> = ({ category }) => {
     setLoading(true);
 
     try {
-      await axios.post(`https://shallwestudy.store/post/${category}`, {
-        title,
-        contents,
-        hash,
-        name: nickname || "익명",
-        like: 0,
-        imageSrcs,
-      });
+      await axios.post(
+        "https://sws-back.shop/post",
+        {
+          title,
+          contents,
+          hash,
+          name: nickname || "익명",
+          like: 0,
+          imageSrcs,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
       alert("글이 성공적으로 등록되었습니다.");
-      navigate(`/${category}`);
+      navigate(`/`);
       setImageSrcs([]);
       setTitle("");
       setContents("");
       setHash("");
-    } catch (error) {
-      console.error("글 등록에 실패했습니다.", error);
-      alert("글 등록에 실패했습니다. 다시 시도해주세요.");
+    } catch (err) {
+      const error = err as AxiosError;
+      if (error.response?.status === 401) {
+        console.error("401 Unauthorized:", error.message);
+        alert("인증이 만료되었습니다. 다시 로그인 해주세요.");
+        navigate("/login");
+      } else {
+        console.error("글 등록에 실패했습니다.", error);
+        alert("글 등록에 실패했습니다. 다시 시도해주세요.");
+      }
     } finally {
       setLoading(false);
     }

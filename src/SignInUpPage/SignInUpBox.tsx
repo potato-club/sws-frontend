@@ -17,13 +17,10 @@ const SignInUpBox = () => {
 
   const handleLoginSubmit = async (email: string, password: string) => {
     try {
-      const response = await axios.post(
-        "https://shallwestudy.store/client/login",
-        {
-          email,
-          password,
-        }
-      );
+      const response = await axios.post("https://sws-back.shop/client/login", {
+        email,
+        password,
+      });
       //  console.log(response.headers);
       const jwtToken = response.headers["authorization"];
       const refreshToken = response.headers["refreshtoken"];
@@ -50,14 +47,11 @@ const SignInUpBox = () => {
 
   const fetchUsername = async (accessToken: string) => {
     try {
-      const response = await axios.get(
-        "https://shallwestudy.store/client/myPage",
-        {
-          headers: {
-            Authorization: `${accessToken}`,
-          },
-        }
-      );
+      const response = await axios.get("https://sws-back.shop/client/myPage", {
+        headers: {
+          Authorization: `${accessToken}`,
+        },
+      });
       setUsername(response.data.userName); // 서버로부터 받아온 사용자 이름
       console.log("사용자 이름 가져오기 성공", response.data);
     } catch (error) {
@@ -69,7 +63,7 @@ const SignInUpBox = () => {
     try {
       if (jwtToken && refreshToken) {
         // 서버에 로그아웃 요청 보내기
-        await axios.get("https://shallwestudy.store/client/logout", {
+        await axios.get("https://sws-back.shop/client/logout", {
           headers: {
             Authorization: `${jwtToken}`,
             refreshToken: `${refreshToken}`, // 리프레시 토큰을 별도의 헤더에 추가
