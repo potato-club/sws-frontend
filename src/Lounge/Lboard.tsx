@@ -12,7 +12,8 @@ import {
   PRIMARY_COLOR_BLU,
 } from "../Constants/constants";
 import axios from "axios";
-
+import { useRecoilValue } from "recoil";
+import { jwtTokenState } from "../recoil/atom";
 interface Community {
   id: string;
   title: string;
@@ -30,15 +31,16 @@ interface Props {
 const LoungePage: React.FC<Props> = ({ pageTitle, category }) => {
   const [pageContent, setPageContent] = useState<Community[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-
+  const accessToken = useRecoilValue(jwtTokenState);
   useEffect(() => {
     async function fetchPageContent() {
       try {
         const result = await axios.get(
-          `https://shallwestudy.store/post/${category}`,
+          `https://sws-back.shop/post/${category}`,
           {
             headers: {
               "Content-Type": "application/json",
+              Authorization: `Bearer ${accessToken}`,
             },
           }
         );
