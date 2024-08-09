@@ -14,12 +14,13 @@ interface Reply {
 }
 
 const Board: React.FC = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [newPost, setNewPost] = useState("");
-  const [visibleCount, setVisibleCount] = useState(5);
-  const [initialLoad] = useState(true);
+  const [posts, setPosts] = useState<Post[]>([]); //게시물 목록을 저장하는 상태.
+  const [newPost, setNewPost] = useState(""); //새로운 게시물의 내용을 저장하는 상태.
+  const [visibleCount, setVisibleCount] = useState(5); //한 번에 표시할 게시물 수를 저장하는 상태.
+  const [initialLoad] = useState(true); //초기 로딩 상태를 저장하는 상태.
 
   const fetchPosts = async () => {
+    //axios.get을 사용하여 서버로부터 게시물 데이터를 가져옵니다.
     const response = await axios.get("http://localhost:3001/Posts");
     setPosts(response.data);
   };
@@ -34,18 +35,19 @@ const Board: React.FC = () => {
     await axios.post("http://localhost:3001/Posts", {
       content: newPost,
       replies: [],
-    });
+    }); //사용자가 새로운 게시물을 작성할 때 호출됩니다.
     setNewPost("");
     fetchPosts();
   };
 
   const handleDeletePost = async (id: number) => {
     await axios.delete(`http://localhost:3001/Posts/${id}`);
-    fetchPosts();
+    fetchPosts(); //특정 게시물을 삭제할 때 호출됩니다.
   };
 
   const handleDeleteReply = async (postId: number, replyId: number) => {
     try {
+      //특정 게시물의 특정 대댓글을 삭제할 때 호출됩니다
       const postResponse = await axios.get(
         `http://localhost:3001/Posts/${postId}`
       );
@@ -63,11 +65,12 @@ const Board: React.FC = () => {
   };
 
   const handleShowMore = () => {
+    //더 많은 게시물을 표시할 때 호출됩니다.
     setVisibleCount((prevCount) => prevCount + 5);
   };
 
   const handleReplySubmit = async (postId: number, content: string) => {
-    if (!content) return;
+    if (!content) return; //특정 게시물에 대댓글을 추가할 때 호출됩니다.
     try {
       const postResponse = await axios.get(
         `http://localhost:3001/Posts/${postId}`

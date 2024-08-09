@@ -1,18 +1,13 @@
 import React from "react";
-import {
-  PRIMARY_COLOR_BLUE,
-  PRIMARY_COLOR_BLU,
-  PRIMARY_COLOR_B,
-  PRIMARY_COLOR_W,
-} from "../Constants/constants";
+import { PRIMARY_COLOR_BLUE, PRIMARY_COLOR_BLU } from "../Constants/constants";
 import styled from "styled-components";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 function Pagination({
-  total, //total 컴포넌트 갯수
+  total, //전체 항목수
   eight, //한 페이지당 보여질 컴포넌트 8개
-  currentpage, //현재 페이지
-  setPage, //바뀐 페이지
+  currentpage, //현재 페이지 번호
+  setPage, //페이지 변경함수
 }: {
   total: number;
   eight: number;

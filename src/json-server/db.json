@@ -616,15 +616,46 @@
       "content": "ㅇㄴㅇㄴ",
       "replies": [],
       "postId": 7
+    },
+    {
+      "id": "a95b",
+      "content": "ddd",
+      "replies": [],
+      "postId": 1
+    },
+    {
+      "id": "29d8",
+      "content": "dwww",
+      "replies": [],
+      "postId": 2
+    },
+    {
+      "id": "a5d1",
+      "content": "dwd",
+      "replies": [],
+      "postId": 7
     }
   ],
-  "PopularComment": [],
+  "PopularComment": [
+    {
+      "id": "e509",
+      "content": "dddd",
+      "replies": [],
+      "postId": 5
+    }
+  ],
   "BoardComment": [
     {
       "id": "87ee",
       "content": "ㅇㄴㄹㅇㄴㄴㅇㄹㄴㅇㄹ",
       "replies": [],
       "postId": 1
+    },
+    {
+      "id": "3ed1",
+      "content": "qqqqqq",
+      "replies": [],
+      "postId": 2
     }
   ],
   "Posts": [],
