@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios, { AxiosError } from "axios";
 import { PRIMARY_COLOR_W, PRIMARY_COLOR_BLU } from "../Constants/constants";
 import styled from "styled-components";
@@ -12,12 +12,12 @@ interface LWritingProps {
 }
 
 const LWriting: React.FC<LWritingProps> = ({ category }) => {
-  const [title, setTitle] = useState("");
-  const [contents, setContents] = useState("");
-  const [hash, setHash] = useState("");
-  const [imageSrcs, setImageSrcs] = useState<(string | ArrayBuffer | null)[]>(
-    []
-  );
+  const [formData, setFormData] = useState({
+    title: "",
+    contents: "",
+    hash: "",
+    imageSrcs: [] as (string | ArrayBuffer | null)[],
+  });
   const [nickname, setNickname] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -40,70 +40,58 @@ const LWriting: React.FC<LWritingProps> = ({ category }) => {
 
   useEffect(() => {
     if (accessToken) {
-      axios
-        .get("https://sws-back.shop/client/myPage", {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-        })
-        .then((response) => {
-          setNickname(String(response.data.nickname));
-          console.log("데이터 가져오기 성공:", response.data);
-        })
-        .catch((error) => {
-          console.error("데이터 가져오기 실패:", error);
-        });
+      fetchUserData();
     }
   }, [accessToken]);
 
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
+  const fetchUserData = useCallback(async () => {
+    try {
+      const response = await axios.get("https://sws-back.shop/client/myPage", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      setNickname(String(response.data.nickname));
+      console.log("데이터 가져오기 성공:", response.data);
+    } catch (error) {
+      console.error("데이터 가져오기 실패:", error);
+    }
+  }, [accessToken]);
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContents(e.target.value);
-  };
-
-  const handleHashChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setHash(e.target.value);
-  };
-
-  const handleBack = () => {
-    navigate(-1);
-  };
+  const handleBack = () => navigate(-1);
 
   const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files) {
-      const fileReaders: FileReader[] = [];
-      const filePromises: Promise<void>[] = [];
-
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i];
+      const filePromises = Array.from(files).map((file) => {
         const reader = new FileReader();
-        fileReaders.push(reader);
-
-        const filePromise = new Promise<void>((resolve) => {
+        return new Promise<void>((resolve) => {
           reader.onload = () => {
-            setImageSrcs((prevSrcs) => [...prevSrcs, reader.result]);
+            setFormData((prevData) => ({
+              ...prevData,
+              imageSrcs: [...prevData.imageSrcs, reader.result],
+            }));
             resolve();
           };
+          reader.readAsDataURL(file);
         });
-
-        filePromises.push(filePromise);
-        reader.readAsDataURL(file);
-      }
-
-      Promise.all(filePromises).then(() => {
-        console.log("All files read");
       });
+      Promise.all(filePromises).then(() => console.log("All files read"));
     }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const { title, contents, hash, imageSrcs } = formData;
     if (!title || !contents || !hash) {
       alert("모든 필드를 채워주세요.");
       return;
@@ -131,10 +119,7 @@ const LWriting: React.FC<LWritingProps> = ({ category }) => {
       );
       alert("글이 성공적으로 등록되었습니다.");
       navigate(`/`);
-      setImageSrcs([]);
-      setTitle("");
-      setContents("");
-      setHash("");
+      resetForm();
     } catch (err) {
       const error = err as AxiosError;
       if (error.response?.status === 401) {
@@ -150,35 +135,47 @@ const LWriting: React.FC<LWritingProps> = ({ category }) => {
     }
   };
 
+  const resetForm = () => {
+    setFormData({
+      title: "",
+      contents: "",
+      hash: "",
+      imageSrcs: [],
+    });
+  };
+
   return (
     <Write>
       <WriteIn onSubmit={handleSubmit}>
-        <Wr>
+        <Header>
           <ImArrowLeft onClick={handleBack} style={{ fontSize: "20px" }} />
           <h1>작성 페이지</h1>
-        </Wr>
+        </Header>
         <WriteIndiv>
-          <Dii>제목</Dii>
+          <Label>제목</Label>
           <WriteInput
+            name="title"
             placeholder="제목을 입력하세요"
-            value={title}
-            onChange={handleTitleChange}
+            value={formData.title}
+            onChange={handleInputChange}
           />
         </WriteIndiv>
         <WriteMid>
-          <span>hash tag</span>
-          <WriteInput2
+          <span>hash</span>
+          <WriteInput
+            name="hash"
             placeholder="해시태그를 입력하세요"
-            value={hash}
-            onChange={handleHashChange}
+            value={formData.hash}
+            onChange={handleInputChange}
           />
         </WriteMid>
         <WriteIndiv>
-          <Dii>내용</Dii>
+          <Label>내용</Label>
           <WriteTextarea
+            name="contents"
             placeholder="내용을 입력하세요"
-            value={contents}
-            onChange={handleContentChange}
+            value={formData.contents}
+            onChange={handleInputChange}
           />
         </WriteIndiv>
         <WriteIndiv>
@@ -189,15 +186,15 @@ const LWriting: React.FC<LWritingProps> = ({ category }) => {
               type="file"
               onChange={handleUpload}
             />
-            <WImgs>
-              {imageSrcs.map((src, index) => (
-                <WrImg
+            <ImagePreviewContainer>
+              {formData.imageSrcs.map((src, index) => (
+                <PreviewImage
                   key={index}
                   src={src as string}
                   alt={`게시물 이미지 ${index + 1}`}
                 />
               ))}
-            </WImgs>
+            </ImagePreviewContainer>
           </WriteBottom>
           <WriteBtn type="submit">등록</WriteBtn>
         </WriteIndiv>
@@ -209,85 +206,7 @@ const LWriting: React.FC<LWritingProps> = ({ category }) => {
 
 export default LWriting;
 
-const WImgs = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  width: 300px;
-  height: 100px;
-`;
-
-const WrImg = styled.img`
-  object-fit: contain;
-  height: 40%;
-  width: 20%;
-`;
-
-const WriteMid = styled.div`
-  margin-left: 351px;
-`;
-
-const Wr = styled.div`
-  display: flex;
-  font-family: "Noto Sans KR", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 600;
-  align-items: center;
-  width: 200px;
-  justify-content: space-between;
-`;
-
-const WriteBtn = styled.button`
-  background-color: ${PRIMARY_COLOR_BLU};
-  width: 60px;
-  height: 30px;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  &:hover {
-    background-color: ${PRIMARY_COLOR_W};
-  }
-`;
-
-const WriteBottom = styled.div`
-  margin-left: 40px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Dii = styled.div`
-  width: 40px;
-  margin-top: 5px;
-`;
-
-const WriteTextarea = styled.textarea`
-  width: 100%;
-  height: 300px;
-  border-radius: 7px;
-  padding: 10px;
-`;
-
-const WriteInput2 = styled.input`
-  margin-left: 20px;
-  padding-left: 10px;
-  width: 200px;
-  height: 30px;
-  border-radius: 10px;
-`;
-
-const WriteInput = styled.input`
-  padding-left: 10px;
-  width: 100%;
-  height: 30px;
-  border-radius: 10px;
-`;
-
-const WriteIndiv = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  margin-bottom: 20px;
-`;
-
+// Styled Components
 const Write = styled.div`
   display: flex;
   align-items: center;
@@ -305,6 +224,77 @@ const WriteIn = styled.form`
   padding: 50px;
   display: flex;
   flex-direction: column;
+`;
+
+const Header = styled.div`
+  display: flex;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 600;
+  align-items: center;
+  width: 200px;
+  justify-content: space-between;
+`;
+
+const WriteIndiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+`;
+
+const WriteMid = styled.div`
+  margin-left: 351px;
+  display: Flex;
+  align-items: center;
+`;
+
+const WriteInput = styled.input`
+  padding-left: 10px;
+  width: 100%;
+  height: 30px;
+  border-radius: 10px;
+`;
+
+const WriteTextarea = styled.textarea`
+  width: 100%;
+  height: 300px;
+  border-radius: 7px;
+  padding: 10px;
+`;
+
+const WriteBottom = styled.div`
+  margin-left: 40px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const WriteBtn = styled.button`
+  background-color: ${PRIMARY_COLOR_BLU};
+  width: 60px;
+  height: 30px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  &:hover {
+    background-color: ${PRIMARY_COLOR_W};
+  }
+`;
+
+const Label = styled.div`
+  width: 40px;
+  margin-top: 5px;
+`;
+
+const ImagePreviewContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  width: 300px;
+  height: 100px;
+`;
+
+const PreviewImage = styled.img`
+  object-fit: contain;
+  height: 40%;
+  width: 20%;
 `;
 
 const LoadingIndicator = styled.div`

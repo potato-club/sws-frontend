@@ -88,7 +88,7 @@ const Main: React.FC<MainProps> = ({ isSidebarOpen }) => {
       </Top>
       <Bottom>
         <MainContents
-          Pagenation={pagecontent.slice((currentpage - 1) * 8, currentpage * 8)}
+          Pagenation={pagecontent.slice((currentpage - 1) * 8, currentpage * 8)} //0,8
         />
         <Pagenation
           eight={8}

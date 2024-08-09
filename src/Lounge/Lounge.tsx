@@ -43,10 +43,12 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
         console.log(error);
       });
   }, []);
+
   useEffect(() => {
     const Left = isSidebarOpen ? 200 : 0;
     setPL(Left);
   }, [isSidebarOpen]);
+
   const settings = {
     infinite: true,
     speed: 1000,
