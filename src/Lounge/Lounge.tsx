@@ -5,13 +5,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import {
-  PR,
-  PRI,
-  PRIMARY_COLOR_BLUE,
-  PRIMARY_COLOR_BLU,
-  PRIMARY_COLOR_W,
-} from "../Constants/constants";
+import { PRIMARY_COLOR_BLU, PRIMARY_COLOR_W } from "../Constants/constants";
 import LoungeMain from "./LoungeMain";
 
 interface MainProps {
@@ -201,4 +195,9 @@ const MainContain = styled.div<{ paddingLeft: number }>`
   display: flex;
 
   justify-content: center;
+
+  @media (max-width: 960px) {
+    flex-direction: column;
+    height: auto;
+  }
 `;

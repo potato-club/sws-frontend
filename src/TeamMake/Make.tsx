@@ -18,6 +18,9 @@ const MakeTop = styled.div`
 
   width: 100%;
   height: 90%;
+  @media (max-width: 960px) {
+    flex-direction: column;
+  }
 `;
 const MakeLeft = styled.div`
   width: 50%;
@@ -26,6 +29,10 @@ const MakeLeft = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  @media (max-width: 960px) {
+    width: 100%;
+    margin-bottom: 200px;
+  }
 `;
 const MakeLeftNumber = styled.div`
   box-shadow: 5px 5px 5px 5px gray;
@@ -126,8 +133,6 @@ const MakeRightCenter = styled.div`
   }
 `;
 const MakeBottom = styled.div`
-  width: 100%;
-  height: 15%;
   display: flex;
 
   justify-content: center;
@@ -157,8 +162,8 @@ interface MainProps {
 const Make: React.FC<MainProps> = ({ isSidebarOpen }) => {
   const [pL, setPL] = useState(0);
   const [number, setNumber] = useState(0);
-  
-  if(number <= -1){
+
+  if (number <= -1) {
     setNumber(0);
   }
 

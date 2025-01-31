@@ -38,25 +38,6 @@ const Main: React.FC<MainProps> = ({ isSidebarOpen }) => {
       });
   }, []);
 
-  // useEffect(() => {
-  //   // 백엔드에서 닉네임 데이터를 가져옵니다
-  //   axios
-  //     .get("https://shallwestudy.store/s3/update_files", {
-  //       headers: {
-  //         "Content-Type": "application/json",
-
-  //       },
-  //     })
-  //     .then((response) => {
-  //       setMain(String(response.data));
-
-  //       console.log("데이터 가져오기 성공:", response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  // }, );
-
   useEffect(() => {
     const newPaddingLeft = isSidebarOpen ? 200 : 0;
     setPaddingLeft(newPaddingLeft);
@@ -129,3 +110,21 @@ const Bottom = styled.div`
     height: 320%;
   }
 `;
+// useEffect(() => {
+//   // 백엔드에서 닉네임 데이터를 가져옵니다
+//   axios
+//     .get("https://shallwestudy.store/s3/update_files", {
+//       headers: {
+//         "Content-Type": "application/json",
+
+//       },
+//     })
+//     .then((response) => {
+//       setMain(String(response.data));
+
+//       console.log("데이터 가져오기 성공:", response.data);
+//     })
+//     .catch((error) => {
+//       console.error("Error fetching data:", error);
+//     });
+// }, );
