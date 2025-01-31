@@ -642,6 +642,12 @@
       "content": "dddd",
       "replies": [],
       "postId": 5
+    },
+    {
+      "id": "71e4",
+      "content": "일본가고싶다",
+      "replies": [],
+      "postId": 8
     }
   ],
   "BoardComment": [
@@ -656,6 +662,12 @@
       "content": "qqqqqq",
       "replies": [],
       "postId": 2
+    },
+    {
+      "id": "36ba",
+      "content": "dd",
+      "replies": [],
+      "postId": 3
     }
   ],
   "Posts": [],

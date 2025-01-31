@@ -11,7 +11,7 @@ interface info {
   Pagenation: any;
 }
 const MainContents: React.FC<info> = ({ Pagenation }) => {
-  //Pagenation prop은 현재 페이지에 해당하는 데이터 배열
+  //Pagenation 은 현재 페이지에 해당하는 데이터 배열
   const [MainCt, setMainCt] = useState<Ct[]>();
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-// //글 각 페이지
+// 글 각 페이지
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";

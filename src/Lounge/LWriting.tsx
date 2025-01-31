@@ -206,7 +206,6 @@ const LWriting: React.FC<LWritingProps> = ({ category }) => {
 
 export default LWriting;
 
-// Styled Components
 const Write = styled.div`
   display: flex;
   align-items: center;
