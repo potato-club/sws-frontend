@@ -32,7 +32,7 @@ const PostForm: React.FC = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://shallwestudy.store/post",
+        "http://localhost:3001/Posts",
         formData,
         {
           headers: {

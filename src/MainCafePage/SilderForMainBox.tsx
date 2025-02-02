@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import axios from "axios";
+
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
+import jsonData from "../json-server/db.json";
+// Slide 타입 정의
 interface Slide {
   id: string;
   images: string;
@@ -23,14 +25,7 @@ const SlideShow: React.FC = () => {
   };
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/MainBox")
-      .then((response) => {
-        setImgSrc(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    setImgSrc(jsonData.Main);
   }, []);
 
   return (
