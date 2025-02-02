@@ -122,7 +122,8 @@ const Comment: React.FC<CommentProps> = ({ postId, commentEndpoint }) => {
   useEffect(() => {
     if (accessToken) {
       axios
-        .get("https://shallwestudy.store/client/myPage", {
+        .get("http://localhost:3001/MyPage", {
+          //https://shallwestudy.store/client/myPage
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`,

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import styled from "styled-components";
 
+import styled from "styled-components";
+import jsonData from "../json-server/db.json";
 import MainContents from "./MainContents";
 import Pagenation from "../Components/Pagenation";
 import Slick from "../libs/Slick";
@@ -11,7 +11,7 @@ interface MainProps {
 }
 
 interface MainDB {
-  id: number;
+  id: string | number;
   images: string;
 }
 
@@ -26,16 +26,8 @@ const Main: React.FC<MainProps> = ({ isSidebarOpen }) => {
   const [main, setMain] = useState<MainDB[]>([]);
   const [pagecontent, setPageContent] = useState<Ct[]>([]);
   const [currentpage, setCurrentPage] = useState(1);
-
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/Main")
-      .then((response) => {
-        setMain(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    setMain(jsonData.Main);
   }, []);
 
   useEffect(() => {
@@ -44,11 +36,7 @@ const Main: React.FC<MainProps> = ({ isSidebarOpen }) => {
   }, [isSidebarOpen]);
 
   useEffect(() => {
-    async function fetchPageContent() {
-      const result = await axios.get("http://localhost:3001/MainCt");
-      setPageContent(result.data);
-    }
-    fetchPageContent();
+    setPageContent(jsonData.MainCt);
   }, []);
 
   const settings = {

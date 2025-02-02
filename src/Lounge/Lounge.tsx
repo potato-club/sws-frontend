@@ -1,10 +1,10 @@
 //라운지 첫번째 페이지
 import React, { useState, useEffect } from "react";
 import Slick from "../libs/Slick";
-import axios from "axios";
+
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
+import jsonData from "../json-server/db.json";
 import { PRIMARY_COLOR_BLU, PRIMARY_COLOR_W } from "../Constants/constants";
 import LoungeMain from "./LoungeMain";
 
@@ -12,7 +12,7 @@ interface MainProps {
   isSidebarOpen: boolean;
 }
 interface MainDB {
-  id: number;
+  id: string | number;
   images: string;
 }
 
@@ -27,17 +27,10 @@ interface Community {
 const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
   const [pL, setPL] = useState(0);
   const [main, setMain] = useState<MainDB[]>([]);
-  useEffect(() => {
-    axios
-      .get("http://localhost:3001/Main")
-      .then((response) => {
-        setMain(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
+  useEffect(() => {
+    setMain(jsonData.Main);
+  }, []);
   useEffect(() => {
     const Left = isSidebarOpen ? 200 : 0;
     setPL(Left);
@@ -54,30 +47,18 @@ const Lounge: React.FC<MainProps> = ({ isSidebarOpen }) => {
   const [pagecontent, setPageContent] = useState<Community[]>([]);
 
   useEffect(() => {
-    async function fetchPageContent() {
-      const result = await axios.get("http://localhost:3001/Lboard");
-      setPageContent(result.data);
-    }
-    fetchPageContent();
+    setPageContent(jsonData.Lboard);
   }, []);
   const [page, setPage] = useState<Community[]>([]);
 
   useEffect(() => {
-    async function fetchPageContent() {
-      const result = await axios.get("http://localhost:3001/LFriends");
-      setPage(result.data);
-    }
-    fetchPageContent();
+    setPage(jsonData.LFriends);
   }, []);
   const [content, setcontent] = useState<Community[]>([]);
-  useEffect(() => {
-    async function fetchPageContent() {
-      const result = await axios.get("http://localhost:3001/LPopular");
-      setcontent(result.data);
-    }
-    fetchPageContent();
-  }, []);
 
+  useEffect(() => {
+    setcontent(jsonData.LPopular);
+  }, []);
   return (
     <MainContain paddingLeft={pL}>
       <Lentire>

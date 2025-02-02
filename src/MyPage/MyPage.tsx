@@ -4,18 +4,10 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
 import { PRIMARY_COLOR_BLUE, PRIMARY_COLOR_BLU } from "../Constants/constants";
-
+import jsonData from "../json-server/db.json";
 interface Friend {
-  id: number;
+  id: number | string;
   name: string;
-}
-
-interface User {
-  email: string;
-  userName: string;
-  nickname: string;
-  level: string;
-  userRole: string;
 }
 
 const MyPage = () => {
@@ -28,7 +20,8 @@ const MyPage = () => {
   useEffect(() => {
     // 백엔드에서 닉네임 데이터를 가져옵니다
     axios
-      .get("https://sws-back.shop/client/myPage", {
+      .get("http://localhost:3001/MyPage", {
+        //"https://sws-back.shop/client/myPage"
         headers: {
           "Content-Type": "application/json",
           Authorization: accessToken,
@@ -45,31 +38,28 @@ const MyPage = () => {
       });
   }, [accessToken]);
 
-  const friendDelete = async (id: number) => {
-    await axios.delete(`http://localhost:3001/MyPage/${id}`);
-    alert("삭제되었습니다.");
-    // 삭제 후 친구 목록을 다시 불러와서 상태를 업데이트합니다.
-    axios
-      .get("http://localhost:3001/MyPage")
-      .then((response) => {
-        setFriend(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  // const friendDelete = async (id: number) => {
+  //   await axios.delete(`http://localhost:3001/MyPage/${id}`);
+  //   alert("삭제되었습니다.");
+  //   // 삭제 후 친구 목록을 다시 불러와서 상태를 업데이트합니다.
+  //   axios
+  //     .get("http://localhost:3001/MyPage")
+  //     .then((response) => {
+  //       setFriend(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+  const deleteFriend = (id: number | string) => {
+    setFriend((prevFriends) =>
+      prevFriends.filter((friend) => Number(friend.id) !== Number(id))
+    );
   };
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/MyPage")
-      .then((response) => {
-        setFriend(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    setFriend(jsonData.MyPage);
   }, []);
-
   return (
     <MyPageContaine>
       <MyPageContent>
@@ -95,7 +85,9 @@ const MyPage = () => {
                 <MPBfriendName>{fr.name}</MPBfriendName>
                 <MPBbottomBUTTON>
                   <MPBfriendPage to="/">친구 페이지</MPBfriendPage>
-                  <MPBfriendContentButton onClick={() => friendDelete(fr.id)}>
+                  <MPBfriendContentButton
+                    onClick={() => deleteFriend(Number(fr.id))}
+                  >
                     친구 삭제
                   </MPBfriendContentButton>
                 </MPBbottomBUTTON>

@@ -21,7 +21,7 @@ const PostList: React.FC = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get("https://shallwestudy.store/post", {
+        const response = await axios.get("http://localhost:3001/Posts", {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`,

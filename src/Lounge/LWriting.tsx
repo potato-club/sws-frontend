@@ -46,7 +46,8 @@ const LWriting: React.FC<LWritingProps> = ({ category }) => {
 
   const fetchUserData = useCallback(async () => {
     try {
-      const response = await axios.get("https://sws-back.shop/client/myPage", {
+      //"https://sws-back.shop/client/myPage"
+      const response = await axios.get("http://localhost:3001/MyPage", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${accessToken}`,
@@ -100,8 +101,9 @@ const LWriting: React.FC<LWritingProps> = ({ category }) => {
     setLoading(true);
 
     try {
+      //"https://sws-back.shop/post"
       await axios.post(
-        "https://sws-back.shop/post",
+        "http://localhost:3001/Posts",
         {
           title,
           contents,

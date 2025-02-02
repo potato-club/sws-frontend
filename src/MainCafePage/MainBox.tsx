@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
 
+import React, { useEffect, useState } from "react";
+import jsonData from "../json-server/db.json";
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
 import Board from "../Components/CommentBox";
 import Slick from "../libs/Slick";
 interface MainDB {
-  id: number;
+  id: string | number;
   images: string;
 }
 const MainBox = () => {
@@ -26,16 +26,11 @@ const MainBox = () => {
     setRating(index);
   };
   const [mainbox, setMainbox] = useState<MainDB[]>([]);
+
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/MainBox")
-      .then((response) => {
-        setMainbox(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    setMainbox(jsonData.MainBox);
   }, []);
+
   const settings = {
     infinite: true,
     speed: 1000,
@@ -71,12 +66,11 @@ const MainBox = () => {
         <Slick settings={settings} slides={mainbox} />
 
         <CafeInfo>
-        위치:
-        <br/>
-        오픈 시간:
-        <br/>
-        등등 도서관에 대한 정보.
-
+          위치:
+          <br />
+          오픈 시간:
+          <br />
+          등등 도서관에 대한 정보.
         </CafeInfo>
         <Board />
       </ContainerArea>

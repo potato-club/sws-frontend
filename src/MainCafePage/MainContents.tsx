@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import axios from "axios";
-import React, { useState, useEffect } from "react";
 
+import React, { useState, useEffect } from "react";
+import jsonData from "../json-server/db.json";
 interface Ct {
   title: string;
   img: string;
@@ -10,21 +10,13 @@ interface Ct {
 interface info {
   Pagenation: any;
 }
+
 const MainContents: React.FC<info> = ({ Pagenation }) => {
-  //Pagenation 은 현재 페이지에 해당하는 데이터 배열
   const [MainCt, setMainCt] = useState<Ct[]>();
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/MainCt")
-      .then((response) => {
-        setMainCt(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    setMainCt(jsonData.MainCt);
   }, []);
-
   return (
     <>
       <BottomComponent>

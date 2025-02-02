@@ -1,13 +1,13 @@
 // 글 각 페이지
 
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+
 import styled from "styled-components";
 import { PRIMARY_COLOR_BLUE } from "../Constants/constants";
 import { useParams } from "react-router-dom";
 import { FaHeart } from "react-icons/fa6";
 import Comment from "../Components/Comment";
-
+import jsonData from "../json-server/db.json";
 interface CommunityData {
   id: string;
   title: string;
@@ -36,14 +36,14 @@ const Community: React.FC<CommunityProps> = ({ endpoint }) => {
 
   useEffect(() => {
     if (id) {
-      axios
-        .get(`http://localhost:3001/${endpoint}/${id}`)
-        .then((res) => {
-          setCommun(res.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      const foundData = (jsonData as any)[endpoint]?.find(
+        (item: CommunityData) => item.id === id
+      );
+      if (foundData) {
+        setCommun(foundData);
+      } else {
+        console.error("데이터를 찾을 수 없습니다.");
+      }
     } else {
       console.error("ID가 없습니다.");
     }
